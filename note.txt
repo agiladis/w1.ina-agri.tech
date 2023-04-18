@@ -1,0 +1,10 @@
+<?php
+	$acc=$_SESSION['createacc'];	
+		if($acc == 1) {
+						$acc1='';
+						} else {
+						$acc1='style="display:none;"';
+						}									
+?>
+
+<?php echo $acc1; ?>
