@@ -18,7 +18,7 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="incoming-hw.php">Incoming List</a></li>
-							<li><a href="#">New Incoming</a></li>						
+							<li><a href="create-new-perangkat.php">New Incoming</a></li>						
 						</ul>
 					</li>
 
@@ -38,7 +38,7 @@
 							<span class="fa fa-check-square-o"></span><span class="mtext">Quality Control</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Incoming QC</a></li>
+							<li><a href="incoming-qc.php">Incoming QC</a></li>
 							<li><a href="#">Final SN QC</a></li>
 						</ul>
 					</li>
