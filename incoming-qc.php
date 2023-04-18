@@ -1,3 +1,23 @@
+<?php
+if (isset($_POST['sdelete'])) {
+	require_once("koneksi.php");
+	$sdelete = $_POST['sdelete'];
+	mysql_query("DELETE FROM perangkat WHERE id=$sdelete");
+} elseif (isset($_POST['good'])) {
+	$penanggung_jawab = $_SESSION['nama'];
+	require_once("koneksi.php");
+	$id_good = $_POST['good'];
+	mysql_query("UPDATE perangkat SET kondisi = 'Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_good'");
+} elseif (isset($_POST['bad'])) {
+	$penanggung_jawab = $_SESSION['nama'];
+	require_once("koneksi.php");
+	$id_bad = $_POST['bad'];
+	mysql_query("UPDATE perangkat SET kondisi = 'Bad', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_bad'");
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -45,7 +65,8 @@
 									<th>No. Kardus</th>
 									<th>Tangal Incoming</th>
 									<th>Quality Control</th>
-									<th>No. Surat Jalan</th>
+                                    <th>No. Surat Jalan</th>
+									<th>Aksi</th>
 									<th class="datatable-nosort"></th>
 								</tr>
 							</thead>
@@ -75,6 +96,19 @@
 												echo $status . "(" . $data['penanggung_jawab'] . ")";
 											?>
 
+										</td>
+										<td>
+											<div class="dropdown">
+												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+													<i class="fa fa-ellipsis-h"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<form method="POST">
+														<button class="dropdown-item" name="good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</a>
+															<button class="dropdown-item" name="bad" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Bad</a>
+																<button onclick="return confirm('Are you sure you want to delete this item?');" class="dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</a>
+												</div>
+											</div>
 										</td>
 									</tr>
 
