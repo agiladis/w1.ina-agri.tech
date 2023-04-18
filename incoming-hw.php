@@ -38,21 +38,21 @@
 						<table class='data-table stripe hover nowrap'>
 							<thead>
 								<tr>
-									<th class="table-plus">No.</th>
-									<th>Jenis Perangkat</th>
-									<th>Qty</th>
-									<th>No. Batch</th>
-									<th>No. Kardus</th>
-									<th>Tangal Incoming</th>
-									<th>Quality Control</th>
-									<th>No. Surat Jalan</th>
+								<th class="table-plus">No.</th>
+									<th class="text-center">Jenis Perangkat</th>
+									<th class="text-center">Qty</th>
+									<th class="text-center">No. Batch</th>
+									<th class="text-center">No. Kardus</th>
+									<th class="text-center">Tangal Incoming</th>
+									<th class="text-center">Quality Control</th>
+                                    <th class="text-center">No. Surat Jalan</th>
 									<th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
 								include "koneksi.php";
-								$query_mysql = mysql_query("SELECT * FROM perangkat") or die(mysql_error());
+								$query_mysql = mysql_query("SELECT * FROM perangkat ORDER BY id DESC") or die(mysql_error());
 								$numb = 1;
 								while ($data = mysql_fetch_array($query_mysql)) {
 									$status = '';
@@ -76,6 +76,7 @@
 											?>
 
 										</td>
+										<td> <?php echo $data['no_surat_jalan']; ?></td>
 									</tr>
 
 								<?php

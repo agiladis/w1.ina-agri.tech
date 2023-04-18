@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
+
 if (isset($_POST['sdelete'])) {
 	require_once("koneksi.php");
 	$sdelete = $_POST['sdelete'];
@@ -8,11 +12,11 @@ if (isset($_POST['sdelete'])) {
 	require_once("koneksi.php");
 	$id_good = $_POST['good'];
 	mysql_query("UPDATE perangkat SET kondisi = 'Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_good'");
-} elseif (isset($_POST['bad'])) {
+} elseif (isset($_POST['not-good'])) {
 	$penanggung_jawab = $_SESSION['nama'];
 	require_once("koneksi.php");
-	$id_bad = $_POST['bad'];
-	mysql_query("UPDATE perangkat SET kondisi = 'Bad', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_bad'");
+	$id_not_good = $_POST['not-good'];
+	mysql_query("UPDATE perangkat SET kondisi = 'Not Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_not_good'");
 }
 ?>
 
@@ -59,25 +63,25 @@ if (isset($_POST['sdelete'])) {
 							<thead>
 								<tr>
 									<th class="table-plus">No.</th>
-									<th>Jenis Perangkat</th>
-									<th>Qty</th>
-									<th>No. Batch</th>
-									<th>No. Kardus</th>
-									<th>Tangal Incoming</th>
-									<th>Quality Control</th>
-                                    <th>No. Surat Jalan</th>
-									<th>Aksi</th>
+									<th class="text-center">Jenis Perangkat</th>
+									<th class="text-center">Qty</th>
+									<th class="text-center">No. Batch</th>
+									<th class="text-center">No. Kardus</th>
+									<th class="text-center">Tangal Incoming</th>
+									<th class="text-center">Quality Control</th>
+                                    <th class="text-center">No. Surat Jalan</th>
+									<th class="text-center">Aksi</th>
 									<th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
 								include "koneksi.php";
-								$query_mysql = mysql_query("SELECT * FROM perangkat") or die(mysql_error());
+								$query_mysql = mysql_query("SELECT * FROM perangkat ORDER BY id DESC") or die(mysql_error());
 								$numb = 1;
 								while ($data = mysql_fetch_array($query_mysql)) {
 									$status = '';
-									if ($data['kondisi'] == 'Bad') {
+									if ($data['kondisi'] == 'Not Good') {
 										$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
 									} else if ($data['kondisi'] == 'Good') {
 										$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
@@ -97,6 +101,7 @@ if (isset($_POST['sdelete'])) {
 											?>
 
 										</td>
+                                        <td> <?php echo $data['no_surat_jalan']; ?></td>
 										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -104,9 +109,10 @@ if (isset($_POST['sdelete'])) {
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
 													<form method="POST">
-														<button class="dropdown-item" name="good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</a>
-															<button class="dropdown-item" name="bad" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Bad</a>
-																<button onclick="return confirm('Are you sure you want to delete this item?');" class="dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</a>
+                                                        <button class="btn dropdown-item" name="good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</a>
+                                                        <button class="btn dropdown-item" name="not-good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Not Good</a>
+                                                        <button onclick="return confirm('Are you sure you want to delete this item?');" class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</a>
+                                                    </form>
 												</div>
 											</div>
 										</td>

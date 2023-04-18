@@ -7,6 +7,7 @@ $date = date('d F Y ', time());
 
 if (isset($_POST['register'])) {
 	require_once("koneksi.php");
+    $no_surat_jalan = $_POST['no_surat_jalan'];
 	$tgl = $_POST['tgl'];
 	$batch = $_POST['batch'];
 	$kardus = $_POST['kardus'];
@@ -19,7 +20,7 @@ if (isset($_POST['register'])) {
 	if (!$tgl || !$qty || !$batch || !$kardus || !$jenis) {
 		$message = "Masih ada data yang kosong!";
 	} else {
-		$simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat) VALUES('$qty','$tgl','$batch','$kardus','$jenis')");
+		$simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
 		if ($simpan) {
 			$message = "Berhasil Menyimpan!";
 			$infoo = "User " . $usernow . " menambahkan item incoming hardware";
@@ -76,6 +77,13 @@ if (isset($_POST['register'])) {
                 <!-- Default Basic Forms Start -->
                 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
                     <form method="POST" autocomplete="off">
+                    <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">No Surat Jalan</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" placeholder="cth : IX/023" name="no_surat_jalan">
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Jenis Barang</label>
                             <div class="col-sm-12 col-md-10">
