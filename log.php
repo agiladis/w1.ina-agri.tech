@@ -35,34 +35,23 @@
 						<table class='data-table stripe hover nowrap'>
 						<thead>
 								<tr>
-									<th class="table-plus">No.</th>
-									<th>Tanggal</th>
-									<th>Note</th>
-                                    <th class="datatable-nosort"></th>
+									<th class="datatable-nosort"></th>
+									<th class="datatable-nosort">Tanggal</th>
+									<th class="datatable-nosort">Note</th>
+                                   
 								</tr>
 							</thead>
 							<tbody>
 									<?php
 									include "koneksi.php";
-									$no = 1;
-									$query_mysql = mysql_query("SELECT * FROM log WHERE 1 ORDER BY 'id' DESC")or die(mysql_error());
-									while($data = mysql_fetch_assoc($query_mysql)){
+									$query_mysql7 = mysql_query("SELECT * FROM log ORDER BY id DESC")or die(mysql_error());
+									while($data7 = mysql_fetch_array($query_mysql7)){
 									?>
 								<tr>
-									<td class="table-plus"> <?php echo $data['id']; ?> </td>
-									<td> <?php echo $data['date']; ?> </td>
-									<td> <?php echo $data['note']; ?> </td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="fa fa-ellipsis-h"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="reset-password.php"><i class="fa fa-pencil"></i> Change Password</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
-											</div>
-										</div>
-									</td>
+									<td> </td>
+									<td> <?php echo $data7['date']; ?> </td>
+									<td> <?php echo $data7['note']; ?> </td>
+									
 								</tr>
 							<?php
 							}
