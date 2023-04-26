@@ -17,11 +17,14 @@
 	<?php include('include/header.php'); ?>
 	<?php
 	// HANDLE DELETE 
-	if (isset($_GET['delete'])) {
+	if (isset($_GET['delete'])&& isset($_GET['id_pemesan'])&& isset($_GET['id_batch']))  {
 		$id = $_GET['delete'];
+		$id_pemesan = $_GET['id_pemesan'];
+		$id_batch = $_GET['id_batch'];
 		$row_delete = mysql_fetch_assoc(mysql_query("SELECT * FROM batch_produksi where id=$id"));
 		$query_delete = mysql_query("DELETE FROM batch_produksi WHERE id = $id");
-		
+		$query_delete_serial = mysql_query("DELETE FROM serial_number WHERE id_pemesan = $id_pemesan AND id_batch=$id_batch	");
+
 		if ($query_delete) {
 			$datee = date("d-m-Y H:i:s");
 			$usernow = $_SESSION['nama'];
@@ -73,7 +76,6 @@
 									<th>Pemesan</th>
 									<th>Batch Code</th>
 									<th>Tanggal Mulai Produksi</th>
-                                    <th>Tanggal Akhir Produksi</th>
                                     <th class="datatable-nosort"></th>
 								</tr>
 							</thead>
@@ -91,7 +93,6 @@
 										<td><?= $row_query['ket']; ?></td>
 										<td><?= $row_query['kode_batch']; ?></td>
 										<td><?= $row_query['tgl_mulai']; ?></td>
-										<td><?= $row_query['tgl_akhir']; ?></td>
 										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -99,7 +100,7 @@
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
 													<a class="dropdown-item" href="edit-batch-production.php?edit=<?= $row_query['id_batch'] ?>"><i class="fa fa-pencil"></i> Edit</a>
-													<a class="dropdown-item" href="batch-production-table.php?delete=<?= $row_query['id_batch'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+													<a class="dropdown-item" href="batch-production-table.php?delete=<?= $row_query['id_batch'] ?>&id_pemesan=<?= $row_query['id_pemesan'] ?>&id_batch=<?= $row_query['kode_batch'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
 												</div>
 											</div>
 										</td>

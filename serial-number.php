@@ -60,12 +60,12 @@
 							<p class="font-14">you can find more options <a class="text-primary" href="https://datatables.net/" target="_blank">Click Here</a></p>
 						</div>
 					</div> -->
-                    <div class="clearfix mb-20">
-						<div class="pull-left">
-							<a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Create New</a>
+                    <!-- <div class="clearfix mb-20"> -->
+						<!-- <div class="pull-left"> -->
+							<!-- <a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Create New</a> -->
 							<!-- <a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Print All</a> -->
-						</div>
-					</div>
+						<!-- </div> -->
+					<!-- </div> -->
 					<div class="row">
 						<table class='data-table stripe hover nowrap'>
 						<thead>
@@ -73,15 +73,26 @@
 									<th class="table-plus">No.</th>
 									<th>Code</th>
 									<th>Detail</th>
+									<th>QC</th>
                                     <th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
+								
 								<?php if (mysql_num_rows($query) == 0) : ?>
 									<tr>
 										<td colspan="4" class="text-center font-weight-bold font-italic">It's empty in here.</td>
 									</tr>
-								<?php else: $i=1; do { 
+								<?php else: $i=1; do {
+										$status = '';
+										if ($row_serial_number['QC'] == 'NotGood') {
+											$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
+										} else if ($row_serial_number['QC'] == 'Good') {
+												$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
+										} else{
+											$status = '<i>NotQC</i>';
+										}
+									
 									//Menganbil data LCD
 									$id_lcd = $row_serial_number['LCD'];
 									$query_lcd= mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd"); 
@@ -121,7 +132,14 @@
 											echo "LOADCELL : Batch-".$row_loadcell['no_batch']. "  Kardus-". $row_loadcell['no_kardus']. " tgl (". $row_loadcell['tgl_datang'].")</br>" ; 	
 										}
 										
-										?></td>										<td>
+										?></td>										
+										<td class="text-center"> 
+											<?php if ($status != null)
+												echo $status;
+											?>
+
+										</td>
+										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 													<i class="fa fa-ellipsis-h"></i>
@@ -133,7 +151,8 @@
 											</div>
 										</td>
 									</tr>
-								<?php } while ($row_serial_number = mysql_fetch_assoc($query)); endif ?>
+								<?php
+								}  while ($row_serial_number = mysql_fetch_assoc($query)); endif ?>
 							</tbody>
 						</table>
 					</div>

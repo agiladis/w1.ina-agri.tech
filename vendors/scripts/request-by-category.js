@@ -1,13 +1,11 @@
 function selectCategory() {
     let idCategory = document.querySelector("#kategori-produk").value;
-    let kodeBatch = document.querySelector("#batch-produksi").value;
 
     $.ajax({
         url: "include/query-id-category.php",
         method: "POST",
         data: {
-            id_kategori: idCategory, 
-            kode_batch: kodeBatch,
+            id_kategori: idCategory
         },
         success: function(data) {
             $('#conditional-form').html(data);
