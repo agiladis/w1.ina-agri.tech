@@ -89,8 +89,6 @@
 											$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
 										} else if ($row_serial_number['kondisi'] == 'Good') {
 												$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
-										} else{
-											$status = '<i>Undefined</i>';
 										}
 									
 									//Menganbil data LCD
@@ -134,9 +132,13 @@
 										
 										?></td>										
 										<td class="text-center"> 
-											<?php if ($status != null)
-												echo $status;
-											?>
+												<?php if ($status != null) :
+                                                    echo $status . "(" . $row_serial_number['penanggung_jawab'] . ")";
+                                                ?>
+                                                <?php else : 
+                                                    echo "undefined";    
+                                                ?>
+                                                <?php endif ?>
 
 										</td>
 										<td>
