@@ -39,7 +39,7 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="incoming-qc.php">Incoming QC</a></li>
-							<li><a href="#">Final SN QC</a></li>
+							<li><a href="final-qc.php">Final SN QC</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">

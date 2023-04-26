@@ -73,7 +73,7 @@
 									<th class="table-plus">No.</th>
 									<th>Code</th>
 									<th>Detail</th>
-									<th>QC</th>
+									<th>Quality Control</th>
                                     <th class="datatable-nosort"></th>
 								</tr>
 							</thead>
@@ -85,12 +85,12 @@
 									</tr>
 								<?php else: $i=1; do {
 										$status = '';
-										if ($row_serial_number['QC'] == 'NotGood') {
+										if ($row_serial_number['kondisi'] == 'NotGood') {
 											$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
-										} else if ($row_serial_number['QC'] == 'Good') {
+										} else if ($row_serial_number['kondisi'] == 'Good') {
 												$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
 										} else{
-											$status = '<i>NotQC</i>';
+											$status = '<i>Undefined</i>';
 										}
 									
 									//Menganbil data LCD
