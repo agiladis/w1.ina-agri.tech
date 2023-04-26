@@ -19,6 +19,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- CSS -->
+	  <link rel="stylesheet" href="vendors/styles/style.css">
 </head>
 <body>
 <div class="qr-code-grid">
@@ -52,24 +54,6 @@
 
 
 </body>
-<style>
-.qr-code-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 1rem;
-}
 
-.qr-code {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.qrcode-label {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  text-align: center;
-}
-</style>
 </html>
 
