@@ -113,7 +113,7 @@
 										<option selected value="0">Choose...</option>
 										<?php 
 											// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
-											$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%'");
+											$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%' WHERE kondisi = `Good` ");
 											$data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
 											do {										
 										?>
