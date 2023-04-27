@@ -17,12 +17,15 @@
             <option selected value="0">Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
-                $query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%'");
+                $query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%' AND kondisi = `Good` ");
                 $data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
+                if (mysql_num_rows($query_perangkat_lcd) > 0) :
                 do {										
             ?>
                 <option value="<?= $data_lcd['id']; ?>" ><?= $data_lcd['nama_perangkat'] . ", " . "Batch-" . $data_lcd['no_batch'] . ", Kardus-" . $data_lcd['no_kardus']; ?></option>
-            <?php } while($data_lcd = mysql_fetch_assoc($query_perangkat_lcd)); ?>
+            <?php } while($data_lcd = mysql_fetch_assoc($query_perangkat_lcd)); else : ?>
+                <option selected value="0">NOT FOUND</option>
+            <?php endif ?>
         </select>
     </div>
 </div>
@@ -33,7 +36,7 @@
             <option selected value="0">Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "PCB"
-                $query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%PCB-$category_code%'");
+                $query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%PCB-$category_code%' AND kondisi = `Good` ");
                 $data_pcb = mysql_fetch_assoc($query_perangkat_pcb);
                 if (mysql_num_rows($query_perangkat_pcb) > 0) :
                 do {										
@@ -52,7 +55,7 @@
             <option selected value="0">Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LOADCELL"
-                $query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%LOADCELL-$category_code%'");
+                $query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%LOADCELL-$category_code%' AND kondisi = `Good` ");
                 $data_loadcell = mysql_fetch_assoc($query_perangkat_loadcell);
                 if (mysql_num_rows($query_perangkat_loadcell) > 0) :
                 do {										
