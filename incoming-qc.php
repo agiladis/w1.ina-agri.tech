@@ -59,7 +59,7 @@ if (isset($_POST['sdelete'])) {
 				<!-- Simple Datatable start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="row invoice-wrap">
-						<table class='data-table stripe hover nowrap'>
+						<table class='data-table stripe hover'>
 							<thead>
 								<tr>
 									<th class="table-plus">No.</th>
@@ -69,9 +69,8 @@ if (isset($_POST['sdelete'])) {
 									<th class="text-center">No. Kardus</th>
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
-                                    <th class="text-center">No. Surat Jalan</th>
+									<th class="text-center">No. Surat Jalan</th>
 									<th class="text-center">Aksi</th>
-									<th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -97,15 +96,15 @@ if (isset($_POST['sdelete'])) {
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
 											<?php if ($status != null) :
-                                                echo $status . "(" . $data['penanggung_jawab'] . ")";
-                                            ?>
-                                            <?php else : 
-                                                echo "undefined";    
-                                            ?>
-                                            <?php endif ?>
+												echo $status . "(" . $data['penanggung_jawab'] . ")";
+											?>
+											<?php else :
+												echo "undefined";
+											?>
+											<?php endif ?>
 
 										</td>
-                                        <td> <?php echo $data['no_surat_jalan']; ?></td>
+										<td> <?php echo $data['no_surat_jalan']; ?></td>
 										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -113,10 +112,10 @@ if (isset($_POST['sdelete'])) {
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
 													<form method="POST">
-                                                        <button class="btn dropdown-item" name="good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</button>
-                                                        <button class="btn dropdown-item" name="not-good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Not Good</button>
-                                                        <button onclick="return confirm('Are you sure you want to delete this item?');" class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
-                                                    </form>
+														<button class="btn dropdown-item" name="good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</button>
+														<button class="btn dropdown-item" name="not-good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Not Good</button>
+														<button onclick="return confirm('Are you sure you want to delete this item?');" class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
+													</form>
 												</div>
 											</div>
 										</td>
