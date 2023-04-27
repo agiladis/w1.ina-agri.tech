@@ -14,9 +14,6 @@
     <?php include('include/head.php'); ?>
     <?php include('koneksi.php'); ?>
     <?php
-    $query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC");
-    $row_serial_number = mysql_fetch_assoc($query);
-
     // HANDLE DELETE
     if (isset($_GET['delete'])) {
         $id = $_GET['delete'];
@@ -35,17 +32,21 @@
     // HANDLE QC
     if (isset($_POST['good'])) {
         $penanggung_jawab = $_SESSION['nama'];
-        require_once("koneksi.php");
+        // require_once("koneksi.php");
         $id_good = $_POST['good'];
         mysql_query("UPDATE serial_number SET kondisi = 'Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_good'");
     }
 
     if (isset($_POST['not-good'])) {
         $penanggung_jawab = $_SESSION['nama'];
-        require_once("koneksi.php");
+        // require_once("koneksi.php");
         $id_not_good = $_POST['not-good'];
         mysql_query("UPDATE serial_number SET kondisi = 'Not Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_not_good'");
     }
+
+    // READ DATA
+    $query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC");
+    $row_serial_number = mysql_fetch_assoc($query);
     ?>
     <?php include('include/sidebar.php'); ?>
     <div class="main-container">
@@ -103,7 +104,7 @@
                                     <?php else : $i = 1;
                                     do {
                                         $status = '';
-                                        if ($row_serial_number['kondisi'] == 'NotGood') {
+                                        if ($row_serial_number['kondisi'] == 'Not Good') {
                                             $status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
                                         } else if ($row_serial_number['kondisi'] == 'Good') {
                                             $status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
