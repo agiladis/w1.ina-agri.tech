@@ -10,7 +10,6 @@
     $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai')");
 
     // GENERATE SERIAL NUMBER
-    // $id_batch_produksi = $_POST['batch_produksi'];
     $id_kategori_produk = $_POST['kategori_produk'];
     // QUERY PEMESAN
     $query_pemesan = mysql_query("SELECT * FROM pemesan WHERE id = $id_pemesan ");
@@ -43,8 +42,9 @@
     if(!$query_insert) {
         header("Location: create-batch-production.php?generate=failed");
     } else {
+        $url = "print-qr-all-batch.php?id_pemesan=$id_pemesan&id_batch=$kode_batch";
         ?>
-        <script> window.open('print-qr-all-batch.php','_blank'); window.location = 'batch-production-table.php'; </script>
+        <script> window.open('<?php echo $url; ?>','_blank'); window.location = 'batch-production-table.php'; </script>
         <?php
     }
 ?>
