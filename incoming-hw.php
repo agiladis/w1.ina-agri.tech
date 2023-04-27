@@ -56,7 +56,7 @@
 								$numb = 1;
 								while ($data = mysql_fetch_array($query_mysql)) {
 									$status = '';
-									if ($data['kondisi'] == 'Bad') {
+									if ($data['kondisi'] == 'Not Good') {
 										$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
 									} else if ($data['kondisi'] == 'Good') {
 										$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
