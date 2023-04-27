@@ -35,17 +35,18 @@
 				<!-- Simple Datatable start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="row invoice-wrap">
-						<table class='data-table stripe hover'>
+						<table class='data-table stripe hover nowrap'>
 							<thead>
 								<tr>
-									<th class="table-plus">No.</th>
+								<th class="table-plus">No.</th>
 									<th class="text-center">Jenis Perangkat</th>
 									<th class="text-center">Qty</th>
 									<th class="text-center">No. Batch</th>
 									<th class="text-center">No. Kardus</th>
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
-									<th class="text-center">No. Surat Jalan</th>
+                                    <th class="text-center" data-sortable="false">No. Surat Jalan</th>
+									<!-- <th class="datatable-nosort"></th> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -73,10 +74,10 @@
 											<?php if ($status != null) :
 												echo $status . "(" . $data['penanggung_jawab'] . ")";
 											?>
-											<?php else :
-												echo "undefined";
-											?>
-											<?php endif ?>
+											<?php else : 
+                                                echo "undefined";    
+                                            ?>
+                                            <?php endif ?>
 
 										</td>
 										<td> <?php echo $data['no_surat_jalan']; ?></td>

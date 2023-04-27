@@ -84,7 +84,7 @@
                     <!-- </div> -->
                     <!-- </div> -->
                     <div class="row">
-                        <table class='data-table stripe hover '>
+                        <table class='data-table stripe hover wrap'>
                             <thead>
                                 <tr>
                                     <th class="table-plus">No.</th>
