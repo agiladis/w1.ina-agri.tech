@@ -4,6 +4,14 @@
 				<img src="images/logo-inastek-resized.png" alt="">
 			</a>
 		</div>
+		<?php
+		$acc = $_SESSION['level'];
+		if ($acc == 'root') {
+			$acc1 = '';
+		} else {
+			$acc1 = 'style="display:none;"';
+		}
+		?>
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
@@ -18,7 +26,7 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="incoming-hw.php">Incoming List</a></li>
-							<li><a href="create-new-perangkat.php">New Incoming</a></li>						
+							<li><a href="create-new-perangkat.php">New Incoming</a></li>
 						</ul>
 					</li>
 
@@ -28,9 +36,9 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="serial-number.php"> List Serial Number</a></li>
-							<li><a href="batch-production-table.php">Batch Production</a></li>
-							<li><a href="list-kategori-produk.php" >List Kategori Produk</a></li>
-							<li><a href="list-pemesan-produk.php" >List Pemesanan Produk</a></li>
+							<li><a href="batch-production-table.php">Create Batch & Generate QR</a></li>
+							<li><a href="list-kategori-produk.php">List Kategori Produk</a></li>
+							<li><a href="list-pemesan-produk.php">List Pemesanan Produk</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -47,12 +55,12 @@
 							<span class="fa fa-user-circle-o"></span><span class="mtext">Account</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="create-new-user.php" >Create New User</a></li>
-							<li><a href="reset-password.php" >Change Password</a></li>
-							<li><a href="list-user.php" >List User</a></li>
-							<li><a href="list-usergroup.php" >List Usergroup</a></li>
-							<li><a href="log.php" >Log</a></li>
-							<li><a href="logout.php" >Log out</a></li>
+							<li <?php echo $acc1; ?>><a href="create-new-user.php">Create New User</a></li>
+							<li><a href="reset-password.php?userId=<?php echo $_SESSION['idid'] ?>">Change Password</a></li>
+							<li <?php echo $acc1; ?>><a href="list-user.php">List User</a></li>
+							<li <?php echo $acc1; ?>><a href="list-usergroup.php">List Usergroup</a></li>
+							<li><a href="log.php">Log</a></li>
+							<li><a href="logout.php">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
