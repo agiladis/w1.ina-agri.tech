@@ -133,7 +133,7 @@
 										?></td>										
 										<td class="text-center"> 
 											<?php if ($status != null) :
-												echo $status . "(" . $data['penanggung_jawab'] . ")";
+												echo $status . "(" . $row_serial_number['penanggung_jawab'] . ")";
 											?>
 											<?php else : 
                                                     echo "undefined";    
