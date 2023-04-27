@@ -10,6 +10,7 @@
     $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai')");
 
     // GENERATE SERIAL NUMBER
+    // $id_batch_produksi = $_POST['batch_produksi'];
     $id_kategori_produk = $_POST['kategori_produk'];
     // QUERY PEMESAN
     $query_pemesan = mysql_query("SELECT * FROM pemesan WHERE id = $id_pemesan ");
