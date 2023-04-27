@@ -53,7 +53,7 @@
 				</div>
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<form method="POST" action="create-batch.php" autocomplete="off">
+					<form method="POST" action="create-batch.php" autocomplete="off" name="myForm" onsubmit="return validateForm()">
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
 							<div class="col-sm-12 col-md-10">
@@ -112,15 +112,8 @@
 								<label class="col-sm-12 col-md-2 col-form-label">LCD</label>
 								<div class="col-sm-12 col-md-10">
 									<select name="LCD" class="custom-select col-12">
-										<option selected value="0">Choose...</option>
-										<?php
-										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
-										$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%' WHERE kondisi = 'Good' ");
-										$data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
-										do {
-										?>
-											<option value="<?= $data_lcd['id']; ?>"><?= $data_lcd['nama_perangkat'] . ", " . "Batch-" . $data_lcd['no_batch'] . ", Kardus-" . $data_lcd['no_kardus']; ?></option>
-										<?php } while ($data_lcd = mysql_fetch_assoc($query_perangkat_lcd)); ?>
+										<option selected value="0">Select product category first</option>
+
 									</select>
 								</div>
 							</div>
