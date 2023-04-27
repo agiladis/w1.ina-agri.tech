@@ -71,9 +71,13 @@
 										<td> Box-No.<?php echo $data['no_kardus']; ?></td>
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
-											<?php if ($status != null)
+											<?php if ($status != null) :
 												echo $status . "(" . $data['penanggung_jawab'] . ")";
 											?>
+											<?php else : 
+                                                echo "undefined";    
+                                            ?>
+                                            <?php endif ?>
 
 										</td>
 										<td> <?php echo $data['no_surat_jalan']; ?></td>
