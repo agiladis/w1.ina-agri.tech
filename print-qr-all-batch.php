@@ -1,15 +1,16 @@
 <?php
     session_start();
     include('koneksi.php');
-    $query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC LIMIT 1");
-    $row_last_id = mysql_fetch_assoc($query);
-    $id = $row_last_id['id_batch'];
-
-    $query_select = mysql_query("SELECT serial_number FROM serial_number WHERE id_batch=$id");
-    $serial_numbers = array(); // inisialisasi array
-    while ($row_sn = mysql_fetch_assoc($query_select)) {
-        $serial_numbers[] = $row_sn['serial_number']; // tambahkan serial number ke dalam array
+    if(isset($_GET['id_pemesan']) && isset($_GET['id_batch'])){
+      $id_pemesan = $_GET['id_pemesan'];
+		  $id_batch = $_GET['id_batch'];
+      $query_serial = mysql_query("SELECT * FROM serial_number WHERE id_pemesan = $id_pemesan AND id_batch=$id_batch");
+      $serial_numbers = array(); // inisialisasi array
+      while ($row_sn = mysql_fetch_assoc($query_serial)) {
+          $serial_numbers[] = $row_sn['serial_number']; // tambahkan serial number ke dalam array
+      }
     }
+    
 ?>
 
 <!DOCTYPE html>
