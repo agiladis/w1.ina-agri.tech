@@ -85,7 +85,7 @@
 									</tr>
 								<?php else: $i=1; do {
 										$status = '';
-										if ($row_serial_number['kondisi'] == 'NotGood') {
+										if ($row_serial_number['kondisi'] == 'Not Good') {
 											$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
 										} else if ($row_serial_number['kondisi'] == 'Good') {
 												$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
@@ -132,13 +132,13 @@
 										
 										?></td>										
 										<td class="text-center"> 
-												<?php if ($status != null) :
-                                                    echo $status . "(" . $row_serial_number['penanggung_jawab'] . ")";
-                                                ?>
-                                                <?php else : 
+											<?php if ($status != null) :
+												echo $status . "(" . $row_serial_number['penanggung_jawab'] . ")";
+											?>
+											<?php else : 
                                                     echo "undefined";    
-                                                ?>
-                                                <?php endif ?>
+                                            ?>
+                                            <?php endif ?>
 
 										</td>
 										<td>

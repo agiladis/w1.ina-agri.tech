@@ -56,7 +56,7 @@
 								$numb = 1;
 								while ($data = mysql_fetch_array($query_mysql)) {
 									$status = '';
-									if ($data['kondisi'] == 'Bad') {
+									if ($data['kondisi'] == 'Not Good') {
 										$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
 									} else if ($data['kondisi'] == 'Good') {
 										$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
@@ -71,9 +71,13 @@
 										<td> Box-No.<?php echo $data['no_kardus']; ?></td>
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
-											<?php if ($status != null)
+											<?php if ($status != null) :
 												echo $status . "(" . $data['penanggung_jawab'] . ")";
 											?>
+											<?php else : 
+                                                echo "undefined";    
+                                            ?>
+                                            <?php endif ?>
 
 										</td>
 										<td> <?php echo $data['no_surat_jalan']; ?></td>
