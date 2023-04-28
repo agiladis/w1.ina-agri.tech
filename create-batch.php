@@ -37,6 +37,17 @@
         $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL')");
     }
 
+    // PATCH DATA TAKEN PERANGKAT TABEL : LCD, PCB, LOADCELL
+    if ($LCD != 0) {
+        $query_patch_lcd = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $LCD"); // For LCD data
+    }
+    if ($PCB != 0) {
+        $query_patch_pcb = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $PCB"); // For PCB data
+    }
+    if ($LOADCELL != 0) {
+        $query_patch_loadcell = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $LOADCELL"); // For LOADCELL data
+    }
+
     $infoo =$usernow." menambahkan batch produksi baru ".$kode_batch ;
     mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 

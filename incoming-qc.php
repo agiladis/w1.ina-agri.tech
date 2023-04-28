@@ -69,8 +69,9 @@ if (isset($_POST['sdelete'])) {
 									<th class="text-center">No. Kardus</th>
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
-									<th class="text-center">No. Surat Jalan</th>
-									<th class="text-center" data-sortable="false">Aksi</th>
+                  <th class="text-center">No. Surat Jalan</th>
+                  <th class="text-center">Digunakan</th>
+									<th class="text-center">Aksi</th>
 									<!-- <th class="datatable-nosort"></th> -->
 								</tr>
 							</thead>
@@ -105,7 +106,8 @@ if (isset($_POST['sdelete'])) {
 											<?php endif ?>
 
 										</td>
-										<td> <?php echo $data['no_surat_jalan']; ?></td>
+                    <td> <?php echo $data['no_surat_jalan']; ?></td>
+                    <td> <?php echo boolval($data['taken']) ? 'TRUE' : 'FALSE'; ?></td>
 										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
