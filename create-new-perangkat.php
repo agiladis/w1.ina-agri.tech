@@ -94,6 +94,8 @@ if (isset($_POST['register'])) {
                                     <option value="PCB-BBWS ">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
+                                    <option value="Loadcell-BBWS">Locker switch</option>
+                                    <option value="Locker-Switch">Locker switch</option>
                                 </select>
                             </div>
                         </div>
