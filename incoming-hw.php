@@ -46,6 +46,7 @@
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
                                     <th class="text-center">No. Surat Jalan</th>
+                                    <th class="text-center">Digunakan</th>
 									<th class="datatable-nosort"></th>
 								</tr>
 							</thead>
@@ -81,6 +82,7 @@
 
 										</td>
 										<td> <?php echo $data['no_surat_jalan']; ?></td>
+										<td> <?php echo boolval($data['taken']) ? 'TRUE' : 'FALSE'; ?></td>
 									</tr>
 
 								<?php
