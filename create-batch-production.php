@@ -102,25 +102,25 @@
 							</div>
 						</div>
 						<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
-								<div id="jumlah-container" class="col-sm-12 col-md-10">
-									<input name="jumlah" class="form-control" type="text" value="100" readonly>
-								</div>
+							<label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
+							<div id="jumlah-container" class="col-sm-12 col-md-10">
+								<input name="jumlah" class="form-control" type="text" value="100" readonly>
 							</div>
+						</div>
 						<div id="conditional-form">
 							<div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">LCD</label>
 								<div class="col-sm-12 col-md-10">
 									<select name="LCD" class="custom-select col-12">
 										<option selected value="0">Select product category first</option>
-										<?php 
-											// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
-											$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%' AND kondisi = 'Good' AND taken = 0 ");
-											$data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
-											do {										
+										<?php
+										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
+										$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%' AND kondisi = 'Good' AND taken = 0 ");
+										$data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
+										do {
 										?>
-											<option value="<?= $data_lcd['id']; ?>" ><?= $data_lcd['nama_perangkat'] . ", " . "Batch-" . $data_lcd['no_batch'] . ", Kardus-" . $data_lcd['no_kardus']; ?></option>
-										<?php } while($data_lcd = mysql_fetch_assoc($query_perangkat_lcd)); ?>
+											<option value="<?= $data_lcd['id']; ?>"><?= $data_lcd['nama_perangkat'] . ", " . "Batch-" . $data_lcd['no_batch'] . ", Kardus-" . $data_lcd['no_kardus']; ?></option>
+										<?php } while ($data_lcd = mysql_fetch_assoc($query_perangkat_lcd)); ?>
 									</select>
 								</div>
 							</div>

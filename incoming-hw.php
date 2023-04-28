@@ -45,8 +45,8 @@
 									<th class="text-center">No. Kardus</th>
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
-                  <th class="text-center" data-sortable="false">No. Surat Jalan</th>
-                  <th class="text-center">Digunakan</th>
+                  					<th class="text-center" data-sortable="false">No. Surat Jalan</th>
+                  					<th class="text-center">Digunakan</th>
 									<!-- <th class="datatable-nosort"></th> -->
 								</tr>
 							</thead>
