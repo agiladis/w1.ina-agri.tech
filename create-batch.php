@@ -43,9 +43,9 @@
     if(!$query_insert) {
         header("Location: create-batch-production.php?generate=failed");
     } else {
-        $url = "print-qr-all-batch.php?id_pemesan=$id_pemesan&id_batch=$kode_batch";
+        // $url = "print-qr-all-batch.php?id_pemesan=$id_pemesan&id_batch=$kode_batch";
         ?>
-        <script> window.open('<?php echo $url; ?>','_blank'); window.location = 'batch-production-table.php'; </script>
+        <script> window.location = 'batch-production-table.php'; </script>
         <?php
     }
 ?>

@@ -53,7 +53,7 @@
 				</div>
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<form method="POST" action="create-batch.php" autocomplete="off" name="myForm" onsubmit="return validateForm()">
+					<form method="POST" action="create-batch.php" autocomplete="off" name="myForm">
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
 							<div class="col-sm-12 col-md-10">
