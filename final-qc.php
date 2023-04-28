@@ -84,7 +84,7 @@
                     <!-- </div> -->
                     <!-- </div> -->
                     <div class="row">
-                        <table class='data-table stripe hover nowrap'>
+                        <table class='data-table stripe hover wrap'>
                             <thead>
                                 <tr>
                                     <th class="table-plus">No.</th>
@@ -92,7 +92,6 @@
                                     <th>Detail</th>
                                     <th>Quality Control</th>
                                     <th>Action</th>
-                                    <th class="datatable-nosort"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -151,8 +150,8 @@
                                                 <?php if ($status != null) :
                                                     echo $status . "(" . $row_serial_number['penanggung_jawab'] . ")";
                                                 ?>
-                                                <?php else : 
-                                                    echo "undefined";    
+                                                <?php else :
+                                                    echo "undefined";
                                                 ?>
                                                 <?php endif ?>
 
