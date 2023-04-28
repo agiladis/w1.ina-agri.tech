@@ -99,13 +99,13 @@
 
 							</div>
 						</div>
-						<div id="conditional-form">
-							<div class="form-group row">
+						<div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
 								<div id="jumlah-container" class="col-sm-12 col-md-10">
 									<input name="jumlah" class="form-control" type="text" value="100" readonly>
 								</div>
 							</div>
+						<div id="conditional-form">
 							<div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">LCD</label>
 								<div class="col-sm-12 col-md-10">
