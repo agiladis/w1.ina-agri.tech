@@ -29,12 +29,27 @@
     $LCD = $_POST['LCD'];
     $PCB = $_POST['PCB'];
     $LOADCELL = $_POST['LOADCELL'];
+    $rocker_switch = $_POST['rocker-switch'];
     $datee = date("d-m-Y H:i:s");
 
     for ($i = 1; $i <= 100; $i++) {
         $kode_nomor = str_pad($i, 2, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
         $serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
-        $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL')");
+        $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL, rocker_switch) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$rocker_switch')");
+    }
+
+    // PATCH DATA TAKEN PERANGKAT TABEL : LCD, PCB, LOADCELL
+    if ($LCD != 0) {
+        $query_patch_lcd = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $LCD"); // For LCD data
+    }
+    if ($PCB != 0) {
+        $query_patch_pcb = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $PCB"); // For PCB data
+    }
+    if ($LOADCELL != 0) {
+        $query_patch_loadcell = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $LOADCELL"); // For LOADCELL data
+    }
+    if ($rocker_switch != 0) {
+        $query_patch_rocker = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $rocker_switch"); // For rocker-switch data
     }
 
     $infoo =$usernow." menambahkan batch produksi baru ".$kode_batch ;
