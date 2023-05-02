@@ -33,7 +33,7 @@ if (isset($_POST['sdelete'])) {
 
 	$query_not_good = mysql_query("SELECT * FROM perangkat WHERE id=$id_not_good");
 	$row_not_good = mysql_fetch_assoc($query_not_good);
-	$infoo = $usernow . " mengubah QC pada perangkat " . $row_not_good['nama_perangkat'] . " batch ke-" . $row_good["no_batch"] . " dengan kondisi Not Good";
+	$infoo = $usernow . " mengubah QC pada perangkat " . $row_not_good['nama_perangkat'] . " batch ke-" . $row_not_good["no_batch"] . " dengan kondisi Not Good";
 	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 
 	mysql_query("UPDATE perangkat SET kondisi = 'Not Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_not_good'");
