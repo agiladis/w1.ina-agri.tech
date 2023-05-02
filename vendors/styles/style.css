@@ -10,12 +10,12 @@ Author: Ankit Hingarajiya - DeskApp
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
- /*==============================================================
+/*==============================================================
 	Additional Styles Initials
 ==============================================================*/
 .qr-code-grid {
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(2, 80px);
   grid-gap: 1rem;
 }
 
@@ -4480,9 +4480,9 @@ tbody.collapse.show {
 @media (min-width: 576px) {
   .card-columns {
     -moz-column-count: 3;
-         column-count: 3;
+    column-count: 3;
     -moz-column-gap: 1.25rem;
-         column-gap: 1.25rem;
+    column-gap: 1.25rem;
   }
   .card-columns .card {
     display: inline-block;
@@ -5710,9 +5710,7 @@ button.close {
   transform: translateX(0);
 }
 
-@supports (
-  (transform-style: preserve-3d)
-) {
+@supports ((transform-style: preserve-3d)) {
   .carousel-item-next.carousel-item-left,
   .carousel-item-prev.carousel-item-right {
     transform: translate3d(0, 0, 0);
@@ -5724,9 +5722,7 @@ button.close {
   transform: translateX(100%);
 }
 
-@supports (
-  (transform-style: preserve-3d)
-) {
+@supports ((transform-style: preserve-3d)) {
   .carousel-item-next,
   .active.carousel-item-right {
     transform: translate3d(100%, 0, 0);
@@ -5738,9 +5734,7 @@ button.close {
   transform: translateX(-100%);
 }
 
-@supports (
-  (transform-style: preserve-3d)
-) {
+@supports ((transform-style: preserve-3d)) {
   .carousel-item-prev,
   .active.carousel-item-left {
     transform: translate3d(-100%, 0, 0);
