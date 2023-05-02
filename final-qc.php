@@ -34,13 +34,25 @@
         $penanggung_jawab = $_SESSION['nama'];
         // require_once("koneksi.php");
         $id_good = $_POST['good'];
+
         mysql_query("UPDATE serial_number SET kondisi = 'Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_good'");
+
+        $query_good = mysql_query("SELECT * FROM serial_number WHERE id=$id_good");
+        $row_good = mysql_fetch_assoc($query_good);
+        $infoo = $penanggung_jawab . " mengubah QC pada serial number " . $row_good['serial_number'] . " dengan kondisi Good";
+        mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
     }
 
     if (isset($_POST['not-good'])) {
         $penanggung_jawab = $_SESSION['nama'];
         // require_once("koneksi.php");
         $id_not_good = $_POST['not-good'];
+
+        $query_not_good = mysql_query("SELECT * FROM serial_number WHERE id=$id_not_good");
+        $row_not_good = mysql_fetch_assoc($query_not_good);
+        $infoo = $penanggung_jawab . " mengubah QC pada serial number " . $row_not_good['serial_number'] . " dengan kondisi Not Good";
+        mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+
         mysql_query("UPDATE serial_number SET kondisi = 'Not Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_not_good'");
     }
 

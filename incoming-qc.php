@@ -2,20 +2,40 @@
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
+$usernow = $_SESSION['nama'];
+$datee = date("d-m-Y H:i:s");
 
 if (isset($_POST['sdelete'])) {
 	require_once("koneksi.php");
 	$sdelete = $_POST['sdelete'];
+
+	$query_delete = mysql_query("SELECT * FROM perangkat WHERE id=$sdelete");
+	$row_delete = mysql_fetch_assoc($query_delete);
+	$infoo = $usernow . " melakukan delete pada perangkat " . $row_delete['nama_perangkat'] . " dengan no batch-" . $row_delete["no_batch"];
+	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+
 	mysql_query("DELETE FROM perangkat WHERE id=$sdelete");
 } elseif (isset($_POST['good'])) {
 	$penanggung_jawab = $_SESSION['nama'];
 	require_once("koneksi.php");
 	$id_good = $_POST['good'];
+
+	$query_good = mysql_query("SELECT * FROM perangkat WHERE id=$id_good");
+	$row_good = mysql_fetch_assoc($query_good);
+	$infoo = $usernow . " mengubah QC pada perangkat " . $row_good['nama_perangkat'] . " batch ke-" . $row_good["no_batch"] . " dengan kondisi Good";
+	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+
 	mysql_query("UPDATE perangkat SET kondisi = 'Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_good'");
 } elseif (isset($_POST['not-good'])) {
 	$penanggung_jawab = $_SESSION['nama'];
 	require_once("koneksi.php");
 	$id_not_good = $_POST['not-good'];
+
+	$query_not_good = mysql_query("SELECT * FROM perangkat WHERE id=$id_not_good");
+	$row_not_good = mysql_fetch_assoc($query_not_good);
+	$infoo = $usernow . " mengubah QC pada perangkat " . $row_not_good['nama_perangkat'] . " batch ke-" . $row_good["no_batch"] . " dengan kondisi Not Good";
+	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+
 	mysql_query("UPDATE perangkat SET kondisi = 'Not Good', penanggung_jawab = '$penanggung_jawab' WHERE id ='$id_not_good'");
 }
 ?>

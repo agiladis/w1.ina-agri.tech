@@ -10,6 +10,12 @@ if (isset($_GET['id_pemesan']) && isset($_GET['id_batch'])) {
     $serial_numbers[] = $row_sn['serial_number']; // tambahkan serial number ke dalam array
   }
   $query_printed = mysql_query("UPDATE batch_produksi SET printed = '1' WHERE id_pemesan = $id_pemesan AND kode_batch=$id_batch");
+
+  $usernow = $_SESSION['nama'];
+  $datee = date("d-m-Y H:i:s");
+
+  $infoo = $usernow . " melakukan print semua serial number batch- " . $id_batch;
+  mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 }
 
 ?>
