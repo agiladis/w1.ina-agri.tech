@@ -43,6 +43,7 @@ if (isset($_GET['id_pemesan']) && isset($_GET['id_batch'])) {
         $('#qrcode-<?php echo $serial; ?>').qrcode({
           render: 'image',
           text: text,
+          size: 75.590551181,
           quiet: 4,
           mSize: 0.07,
           mPosX: 0.5,
@@ -57,7 +58,7 @@ if (isset($_GET['id_pemesan']) && isset($_GET['id_batch'])) {
   </script>
   <style>
     @page {
-      size: lands;
+      size: landscape;
     }
   </style>
 </body>
