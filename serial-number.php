@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	
+
 
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/dataTables.bootstrap4.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/responsive.dataTables.css">
 </head>
+
 <body>
 	<?php include('include/header.php'); ?>
 	<?php include('include/head.php'); ?>
 	<?php include('koneksi.php'); ?>
 	<?php
-		$query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC");
-		$row_serial_number = mysql_fetch_assoc($query);
+	$query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC");
+	$row_serial_number = mysql_fetch_assoc($query);
 
-		// HANDLE DELETE
-		if (isset($_GET['delete'])) {
-			$id = $_GET['delete'];
-			$query_sn = mysql_query("SELECT * FROM serial_number where id=$id");
-			$row_sn = mysql_fetch_assoc($query_sn);
-			$query_delete = mysql_query("DELETE FROM serial_number WHERE id = $id ");
-			if ($query_delete) {
-				header('Location: serial-number.php');
-			}
-			$datee = date("d-m-Y H:i:s");
-			$usernow = $_SESSION['nama'];
-			$infoo =$usernow." menghapus serial number ".$row_sn['serial_number'];
-			mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-
+	// HANDLE DELETE
+	if (isset($_GET['delete'])) {
+		$id = $_GET['delete'];
+		$query_sn = mysql_query("SELECT * FROM serial_number where id=$id");
+		$row_sn = mysql_fetch_assoc($query_sn);
+		$query_delete = mysql_query("DELETE FROM serial_number WHERE id = $id ");
+		if ($query_delete) {
+			header('Location: serial-number.php');
 		}
+		$datee = date("d-m-Y H:i:s");
+		$usernow = $_SESSION['nama'];
+		$infoo = $usernow . " menghapus serial number " . $row_sn['serial_number'];
+		mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+	}
 	?>
 	<?php include('include/sidebar.php'); ?>
 	<div class="main-container">
@@ -49,7 +50,7 @@
 								</ol>
 							</nav>
 						</div>
-					
+
 					</div>
 				</div>
 				<!-- Simple Datatable start -->
@@ -60,101 +61,110 @@
 							<p class="font-14">you can find more options <a class="text-primary" href="https://datatables.net/" target="_blank">Click Here</a></p>
 						</div>
 					</div> -->
-                    <!-- <div class="clearfix mb-20"> -->
-						<!-- <div class="pull-left"> -->
-							<!-- <a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Create New</a> -->
-							<!-- <a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Print All</a> -->
-						<!-- </div> -->
+					<!-- <div class="clearfix mb-20"> -->
+					<!-- <div class="pull-left"> -->
+					<!-- <a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Create New</a> -->
+					<!-- <a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Print All</a> -->
+					<!-- </div> -->
 					<!-- </div> -->
 					<div class="row">
 						<table class='data-table stripe hover nowrap'>
-						<thead>
+							<thead>
 								<tr>
 									<th class="table-plus">No.</th>
 									<th>Code</th>
 									<th>Detail</th>
 									<th>Quality Control</th>
-                                    <th class="datatable-nosort"></th>
+									<th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
-								
+
 								<?php if (mysql_num_rows($query) == 0) : ?>
 									<tr>
 										<td colspan="4" class="text-center font-weight-bold font-italic">It's empty in here.</td>
 									</tr>
-								<?php else: $i=1; do {
+									<?php else : $i = 1;
+									do {
 										$status = '';
 										if ($row_serial_number['kondisi'] == 'Not Good') {
 											$status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
 										} else if ($row_serial_number['kondisi'] == 'Good') {
-												$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
+											$status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
 										}
-									
-									//Menganbil data LCD
-									$id_lcd = $row_serial_number['LCD'];
-									$query_lcd= mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd"); 
-									$row_lcd = mysql_fetch_assoc($query_lcd); 
-									
-									//Mengambil data PCB
-									$id_pcb = $row_serial_number['PCB'];
-									$query_PCB= mysql_query("SELECT * FROM perangkat WHERE id = $id_pcb"); 
-									$row_pcb = mysql_fetch_assoc($query_PCB);
 
-									//Mengambil data LoadCell
-									$id_loadcell = $row_serial_number['LOADCELL'];
-									$query_loadcell= mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell"); 
-									$row_loadcell = mysql_fetch_assoc($query_loadcell);
+										//Menganbil data LCD
+										$id_lcd = $row_serial_number['LCD'];
+										$query_lcd = mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd");
+										$row_lcd = mysql_fetch_assoc($query_lcd);
+
+										//Mengambil data PCB
+										$id_pcb = $row_serial_number['PCB'];
+										$query_PCB = mysql_query("SELECT * FROM perangkat WHERE id = $id_pcb");
+										$row_pcb = mysql_fetch_assoc($query_PCB);
+
+										//Mengambil data LoadCell
+										$id_loadcell = $row_serial_number['LOADCELL'];
+										$query_loadcell = mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell");
+										$row_loadcell = mysql_fetch_assoc($query_loadcell);
+
+										//Menganbil data rocker_switch
+										$id_rocker = $row_serial_number['rocker_switch'];
+										$query_rocker = mysql_query("SELECT * FROM perangkat WHERE id = $id_rocker");
+										$row_rocker = mysql_fetch_assoc($query_rocker);
 									?>
-									<tr>
-										<td class="table-plus"><?= $i++ ?></td>
-										<td><?= $row_serial_number['serial_number']; ?></td>
-										<td><?php 
+										<tr>
+											<td class="table-plus"><?= $i++ ?></td>
+											<td><?= $row_serial_number['serial_number']; ?></td>
+											<td><?php
 
-										if ($id_lcd == 0){
-										echo "LCD : -</br>";
-										}
-										else {
-											echo "LCD : Batch-".$row_lcd['no_batch']. "  Kardus-". $row_lcd['no_kardus'] . "  tgl (". $row_lcd['tgl_datang'].")</br>";
-										}
-										if ($id_pcb == 0){
-											echo "PCB : -</br>";
-										}
-										else {
-											echo "PCB : Batch-".$row_pcb['no_batch']."  Kardus-".$row_pcb['no_kardus'] ."  tgl (". $row_pcb['tgl_datang'] . ")</br>";
-										}
-										if ($id_loadcell == 0){
-											echo "LOADCELL : -</br>";
-										}
-										else {
-											echo "LOADCELL : Batch-".$row_loadcell['no_batch']. "  Kardus-". $row_loadcell['no_kardus']. " tgl (". $row_loadcell['tgl_datang'].")</br>" ; 	
-										}
-										
-										?></td>										
-										<td class="text-center"> 
-											<?php if ($status != null) :
-												echo $status . "(" . $row_serial_number['penanggung_jawab'] . ")";
-											?>
-											<?php else : 
-                                                    echo "undefined";    
-                                            ?>
-                                            <?php endif ?>
+												if ($id_lcd == 0) {
+													echo "LCD : -</br>";
+												} else {
+													echo "LCD : Batch-" . $row_lcd['no_batch'] . "  Kardus-" . $row_lcd['no_kardus'] . "  tgl (" . $row_lcd['tgl_datang'] . ")</br>";
+												}
+												if ($id_pcb == 0) {
+													echo "PCB : -</br>";
+												} else {
+													echo "PCB : Batch-" . $row_pcb['no_batch'] . "  Kardus-" . $row_pcb['no_kardus'] . "  tgl (" . $row_pcb['tgl_datang'] . ")</br>";
+												}
+												if ($id_loadcell == 0) {
+													echo "LOADCELL : -</br>";
+												} else {
+													echo "LOADCELL : Batch-" . $row_loadcell['no_batch'] . "  Kardus-" . $row_loadcell['no_kardus'] . " tgl (" . $row_loadcell['tgl_datang'] . ")</br>";
+												}
+												if ($id_rocker == 0) {
+													echo "Rocker-Switch : -</br>";
+												} else {
+													echo "Rocker-Switch : Batch-" . $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
+												}
 
-										</td>
-										<td>
-											<div class="dropdown">
-												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-													<i class="fa fa-ellipsis-h"></i>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="print-qr.php?print=<?= $row_serial_number['id'] ?>" target="_blank"><i class="fa fa-print"></i> Print QR</a>
-													<a class="dropdown-item" href="serial-number.php?delete=<?= $row_serial_number['id'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+												?></td>
+											<td class="text-center">
+												<?php if ($status != null) :
+													echo $status . "(" . $row_serial_number['penanggung_jawab'] . ")";
+												?>
+												<?php else :
+													echo "undefined";
+												?>
+												<?php endif ?>
+
+											</td>
+											<td>
+												<div class="dropdown">
+													<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+														<i class="fa fa-ellipsis-h"></i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="print-qr.php?print=<?= $row_serial_number['id'] ?>" target="_blank"><i class="fa fa-print"></i> Print QR</a>
+														<a class="dropdown-item" href="serial-number.php?delete=<?= $row_serial_number['id'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+													</div>
 												</div>
-											</div>
-										</td>
-									</tr>
+											</td>
+										</tr>
 								<?php
-								}  while ($row_serial_number = mysql_fetch_assoc($query)); endif ?>
+									} while ($row_serial_number = mysql_fetch_assoc($query));
+								endif ?>
 							</tbody>
 						</table>
 					</div>
@@ -178,7 +188,7 @@
 	<script src="src/plugins/datatables/media/js/button/pdfmake.min.js"></script>
 	<script src="src/plugins/datatables/media/js/button/vfs_fonts.js"></script>
 	<script>
-		$('document').ready(function(){
+		$('document').ready(function() {
 			$('.data-table').DataTable({
 				scrollCollapse: true,
 				autoWidth: false,
@@ -187,7 +197,10 @@
 					targets: "datatable-nosort",
 					orderable: false,
 				}],
-				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+				"lengthMenu": [
+					[10, 25, 50, -1],
+					[10, 25, 50, "All"]
+				],
 				"language": {
 					"info": "_START_-_END_ of _TOTAL_ entries",
 					searchPlaceholder: "Search"
@@ -201,18 +214,22 @@
 					targets: "datatable-nosort",
 					orderable: false,
 				}],
-				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+				"lengthMenu": [
+					[10, 25, 50, -1],
+					[10, 25, 50, "All"]
+				],
 				"language": {
 					"info": "_START_-_END_ of _TOTAL_ entries",
 					searchPlaceholder: "Search"
 				},
 				dom: 'Bfrtip',
 				buttons: [
-				'copy', 'csv', 'pdf', 'print'
+					'copy', 'csv', 'pdf', 'print'
 				]
 			});
-			
+
 		});
 	</script>
 </body>
+
 </html>
