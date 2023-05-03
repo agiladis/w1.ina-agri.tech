@@ -85,7 +85,7 @@ if (isset($_POST['sdelete'])) {
 										<td class="table-plus"> <?php echo $numb; ?> </td>
 										<td> <?php echo $data['nama_perangkat']; ?> </td>
 										<td> <?php echo $data['unit_barang']; ?> Unit</td>
-										<td><?php echo $data['no_batch'] . "." . $data['no_kardus'] . ".100"; ?></td>
+										<td><?php echo $data['no_batch'] . "." . str_pad($data['no_kardus'], 3, "0", STR_PAD_LEFT). ".100"; ?></td>
 										<td><?php echo $data['no_kardus']; ?></td>
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
