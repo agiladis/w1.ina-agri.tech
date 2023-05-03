@@ -22,14 +22,17 @@ if (isset($_POST['register'])) {
     } else {
         $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
         if ($simpan) {
-            $message = "Berhasil Menyimpan!";
+            // $message = "Berhasil Menyimpan!";
             $infoo = "User " . $usernow . " menambahkan item incoming hardware";
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+            header('Location: create-new-perangkat.php?create=success');
         } else {
+            // header('Location: create-new-perangkat.php?create=failed');
             $message = "Proses Gagal!";
         }
+        $message = $_GET['create'];
     }
-    echo "<script type='text/javascript'>alert('$message');</script>";
+    echo `<script type='text/javascript'>alert('$message')</script>`;
 }
 
 ?>
