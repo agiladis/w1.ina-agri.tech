@@ -111,7 +111,7 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Banyaknya Barang (unit)</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100" readonly>
+                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100">
                             </div>
                         </div>
 
