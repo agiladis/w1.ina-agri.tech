@@ -1,6 +1,8 @@
 <?php
 include('koneksi.php');
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
 $date = date('d F Y ', time());
@@ -10,25 +12,29 @@ if (isset($_POST['register'])) {
     $no_surat_jalan = $_POST['no_surat_jalan'];
     $tgl = $_POST['tgl'];
     $batch = $_POST['batch'];
-    $kardus = $_POST['kardus'];
+    $kardus = str_pad($_POST['kardus'], 3, "0", STR_PAD_LEFT);
     $jenis = $_POST['jenis'];
     $qty = $_POST['qty'];
     $datee = date("d-m-Y H:i:s");
     $usernow = $_SESSION['nama'];
 
+    $filter = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat='$jenis' AND no_batch='$batch' AND no_kardus='$kardus'");
+    $row_filter = mysql_fetch_assoc($filter);
 
     if (!$tgl || !$qty || !$batch || !$kardus || !$jenis) {
         $message = "Masih ada data yang kosong!";
     } else {
-        $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
-        if ($simpan) {
-            // $message = "Berhasil Menyimpan!";
-            $infoo = "User " . $usernow . " menambahkan item incoming hardware";
-            mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-            header('Location: create-new-perangkat.php?create=success');
+        if ($row_filter) {
+            $message = "No kardus sudah ada";
         } else {
-            // header('Location: create-new-perangkat.php?create=failed');
-            $message = "Proses Gagal!";
+            $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
+            if ($simpan) {
+                $message = "Berhasil Menyimpan!";
+                $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan kode " . $batch . "-" . $kardus . "-100";
+                mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+            } else {
+                $message = "Proses Gagal!";
+            }
         }
         $message = $_GET['create'];
     }
@@ -105,7 +111,7 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Banyaknya Barang (unit)</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100">
+                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100" readonly>
                             </div>
                         </div>
 
