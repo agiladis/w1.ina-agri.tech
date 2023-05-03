@@ -113,8 +113,8 @@ if (isset($_POST['sdelete'])) {
 										<td class="table-plus"> <?php echo $numb; ?> </td>
 										<td> <?php echo $data['nama_perangkat']; ?> </td>
 										<td> <?php echo $data['unit_barang']; ?> Unit</td>
-										<td> Batch-No.<?php echo $data['no_batch']; ?></td>
-										<td> Box-No.<?php echo $data['no_kardus']; ?></td>
+										<td><?php echo $data['no_batch']; ?></td>
+										<td><?php echo $data['no_kardus']; ?></td>
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
 											<?php if ($status != null) :
