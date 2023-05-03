@@ -26,7 +26,8 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="incoming-hw.php">Incoming List</a></li>
-							<li><a href="create-new-perangkat.php">New Incoming</a></li>
+							<li><a href="create-new-perangkat.php">New Incoming (per kardus)</a></li>
+							<li><a href="create-new-perangkat-perbatch.php">New Incoming (per batch)</a></li>
 						</ul>
 					</li>
 
