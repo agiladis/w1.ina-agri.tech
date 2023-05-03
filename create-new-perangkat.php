@@ -36,9 +36,8 @@ if (isset($_POST['register'])) {
                 $message = "Proses Gagal!";
             }
         }
-        $message = $_GET['create'];
     }
-    echo `<script type='text/javascript'>alert('$message')</script>`;
+    echo "<script type='text/javascript'>alert('$message')</script>";
 }
 
 ?>
