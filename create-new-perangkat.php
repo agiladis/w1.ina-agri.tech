@@ -12,7 +12,7 @@ if (isset($_POST['register'])) {
     $no_surat_jalan = $_POST['no_surat_jalan'];
     $tgl = $_POST['tgl'];
     $batch = $_POST['batch'];
-    $kardus = $_POST['kardus'];
+    $kardus = str_pad($_POST['kardus'], 3, "0", STR_PAD_LEFT);
     $jenis = $_POST['jenis'];
     $qty = $_POST['qty'];
     $datee = date("d-m-Y H:i:s");
