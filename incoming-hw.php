@@ -56,9 +56,9 @@ if (isset($_POST['sdelete'])) {
 								<tr>
 									<th class="table-plus">No.</th>
 									<th class="text-center">Jenis Perangkat</th>
-									<th class="text-center">Qty</th>
+									<!-- <th class="text-center">Qty</th> -->
 									<th class="text-center">No. Batch</th>
-									<th class="text-center">No. Kardus</th>
+									<!-- <th class="text-center">No. Kardus</th> -->
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
 									<th class="text-center" data-sortable="false">No. Surat Jalan</th>
@@ -84,9 +84,9 @@ if (isset($_POST['sdelete'])) {
 									<tr>
 										<td class="table-plus"> <?php echo $numb; ?> </td>
 										<td> <?php echo $data['nama_perangkat']; ?> </td>
-										<td> <?php echo $data['unit_barang']; ?> Unit</td>
-										<td><?php echo $data['no_batch'] . "." . str_pad($data['no_kardus'], 3, "0", STR_PAD_LEFT). ".100"; ?></td>
-										<td><?php echo $data['no_kardus']; ?></td>
+										<!-- <td> <?php echo $data['unit_barang']; ?> Unit</td> -->
+										<td><?php echo $data['no_batch'] . "." . str_pad($data['no_kardus'], 3, "0", STR_PAD_LEFT) . ".100"; ?></td>
+										<!-- <td><?php echo $data['no_kardus']; ?></td> -->
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
 											<?php if ($status != null) :
@@ -98,7 +98,7 @@ if (isset($_POST['sdelete'])) {
 											<?php endif ?>
 
 										</td>
-										<td> <?php echo $data['no_surat_jalan']; ?></td>
+										<td class="text-center"> <?php echo $data['no_surat_jalan']; ?></td>
 										<td class="text-center"> <?php echo boolval($data['taken']) ? '<i class="fa fa-check" style="color:green"></i>' : ''; ?></td>
 										<td>
 											<div class="dropdown">
