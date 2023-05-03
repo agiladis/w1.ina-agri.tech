@@ -14,7 +14,7 @@ if (isset($_GET['id_pemesan']) && isset($_GET['id_batch'])) {
   $usernow = $_SESSION['nama'];
   $datee = date("d-m-Y H:i:s");
 
-  $infoo = $usernow . " melakukan print semua serial number batch- " . $id_batch;
+  $infoo = $usernow . " melakukan print semua serial number batch-" . $id_batch;
   mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 }
 
@@ -49,7 +49,7 @@ if (isset($_GET['id_pemesan']) && isset($_GET['id_batch'])) {
         $('#qrcode-<?php echo $serial; ?>').qrcode({
           render: 'image',
           text: text,
-          size: 75.590551181,
+          size: 750,
           quiet: 4,
           mSize: 0.07,
           mPosX: 0.5,
