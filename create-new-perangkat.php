@@ -1,5 +1,8 @@
 <?php
 include('koneksi.php');
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
 $date = date('d F Y ', time());
@@ -28,7 +31,7 @@ if (isset($_POST['register'])) {
             $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
             if ($simpan) {
                 $message = "Berhasil Menyimpan!";
-                $infoo = "User " . $usernow . " menambahkan item incoming hardware";
+                $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan kode " . $batch . "-" . $kardus . "-100";
                 mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
             } else {
                 $message = "Proses Gagal!";
