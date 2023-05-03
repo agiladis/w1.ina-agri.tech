@@ -24,7 +24,6 @@ if (isset($_POST['register'])) {
     if (!$tgl || !$qty || !$batch || !$kardus || !$jenis) {
         $message = "Masih ada data yang kosong!";
     } else {
-
         if ($row_filter) {
             $message = "No kardus sudah ada";
         } else {
@@ -37,8 +36,9 @@ if (isset($_POST['register'])) {
                 $message = "Proses Gagal!";
             }
         }
+        $message = $_GET['create'];
     }
-    echo "<script type='text/javascript'>alert('$message');</script>";
+    echo `<script type='text/javascript'>alert('$message')</script>`;
 }
 
 ?>

@@ -16,23 +16,27 @@ if (isset($_POST['register'])) {
     $qty = $_POST['qty'];
     $datee = date("d-m-Y H:i:s");
 
-
+    // Check for duplicate no batch
+    $query_check_batch = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = '$jenis' AND  no_batch = '$batch' ");
+    
+    
     if (!$tgl || !$qty || !$batch || !$jml_kardus || !$jenis) {
-        $message = "Masih ada data yang kosong!";
+        echo "<script type='text/javascript'>alert('Masih ada data yang kosong!');</script>";
+    } elseif (mysql_num_rows($query_check_batch) > 0) {
+        echo "<script type='text/javascript'>alert('Kode batch yang and amasukan sudah ada!');</script>";
     } else {
         for ($i = 1; $i <= $jml_kardus; $i++) {
             $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$i','$jenis', '$no_surat_jalan')");
         }
 
         if ($simpan) {
-            $message = "Berhasil Menyimpan!";
             $infoo = "User " . $usernow . " menambahkan item incoming hardware";
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+            header('Location: create-new-perangkat-perbatch.php?create=success');
         } else {
-            $message = "Proses Gagal!";
+            header('Location: create-new-perangkat-perbatch.php?create=failed');
         }
     }
-    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 ?>
@@ -95,12 +99,12 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Banyaknya Barang (unit) per Kardus</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 24" name="qty">
+                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">No Bacth</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">No Batch</label>
                             <div class="col-sm-12 col-md-10">
                                 <input class="form-control" type="text" placeholder="cth : 12" name="batch">
                             </div>
