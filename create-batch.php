@@ -7,8 +7,6 @@
     $kode_batch = $_POST['kode_batch'];
     $tgl_mulai = $_POST['tgl_mulai'];
 
-    $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai')");
-
     // GENERATE SERIAL NUMBER
     // $id_batch_produksi = $_POST['batch_produksi'];
     $id_kategori_produk = $_POST['kategori_produk'];
@@ -24,6 +22,9 @@
     // INSERT INTO TABLE serial_number FIELD serial_number, LCD, PCB, LOADCELL
     $kode_pemesan = $row_pemesan['kode'];
     $kode_kategori = $row_kategori['kode'];
+
+    //INSERT_to_TB_batch-produksi
+    $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai, kategori) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai', '$kode_kategori')");
 
     // $kode_nomor = $_POST['kode_nomor'];
     $LCD = $_POST['LCD'];

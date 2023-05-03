@@ -76,6 +76,7 @@ $row_query = mysql_fetch_assoc($query);
 								<tr>
 									<th class="table-plus">No.</th>
 									<th>Pemesan</th>
+									<th>Kategori</th>
 									<th>Batch Code</th>
 									<th>Tanggal Mulai Produksi</th>
 									<th>Printed</th>
@@ -101,6 +102,7 @@ $row_query = mysql_fetch_assoc($query);
 										<tr>
 											<td class="table-plus"><?= $i++ ?></td>
 											<td><?= $row_query['ket']; ?></td>
+											<td><?= $row_query['kategori']; ?></td>
 											<td><?= $row_query['kode_batch']; ?></td>
 											<td><?= $row_query['tgl_mulai']; ?></td>
 											<td><?php echo $status; ?></td>
