@@ -1,6 +1,5 @@
 <?php
 include('koneksi.php');
-
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
 $date = date('d F Y ', time());
@@ -16,17 +15,24 @@ if (isset($_POST['register'])) {
     $datee = date("d-m-Y H:i:s");
     $usernow = $_SESSION['nama'];
 
+    $filter = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat='$jenis' AND no_batch='$batch' AND no_kardus='$kardus'");
+    $row_filter = mysql_fetch_assoc($filter);
 
     if (!$tgl || !$qty || !$batch || !$kardus || !$jenis) {
         $message = "Masih ada data yang kosong!";
     } else {
-        $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
-        if ($simpan) {
-            $message = "Berhasil Menyimpan!";
-            $infoo = "User " . $usernow . " menambahkan item incoming hardware";
-            mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+
+        if ($row_filter) {
+            $message = "No kardus sudah ada";
         } else {
-            $message = "Proses Gagal!";
+            $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
+            if ($simpan) {
+                $message = "Berhasil Menyimpan!";
+                $infoo = "User " . $usernow . " menambahkan item incoming hardware";
+                mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+            } else {
+                $message = "Proses Gagal!";
+            }
         }
     }
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -102,7 +108,7 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Banyaknya Barang (unit)</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100">
+                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100" readonly>
                             </div>
                         </div>
 
