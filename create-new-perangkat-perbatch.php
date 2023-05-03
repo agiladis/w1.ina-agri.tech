@@ -23,7 +23,7 @@ if (isset($_POST['register'])) {
     if (!$tgl || !$qty || !$batch || !$jml_kardus || !$jenis) {
         echo "<script type='text/javascript'>alert('Masih ada data yang kosong!');</script>";
     } elseif (mysql_num_rows($query_check_batch) > 0) {
-        echo "<script type='text/javascript'>alert('Kode batch yang and amasukan sudah ada!');</script>";
+        echo "<script type='text/javascript'>alert('Kode batch yang anda masukan sudah ada!');</script>";
     } else {
         for ($i = 1; $i <= $jml_kardus; $i++) {
             $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$i','$jenis', '$no_surat_jalan')");
