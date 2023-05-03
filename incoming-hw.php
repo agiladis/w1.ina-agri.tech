@@ -1,3 +1,19 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
+$usernow = $_SESSION['nama'];
+$datee = date("d-m-Y H:i:s");
+if (isset($_POST['sdelete'])) {
+	require_once("koneksi.php");
+	$sdelete = $_POST['sdelete'];
+	$query_delete = mysql_query("SELECT * FROM perangkat WHERE id=$sdelete");
+	$row_delete = mysql_fetch_assoc($query_delete);
+	$infoo = $usernow . " melakukan delete pada perangkat " . $row_delete['nama_perangkat'] . " dengan no batch-" . $row_delete["no_batch"];
+	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+	mysql_query("DELETE FROM perangkat WHERE id=$sdelete");
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -38,16 +54,17 @@
 						<table class='data-table stripe hover'>
 							<thead>
 								<tr>
-								<th class="table-plus">No.</th>
+									<th class="table-plus">No.</th>
 									<th class="text-center">Jenis Perangkat</th>
 									<th class="text-center">Qty</th>
 									<th class="text-center">No. Batch</th>
 									<th class="text-center">No. Kardus</th>
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
-                  					<th class="text-center" data-sortable="false">No. Surat Jalan</th>
-                  					<th class="text-center">Sudah Digunakan</th>
+									<th class="text-center" data-sortable="false">No. Surat Jalan</th>
+									<th class="text-center">Sudah Digunakan</th>
 									<!-- <th class="datatable-nosort"></th> -->
+									<th class="datatable-nosort"> Aksi </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -68,21 +85,34 @@
 										<td class="table-plus"> <?php echo $numb; ?> </td>
 										<td> <?php echo $data['nama_perangkat']; ?> </td>
 										<td> <?php echo $data['unit_barang']; ?> Unit</td>
-										<td> Batch-No.<?php echo $data['no_batch']; ?></td>
-										<td> Box-No.<?php echo $data['no_kardus']; ?></td>
+										<td><?php echo $data['no_batch']; ?></td>
+										<td><?php echo $data['no_kardus']; ?></td>
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
 											<?php if ($status != null) :
 												echo $status . "(" . $data['penanggung_jawab'] . ")";
 											?>
-											<?php else : 
-                                                echo "undefined";    
-                                            ?>
-                                            <?php endif ?>
+											<?php else :
+												echo "undefined";
+											?>
+											<?php endif ?>
 
 										</td>
 										<td> <?php echo $data['no_surat_jalan']; ?></td>
 										<td class="text-center"> <?php echo boolval($data['taken']) ? '<i class="fa fa-check" style="color:green"></i>' : ''; ?></td>
+										<td>
+											<div class="dropdown">
+												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+													<i class="fa fa-ellipsis-h"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="edit-perangkat.php?edit=<?= $data['id'] ?>"><i class="fa fa-pencil"></i> Edit</a>
+													<form method="POST">
+														<button onclick="return confirm('Are you sure you want to delete this item?');" class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
+													</form>
+												</div>
+											</div>
+										</td>
 									</tr>
 
 								<?php

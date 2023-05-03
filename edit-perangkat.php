@@ -1,9 +1,21 @@
 <?php
 include('koneksi.php');
-
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
 $date = date('d F Y ', time());
+
+if (isset($_GET['edit'])) {
+    $id = $_GET['edit'];
+    $table = $_GET['table'];
+    $query = "SELECT * FROM perangkat WHERE id = $id";
+    $result = mysql_query($query);
+    $row = mysql_fetch_assoc($result);
+}
+
+
 
 if (isset($_POST['register'])) {
     require_once("koneksi.php");
@@ -20,19 +32,17 @@ if (isset($_POST['register'])) {
     if (!$tgl || !$qty || !$batch || !$kardus || !$jenis) {
         $message = "Masih ada data yang kosong!";
     } else {
-        $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
+        $simpan = mysql_query("UPDATE perangkat SET unit_barang='$qty', tgl_datang='$tgl', no_batch='$batch', no_kardus='$kardus', nama_perangkat='$jenis', no_surat_jalan='$no_surat_jalan' WHERE id=$id ");
         if ($simpan) {
-            // $message = "Berhasil Menyimpan!";
-            $infoo = "User " . $usernow . " menambahkan item incoming hardware";
+            $message = "Berhasil Menyimpan!";
+            $infoo = "User " . $usernow . " memperbarui item incoming hardware " .$batch ;
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-            header('Location: create-new-perangkat.php?create=success');
         } else {
-            // header('Location: create-new-perangkat.php?create=failed');
             $message = "Proses Gagal!";
         }
-        $message = $_GET['create'];
     }
-    echo `<script type='text/javascript'>alert('$message')</script>`;
+    echo "<script type='text/javascript'>alert('$message');</script>";
+    header("Location: incoming-hw.php");
 }
 
 ?>
@@ -83,21 +93,17 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Surat Jalan</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : IX/023" name="no_surat_jalan">
+                                <input class="form-control" type="text" placeholder="cth : IX/023" name="no_surat_jalan" value="<?= $row['no_surat_jalan'];?>">
                             </div>
                         </div>
+
+                        
 
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Jenis Barang</label>
                             <div class="col-sm-12 col-md-10">
                                 <select class="custom-select col-12" name="jenis">
-                                    <option selected="">Pilih...</option>
-                                    <option value="LCD">LCD</option>
-                                    <option value="PCB-TDWS">PCB-TDWS</option>
-                                    <option value="PCB-BBWS ">PCB-BBWS</option>
-                                    <option value="Loadcell-TDWS">Loadcell-TDWS</option>
-                                    <option value="Loadcell-BBWS">Loadcell-BBWS</option>
-                                    <option value="Rocker-Switch">Rocker Switch</option>
+                                    <option value="<?= $row['nama_perangkat'];?>" > <?= $row['nama_perangkat'];?> </option>
                                 </select>
                             </div>
                         </div>
@@ -105,28 +111,28 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Banyaknya Barang (unit)</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100">
+                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="<?= $row['unit_barang'];?>">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Bacth</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 12" name="batch">
+                                <input class="form-control" type="text" placeholder="cth : 12" name="batch" value="<?= $row['no_batch'];?>" >
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Kardus</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 13" name="kardus">
+                                <input class="form-control" type="text" placeholder="cth : 13" name="kardus" value="<?= $row['no_kardus'];?>">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Tanggal Kedatangan</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control date-picker" value="<?= $date; ?>" name="tgl">
+                                <input class="form-control date-picker" name="tgl" value="<?= $row['tgl_datang'];?>" >
                             </div>
                         </div>
 

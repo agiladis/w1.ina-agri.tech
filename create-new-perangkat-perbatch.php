@@ -1,38 +1,38 @@
 <?php
+session_start();
 include('koneksi.php');
-
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
 $date = date('d F Y ', time());
 
+$usernow = $_SESSION['nama'];
+
 if (isset($_POST['register'])) {
-    require_once("koneksi.php");
     $no_surat_jalan = $_POST['no_surat_jalan'];
     $tgl = $_POST['tgl'];
     $batch = $_POST['batch'];
-    $kardus = $_POST['kardus'];
+    $jml_kardus = $_POST['kardus'];
     $jenis = $_POST['jenis'];
     $qty = $_POST['qty'];
     $datee = date("d-m-Y H:i:s");
-    $usernow = $_SESSION['nama'];
 
 
-    if (!$tgl || !$qty || !$batch || !$kardus || !$jenis) {
+    if (!$tgl || !$qty || !$batch || !$jml_kardus || !$jenis) {
         $message = "Masih ada data yang kosong!";
     } else {
-        $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
+        for ($i = 1; $i <= $jml_kardus; $i++) {
+            $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$i','$jenis', '$no_surat_jalan')");
+        }
+
         if ($simpan) {
-            // $message = "Berhasil Menyimpan!";
+            $message = "Berhasil Menyimpan!";
             $infoo = "User " . $usernow . " menambahkan item incoming hardware";
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-            header('Location: create-new-perangkat.php?create=success');
         } else {
-            // header('Location: create-new-perangkat.php?create=failed');
             $message = "Proses Gagal!";
         }
-        $message = $_GET['create'];
     }
-    echo `<script type='text/javascript'>alert('$message')</script>`;
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 ?>
@@ -46,16 +46,6 @@ if (isset($_POST['register'])) {
 
 <body>
     <?php include('include/header.php'); ?>
-    <?php
-    if (isset($_POST['submit'])) {
-        $usernow = $_SESSION['nama'];
-        $datee = date("d-m-Y H:i:s");
-
-        $infoo = $usernow . " menambahkan pemesan baru dengan code " . $kode;
-        mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-    }
-    ?>
-
     <?php include('include/sidebar.php'); ?>
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -103,9 +93,9 @@ if (isset($_POST['register'])) {
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Banyaknya Barang (unit)</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Banyaknya Barang (unit) per Kardus</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 24" name="qty" value="100">
+                                <input class="form-control" type="text" placeholder="cth : 24" name="qty">
                             </div>
                         </div>
 
@@ -117,7 +107,7 @@ if (isset($_POST['register'])) {
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">No Kardus</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Jumlah Kardus</label>
                             <div class="col-sm-12 col-md-10">
                                 <input class="form-control" type="text" placeholder="cth : 13" name="kardus">
                             </div>
