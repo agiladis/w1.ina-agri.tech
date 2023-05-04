@@ -98,7 +98,7 @@ if (isset($_POST['sdelete'])) {
 							<tbody>
 								<?php
 								include "koneksi.php";
-								$query_mysql = mysql_query("SELECT * FROM perangkat ORDER BY id DESC") or die(mysql_error());
+								$query_mysql = mysql_query("SELECT * FROM `perangkat` ORDER BY kondisi = 'NULL' ASC, id ASC") or die(mysql_error());
 								$numb = 1;
 								while ($data = mysql_fetch_array($query_mysql)) {
 									$status = '';
