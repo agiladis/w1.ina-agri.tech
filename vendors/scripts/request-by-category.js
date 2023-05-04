@@ -14,12 +14,19 @@ function selectCategory() {
 }
 
 function selectPemesan() {
-  let idPemesan = document.querySelector("#id_pemesan").value;
+  let idPemesan = document.querySelector("#id_pemesan").value || 0;
+  let idCategory = document.querySelector("#kategori-produk").value || 0;
+
+  console.log('id pemesan :', idPemesan);
+  console.log('id Category :', idCategory);
 
   $.ajax({
     url: "include/query-id-pemesan.php",
     method: "POST",
-    data: { id_pemesan: idPemesan },
+    data: {
+      id_pemesan: idPemesan,
+      id_kategori: idCategory,
+    },
     success: function (data) {
       $("#nomor_batch").html(data);
     },
