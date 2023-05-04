@@ -34,7 +34,7 @@
     $datee = date("d-m-Y H:i:s");
 
     for ($i = 1; $i <= 100; $i++) {
-        $kode_nomor = str_pad($i, 2, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
+        $kode_nomor = str_pad($i, 3, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
         $serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
         $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL, rocker_switch) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$rocker_switch')");
     }
