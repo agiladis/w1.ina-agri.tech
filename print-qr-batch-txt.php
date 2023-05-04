@@ -14,7 +14,7 @@
       echo "serial number converted into txt : " . dirname(__DIR__)."/file_print/serial_number.txt";
       
       // SET HEADER FILE TXT
-      fwrite($myfile, "SN " . $row_sn['serial_number'] . ",\n");
+      fwrite($myfile, "SN,\n");
 
       do {
         // WRITE TO TXT
