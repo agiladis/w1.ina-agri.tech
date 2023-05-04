@@ -57,7 +57,7 @@
     }
 
     // READ DATA
-    $query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC");
+    $query = mysql_query("SELECT * FROM serial_number ORDER BY kondisi = 'NULL' ASC, id ASC");
     $row_serial_number = mysql_fetch_assoc($query);
     ?>
     <?php include('include/sidebar.php'); ?>
