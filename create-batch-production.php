@@ -49,7 +49,7 @@
 							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
 							<div class="col-sm-12 col-md-10">
 								<select id="id_pemesan" name="id_pemesan" class="custom-select col-12" onchange="selectPemesan()">
-									<option selected="">Choose...</option>
+									<option selected="" value="0">Choose...</option>
 									<?php
 									// GET ID PEMESAN FROM TBL PEMESAN
 									$query_pemesan = mysql_query("SELECT * FROM pemesan");
@@ -64,7 +64,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Product Category</label>
 							<div class="col-sm-12 col-md-10">
-								<select id="kategori-produk" name="kategori_produk" class="custom-select col-12" onchange="selectCategory()">
+								<select id="kategori-produk" name="kategori_produk" class="custom-select col-12" onchange="logicCategory()">
 									<!-- <select id="kategori_produk" name="kategori_produk" class="custom-select col-12" onchange="changeData(this.value);"> -->
 									<option selected="" value="0">Choose...</option>
 									<?php
@@ -160,6 +160,12 @@
 			<?php include('include/footer.php'); ?>
 		</div>
 	</div>
+	<script>
+		function logicCategory() {
+			selectPemesan();
+			selectCategory();
+		}
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="./vendors/scripts/request-by-category.js"></script>
 	<?php include('include/script.php'); ?>
