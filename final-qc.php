@@ -135,6 +135,11 @@
                                         $id_loadcell = $row_serial_number['LOADCELL'];
                                         $query_loadcell = mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell");
                                         $row_loadcell = mysql_fetch_assoc($query_loadcell);
+
+                                        //Menganbil data rocker_switch
+										$id_rocker = $row_serial_number['rocker_switch'];
+										$query_rocker = mysql_query("SELECT * FROM perangkat WHERE id = $id_rocker");
+										$row_rocker = mysql_fetch_assoc($query_rocker);
                                     ?>
                                         <tr>
                                             <td class="table-plus"><?= $i++ ?></td>
@@ -156,6 +161,11 @@
                                                 } else {
                                                     echo "LOADCELL : Batch-" . $row_loadcell['no_batch'] . "  Kardus-" . $row_loadcell['no_kardus'] . " tgl (" . $row_loadcell['tgl_datang'] . ")</br>";
                                                 }
+                                                if ($id_rocker == 0) {
+													echo "Rocker-Switch : -</br>";
+												} else {
+													echo $row_rocker['nama_perangkat']." : Batch-" . $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
+												}
 
                                                 ?></td>
                                             <td class="text-center">

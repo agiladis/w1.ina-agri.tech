@@ -136,7 +136,7 @@
 												if ($id_rocker == 0) {
 													echo "Rocker-Switch : -</br>";
 												} else {
-													echo "Rocker-Switch : Batch-" . $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
+													echo $row_rocker['nama_perangkat'] . " : Batch-" .  $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
 												}
 
 												?></td>
