@@ -69,7 +69,7 @@ if (isset($_POST['register'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>New Incoming Entry</h4>
+                                <h4>New Incoming Entry (Manual @Kardus)</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -102,7 +102,8 @@ if (isset($_POST['register'])) {
                                     <option value="PCB-BBWS ">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
-                                    <option value="Rocker-Switch">Rocker Switch</option>
+                                    <option value="Rocker-Switch(O -)">Rocker Switch(O -)</option>
+                                    <option value="Rocker-Switch(O I)">Rocker Switch(O I)</option>
                                 </select>
                             </div>
                         </div>
@@ -117,14 +118,14 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Bacth</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 12" name="batch">
+                                <input class="form-control" type="text" placeholder="cth : 04-04" name="batch">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">No Kardus</label>
+                            <label class="col-sm-12 col-md-2 col-form-label"><b>No Kardus</b></label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 13" name="kardus">
+                                <input class="form-control" type="text" placeholder="cth : 001" name="kardus">
                             </div>
                         </div>
 

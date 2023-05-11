@@ -114,7 +114,7 @@ $row_query = mysql_fetch_assoc($query);
 													<div class="dropdown-menu dropdown-menu-right">
 														<!-- <a class="dropdown-item" href="print-qr-all-batch.php?id_pemesan=<?= $row_query['id_pemesan'] ?>&id_batch=<?= $row_query['kode_batch'] ?>" target="_blank" onclick="setTimeout(function() {window.location.reload(true);}, 2000);"><i class="fa fa-print"></i>Print QR</a> -->
 														<a class="dropdown-item" href="print-qr-batch-txt.php?id_pemesan=<?= $row_query['id_pemesan'] ?>&id_batch=<?= $row_query['kode_batch'] ?>" target="_blank" onclick="setTimeout(function() {window.location.reload(true);}, 2000);"><i class="fa fa-print"></i>Print QR</a>
-														<a class="dropdown-item" href="batch-production-table.php?delete=<?= $row_query['id_batch'] ?>&id_pemesan=<?= $row_query['id_pemesan'] ?>&id_batch=<?= $row_query['kode_batch'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+														<a <?php echo $acc1; ?>  class="dropdown-item" href="batch-production-table.php?delete=<?= $row_query['id_batch'] ?>&id_pemesan=<?= $row_query['id_pemesan'] ?>&id_batch=<?= $row_query['kode_batch'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
 													</div>
 												</div>
 											</td>

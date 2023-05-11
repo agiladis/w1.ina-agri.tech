@@ -8,7 +8,7 @@
 	$query_log = mysql_query("SELECT * FROM log ORDER BY id DESC LIMIT 20");
 	$row_log = mysql_fetch_assoc($query_log);
 
-	$query_progress_incoming = "SELECT COUNT(id) AS 'count_incoming' FROM perangkat WHERE kondisi= NULL";
+	$query_progress_incoming = "SELECT COUNT(id) AS 'count_incoming' FROM perangkat WHERE kondisi IS NULL";
 	$result_incoming = mysql_query($query_progress_incoming);
 	$row_incoming = mysql_fetch_assoc($result_incoming);
 
@@ -102,7 +102,7 @@
 							</div>
 							<div class="project-info-right">
 								<span class="no text-light-green weight-500 font-24"><?= $row_serial_number_pass['count_serial_number_pass']; ?></span>
-								<p class="weight-400 font-18">Serial Number Passed</p>
+								<p class="weight-400 font-18">Serial Number QC Passed</p>
 							</div>
 						</div>
 

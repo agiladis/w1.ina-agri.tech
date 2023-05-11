@@ -108,7 +108,7 @@ if (isset($_POST['sdelete'])) {
 												<div class="dropdown-menu dropdown-menu-right">
 													<a class="dropdown-item" href="edit-perangkat.php?edit=<?= $data['id'] ?>"><i class="fa fa-pencil"></i> Edit</a>
 													<form method="POST">
-														<button onclick="return confirm('Are you sure you want to delete this item?');" class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
+														<button onclick="return confirm('Are you sure you want to delete this item?');" <?php echo $acc1; ?> class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
 													</form>
 												</div>
 											</div>
