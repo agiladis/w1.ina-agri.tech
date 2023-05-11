@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<?php include('include/head.php'); ?>
 	<?php include('koneksi.php'); ?>
 	<?php
-		$query_log = mysql_query("SELECT * FROM log ORDER BY id DESC LIMIT 10");
-		$row_log = mysql_fetch_assoc($query_log);
+	$query_log = mysql_query("SELECT * FROM log ORDER BY id DESC LIMIT 20");
+	$row_log = mysql_fetch_assoc($query_log);
 
-		$query_progress_incoming = "SELECT COUNT(id) AS 'count_incoming' FROM perangkat";
-		$result_incoming = mysql_query($query_progress_incoming);
-		$row_incoming = mysql_fetch_assoc($result_incoming);
+	$query_progress_incoming = "SELECT COUNT(id) AS 'count_incoming' FROM perangkat WHERE kondisi= NULL";
+	$result_incoming = mysql_query($query_progress_incoming);
+	$row_incoming = mysql_fetch_assoc($result_incoming);
 
-		$query_serial_number = "SELECT COUNT(id) AS 'count_serial_number' FROM serial_number";
-		$result_serial_number = mysql_query($query_serial_number);
-		$row_serial_number = mysql_fetch_assoc($result_serial_number);
+	$query_serial_number = "SELECT COUNT(id) AS 'count_serial_number' FROM serial_number";
+	$result_serial_number = mysql_query($query_serial_number);
+	$row_serial_number = mysql_fetch_assoc($result_serial_number);
+
+	$query_serial_number_pass = "SELECT COUNT(id) AS 'count_serial_number_pass' FROM serial_number WHERE kondisi='Good'";
+	$result_serial_number_pass = mysql_query($query_serial_number_pass);
+	$row_serial_number_pass = mysql_fetch_assoc($result_serial_number_pass);
+	$queries = [
+		['LCD QC Passed', 'LCD%'],
+		['PCB-TDWS QC Passed', 'PCB-TDWS%'],
+		['PCB-BBWS QC Passed', 'PCB-BBWS%'],
+		['Loadcell-TDWS QC Passed', 'Loadcell-TDWS%'],
+		['Loadcell-BBWS QC Passed', 'Loadcell-BBWS%'],
+		['Rocker-Switch(O -) QC Passed', 'Rocker-Switch(O -)%'],
+		['Rocker-Switch(O l) QC Passed', 'Rocker-Switch(O l)%'],
+	];
+
+	$counts = [];
+	foreach ($queries as list($name, $pattern)) {
+		$result = mysql_query("SELECT COUNT(id) AS count_pass FROM perangkat WHERE nama_perangkat LIKE '{$pattern}' AND kondisi = 'Good' AND taken = 0");
+		$counts[] = ['name' => $name, 'count' => mysql_fetch_assoc($result)['count_pass']];
+	}
 	?>
 </head>
+
 <body>
 	<?php include('include/header.php'); ?>
 	<?php include('include/sidebar.php'); ?>
@@ -31,13 +52,30 @@
 								</div>
 							</div>
 							<div class="project-info-right">
-								<span class="no text-blue weight-500 font-24"><?= $row_incoming['count_incoming'];?></span>
-								<p class="weight-400 font-18">Incoming Components</p>
+								<span class="no text-blue weight-500 font-24"><?= $row_incoming['count_incoming']; ?></span>
+								<p class="weight-400 font-18">Incoming Components Require QC</p>
 							</div>
 						</div>
-						
 					</div>
 				</div>
+				<?php foreach ($counts as $count) : ?>
+					<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+						<div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
+							<div class="project-info clearfix">
+								<div class="project-info-left">
+									<div class="icon box-shadow bg-blue text-white">
+										<i class="fa fa-check-square"></i>
+									</div>
+								</div>
+								<div class="project-info-right">
+									<span class="no text-blue weight-500 font-24"><?= $count['count']; ?></span>
+									<p class="weight-400 font-18"><?= $count['name']; ?></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php endforeach; ?>
+
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
 					<div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
 						<div class="project-info clearfix">
@@ -47,11 +85,27 @@
 								</div>
 							</div>
 							<div class="project-info-right">
-								<span class="no text-light-green weight-500 font-24"><?=$row_serial_number['count_serial_number'];?></span>
+								<span class="no text-light-green weight-500 font-24"><?= $row_serial_number['count_serial_number']; ?></span>
 								<p class="weight-400 font-18">Serial Number Created</p>
 							</div>
 						</div>
-						
+
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+					<div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
+						<div class="project-info clearfix">
+							<div class="project-info-left">
+								<div class="icon box-shadow bg-light-green text-white">
+									<i class="fa fa-check-square"></i>
+								</div>
+							</div>
+							<div class="project-info-right">
+								<span class="no text-light-green weight-500 font-24"><?= $row_serial_number_pass['count_serial_number_pass']; ?></span>
+								<p class="weight-400 font-18">Serial Number Passed</p>
+							</div>
+						</div>
+
 					</div>
 				</div>
 				<!-- <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
@@ -110,11 +164,11 @@
 						<div class="to-do-list mx-h-450 customscroll">
 							<ul>
 								<?php do { ?>
-								<li>
-									<div class="custom-control custom-checkbox">
-										<span><?= $row_log['note'] ?></span>
-									</div>
-								</li>
+									<li>
+										<div class="custom-control custom-checkbox">
+											<span><?= $row_log['date'] ?> :::: <?= $row_log['note'] ?></span>
+										</div>
+									</li>
 								<?php } while ($row_log = mysql_fetch_assoc($query_log)); ?>
 							</ul>
 						</div>
@@ -160,8 +214,8 @@
 					to: 6.5,
 				}],
 				gridLineDashStyle: 'longdash',
-                gridLineWidth: 1,
-                crosshair: true
+				gridLineWidth: 1,
+				crosshair: true
 			},
 			yAxis: {
 				title: {
@@ -284,8 +338,7 @@
 				}, {
 					borderWidth: 0,
 					outerRadius: '107%'
-				}, {
-				}, {
+				}, {}, {
 					backgroundColor: '#fff',
 					borderWidth: 0,
 					outerRadius: '105%',
@@ -362,8 +415,7 @@
 				}, {
 					borderWidth: 0,
 					outerRadius: '107%'
-				}, {
-				}, {
+				}, {}, {
 					backgroundColor: '#fff',
 					borderWidth: 0,
 					outerRadius: '105%',
@@ -418,4 +470,5 @@
 		});
 	</script>
 </body>
+
 </html>
