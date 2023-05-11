@@ -30,7 +30,7 @@ if (isset($_POST['register'])) {
         }
 
         if ($simpan) {
-            $infoo = "User " . $usernow . " menambahkan item incoming hardware";
+            $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan jumlah " . $jml_kardus . " kardus";
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
             header('Location: create-new-perangkat-perbatch.php?create=success');
         } else {
@@ -93,6 +93,13 @@ if (isset($_POST['register'])) {
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
                                     <option value="Rocker-Switch(O -)">Rocker Switch(O -)</option>
                                     <option value="Rocker-Switch(O I)">Rocker Switch(O I)</option>
+                                    <option value="Tiang-Stadio-1">Tiang Stadio 1</option>
+                                    <option value="Tiang-Stadio-2">Tiang Stadio 2</option>
+                                    <option value="Tiang-Stadio-3">Tiang Stadio 3</option>
+                                    <option value="Tiang-Stadio-4">Tiang Stadio 4</option>
+                                    <option value="Base-Infanto-1">Base Infanto 1</option>
+                                    <option value="Base-Infanto-2">Base Infanto 2</option>
+                                    <option value="Pita-Lila">Pita LILA</option>
                                 </select>
                             </div>
                         </div>
