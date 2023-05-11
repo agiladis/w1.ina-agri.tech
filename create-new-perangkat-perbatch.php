@@ -18,8 +18,8 @@ if (isset($_POST['register'])) {
 
     // Check for duplicate no batch
     $query_check_batch = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = '$jenis' AND  no_batch = '$batch' ");
-    
-    
+
+
     if (!$tgl || !$qty || !$batch || !$jml_kardus || !$jenis) {
         echo "<script type='text/javascript'>alert('Masih ada data yang kosong!');</script>";
     } elseif (mysql_num_rows($query_check_batch) > 0) {
@@ -58,7 +58,7 @@ if (isset($_POST['register'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>New Incoming Entry</h4>
+                                <h4>New Incoming Entry (Batch Entry) </h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -91,7 +91,8 @@ if (isset($_POST['register'])) {
                                     <option value="PCB-BBWS ">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
-                                    <option value="Rocker-Switch">Rocker Switch</option>
+                                    <option value="Rocker-Switch(O -)">Rocker Switch(O -)</option>
+                                    <option value="Rocker-Switch(O I)">Rocker Switch(O I)</option>
                                 </select>
                             </div>
                         </div>
@@ -106,14 +107,14 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Batch</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 12" name="batch">
+                                <input class="form-control" type="text" placeholder="cth : 04-12" name="batch">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Jumlah Kardus</label>
+                            <label class="col-sm-12 col-md-2 col-form-label"><b>Jumlah Kardus</b></label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 13" name="kardus">
+                                <input class="form-control" type="text" placeholder="cth : 50" name="kardus">
                             </div>
                         </div>
 

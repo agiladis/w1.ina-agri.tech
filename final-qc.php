@@ -15,6 +15,7 @@
     <?php include('koneksi.php'); ?>
     <?php
     // HANDLE DELETE
+    $datee = date("d-m-Y H:i:s");
     if (isset($_GET['delete'])) {
         $id = $_GET['delete'];
         $query_sn = mysql_query("SELECT * FROM serial_number where id=$id");
@@ -23,7 +24,6 @@
         if ($query_delete) {
             header('Location: serial-number.php');
         }
-        $datee = date("d-m-Y H:i:s");
         $usernow = $_SESSION['nama'];
         $infoo = $usernow . " menghapus serial number " . $row_sn['serial_number'];
         mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
@@ -136,10 +136,10 @@
                                         $query_loadcell = mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell");
                                         $row_loadcell = mysql_fetch_assoc($query_loadcell);
 
-                                        //Menganbil data rocker_switch
-										$id_rocker = $row_serial_number['rocker_switch'];
-										$query_rocker = mysql_query("SELECT * FROM perangkat WHERE id = $id_rocker");
-										$row_rocker = mysql_fetch_assoc($query_rocker);
+                                        //Mengambil data rocker_switch
+                                        $id_rocker = $row_serial_number['rocker_switch'];
+                                        $query_rocker = mysql_query("SELECT * FROM perangkat WHERE id = $id_rocker");
+                                        $row_rocker = mysql_fetch_assoc($query_rocker);
                                     ?>
                                         <tr>
                                             <td class="table-plus"><?= $i++ ?></td>
@@ -162,10 +162,11 @@
                                                     echo "LOADCELL : Batch-" . $row_loadcell['no_batch'] . "  Kardus-" . $row_loadcell['no_kardus'] . " tgl (" . $row_loadcell['tgl_datang'] . ")</br>";
                                                 }
                                                 if ($id_rocker == 0) {
-													echo "Rocker-Switch : -</br>";
-												} else {
-													echo $row_rocker['nama_perangkat']." : Batch-" . $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
-												}
+                                                    echo "Rocker-Switch : -</br>";
+                                                } else {
+                                                    echo $row_rocker['nama_perangkat'] . " : Batch-" . $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
+                                                }
+
 
                                                 ?></td>
                                             <td class="text-center">
@@ -188,7 +189,7 @@
                                                             <button class="btn dropdown-item" name="good" value="<?php echo $row_serial_number['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</button>
                                                             <button class="btn dropdown-item" name="not-good" value="<?php echo $row_serial_number['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Not Good</button>
                                                             <a class="dropdown-item" href="print-qr.php?print=<?= $row_serial_number['id'] ?>" target="_blank"><i class="fa fa-print"></i> Print QR</a>
-                                                            <a class="dropdown-item" href="serial-number.php?delete=<?= $row_serial_number['id'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+                                                            <a <?php echo $acc1; ?> class="dropdown-item" href="serial-number.php?delete=<?= $row_serial_number['id'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
                                                         </form>
                                                     </div>
                                                 </div>
