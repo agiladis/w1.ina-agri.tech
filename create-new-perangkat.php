@@ -29,6 +29,15 @@ if (isset($_POST['register'])) {
         } else {
             $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
             if ($simpan) {
+
+                //print
+                $myfile = fopen(dirname(__FILE__) . '/file_print/no_kardus.txt', "w") or die("Unable to open file!");
+                // fwrite($myfile, "No-Kardus,\n");
+                fwrite($myfile, "No.Batch: " . $batch . " No.Kardus: " .  $kardus . "\n");
+
+                // CLOSE FILE TXT
+                fclose($myfile);
+
                 $message = "Berhasil Menyimpan!";
                 $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan kode " . $batch . "-" . $kardus . "-100";
                 mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
