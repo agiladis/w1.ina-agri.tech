@@ -31,12 +31,27 @@ if (isset($_POST['register'])) {
             if ($simpan) {
 
                 //print
-                $myfile = fopen(dirname(__FILE__) . '/file_print/no_kardus.txt', "w") or die("Unable to open file!");
+                $filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
+
+                $myfile = fopen($filename, "w") or die("Unable to open file!");
                 // fwrite($myfile, "No-Kardus,\n");
+
                 fwrite($myfile, "No.Batch: " . $batch . " No.Kardus: " .  $kardus . "\n");
 
                 // CLOSE FILE TXT
                 fclose($myfile);
+
+                // Force download the file
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($filename));
+                readfile($filename);
+                exit;
+
 
                 $message = "Berhasil Menyimpan!";
                 $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan kode " . $batch . "-" . $kardus . "-100";
