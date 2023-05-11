@@ -143,7 +143,7 @@
 										do {
 										?>
 											<option value="<?= $data_rocker['id']; ?>"><?= $data_rocker['nama_perangkat'] . ", " . "Batch-" . $data_rocker['no_batch'] . ", Kardus-" . $data_rocker['no_kardus']; ?></option>
-										<!-- <?php } while ($data_rocker = mysql_fetch_assoc($query_perangkat_rocker)); ?> -->
+											<!-- <?php } while ($data_rocker = mysql_fetch_assoc($query_perangkat_rocker)); ?> -->
 									</select>
 								</div>
 							</div>
