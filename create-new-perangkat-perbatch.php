@@ -13,21 +13,22 @@ if (isset($_GET['id_batch'])) {
     $query_kardus = mysql_query("SELECT * FROM perangkat WHERE no_batch = '$id_batch'");
     $row_kardus = mysql_fetch_assoc($query_kardus);
 
-    $myfile = fopen(dirname(__FILE__) . '/file_print/no_kardus.txt', "w") or die("Unable to open file!");
-    // fwrite($myfile, "No-Kardus,\n");
+    $filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
+
+    $myfile = fopen($filename, "w") or die("Unable to open file!");
 
     do {
         // WRITE TO TXT
         fwrite($myfile, "No.Batch: " . $row_kardus['no_batch'] . " No.Kardus: " .  $row_kardus['no_kardus'] . "\n");
     } while ($row_kardus = mysql_fetch_assoc($query_kardus));
 
-    // SET SERIAL NUMBER TO PRINTED
-    // $query_printed = mysql_query("UPDATE batch_produksi SET printed = '1' WHERE id_pemesan = $id_pemesan AND kode_batch=$id_batch");
-
-
     // CLOSE FILE TXT
     fclose($myfile);
+
+    // Force download the file
+    echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
 }
+
 
 if (isset($_POST['register'])) {
     $no_surat_jalan = $_POST['no_surat_jalan'];
