@@ -42,15 +42,9 @@ if (isset($_POST['register'])) {
                 fclose($myfile);
 
                 // Force download the file
-                header('Content-Description: File Transfer');
-                header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
-                header('Expires: 0');
-                header('Cache-Control: must-revalidate');
-                header('Pragma: public');
-                header('Content-Length: ' . filesize($filename));
-                readfile($filename);
-                exit;
+                echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
+
+
 
 
                 $message = "Berhasil Menyimpan!";
