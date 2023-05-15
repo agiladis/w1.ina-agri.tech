@@ -7,6 +7,29 @@ $date = date('d F Y ', time());
 
 $usernow = $_SESSION['nama'];
 
+if (isset($_GET['id_batch'])) {
+    $id_batch = $_GET['id_batch'];
+    //print
+    $query_kardus = mysql_query("SELECT * FROM perangkat WHERE no_batch = '$id_batch'");
+    $row_kardus = mysql_fetch_assoc($query_kardus);
+
+    $filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
+
+    $myfile = fopen($filename, "w") or die("Unable to open file!");
+
+    do {
+        // WRITE TO TXT
+        fwrite($myfile, "No.Batch: " . $row_kardus['no_batch'] . " No.Kardus: " .  $row_kardus['no_kardus'] . "\n");
+    } while ($row_kardus = mysql_fetch_assoc($query_kardus));
+
+    // CLOSE FILE TXT
+    fclose($myfile);
+
+    // Force download the file
+    echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
+}
+
+
 if (isset($_POST['register'])) {
     $no_surat_jalan = $_POST['no_surat_jalan'];
     $tgl = $_POST['tgl'];
@@ -18,8 +41,8 @@ if (isset($_POST['register'])) {
 
     // Check for duplicate no batch
     $query_check_batch = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = '$jenis' AND  no_batch = '$batch' ");
-    
-    
+
+
     if (!$tgl || !$qty || !$batch || !$jml_kardus || !$jenis) {
         echo "<script type='text/javascript'>alert('Masih ada data yang kosong!');</script>";
     } elseif (mysql_num_rows($query_check_batch) > 0) {
@@ -30,15 +53,15 @@ if (isset($_POST['register'])) {
         }
 
         if ($simpan) {
-            $infoo = "User " . $usernow . " menambahkan item incoming hardware";
+            //log
+            $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan jumlah " . $jml_kardus . " kardus";
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-            header('Location: create-new-perangkat-perbatch.php?create=success');
+            header('Location: create-new-perangkat-perbatch.php?create=success&id_batch=' . $batch);
         } else {
             header('Location: create-new-perangkat-perbatch.php?create=failed');
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +81,7 @@ if (isset($_POST['register'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>New Incoming Entry</h4>
+                                <h4>New Incoming Entry (Batch Entry) </h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -91,7 +114,15 @@ if (isset($_POST['register'])) {
                                     <option value="PCB-BBWS ">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
-                                    <option value="Rocker-Switch">Rocker Switch</option>
+                                    <option value="Rocker-Switch(O -)">Rocker Switch(O -)</option>
+                                    <option value="Rocker-Switch(O I)">Rocker Switch(O I)</option>
+                                    <option value="Tiang-Stadio-1">Tiang Stadio 1</option>
+                                    <option value="Tiang-Stadio-2">Tiang Stadio 2</option>
+                                    <option value="Tiang-Stadio-3">Tiang Stadio 3</option>
+                                    <option value="Tiang-Stadio-4">Tiang Stadio 4</option>
+                                    <option value="Base-Infanto-1">Base Infanto 1</option>
+                                    <option value="Base-Infanto-2">Base Infanto 2</option>
+                                    <option value="Pita-Lila">Pita LILA</option>
                                 </select>
                             </div>
                         </div>
@@ -106,14 +137,14 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Batch</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 12" name="batch">
+                                <input class="form-control" type="text" placeholder="cth : 04-12" name="batch">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Jumlah Kardus</label>
+                            <label class="col-sm-12 col-md-2 col-form-label"><b>Jumlah Kardus</b></label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 13" name="kardus">
+                                <input class="form-control" type="text" placeholder="cth : 50" name="kardus">
                             </div>
                         </div>
 

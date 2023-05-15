@@ -67,8 +67,8 @@ if (isset($_POST['sdelete'])) {
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Incoming</li>
-									<li class="breadcrumb-item active" aria-current="page">List Incoming</li>
+									<li class="breadcrumb-item">Quality Control</li>
+									<li class="breadcrumb-item active" aria-current="page">Incoming-QC</li>
 								</ol>
 							</nav>
 						</div>
@@ -89,6 +89,7 @@ if (isset($_POST['sdelete'])) {
 									<!-- <th class="text-center">No. Kardus</th> -->
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
+									<th class="text-center">Data QC (Critical/Major/Minor)</th>
 									<th class="text-center">No. Surat Jalan</th>
 									<th class="text-center">Sudah Digunakan</th>
 									<th class="text-center">Aksi</th>
@@ -98,7 +99,7 @@ if (isset($_POST['sdelete'])) {
 							<tbody>
 								<?php
 								include "koneksi.php";
-								$query_mysql = mysql_query("SELECT * FROM perangkat ORDER BY id DESC") or die(mysql_error());
+								$query_mysql = mysql_query("SELECT * FROM perangkat ORDER BY kondisi = 'NULL' ASC, id ASC") or die(mysql_error());
 								$numb = 1;
 								while ($data = mysql_fetch_array($query_mysql)) {
 									$status = '';
@@ -118,14 +119,15 @@ if (isset($_POST['sdelete'])) {
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
 											<?php if ($status != null) :
-												echo $status . "(" . $data['penanggung_jawab'] . ")";
+												echo $status . "<br/>(" . $data['penanggung_jawab'] . ")";
 											?>
 											<?php else :
-												echo "undefined";
+												echo "belum qc";
 											?>
 											<?php endif ?>
 
 										</td>
+										<td class="text-center"> <?php echo $data['qc_critical'] . ' / ' . $data['qc_major'] . ' / ' . $data['qc_minor']; ?></td>
 										<td class="text-center"> <?php echo $data['no_surat_jalan']; ?></td>
 										<td class="text-center"> <?php echo boolval($data['taken']) ? '<i class="fa fa-check" style="color:green"></i>' : ''; ?></td>
 										<td>
@@ -134,10 +136,11 @@ if (isset($_POST['sdelete'])) {
 													<i class="fa fa-ellipsis-h"></i>
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="input-qc-param.php?id_unit=<?= $data['id'] ?>&no=<?= $data['no_batch'] . '.' . $data['no_kardus'] . '.' . $data['unit_barang'] ?>&unit=<?= $data['unit_barang'] ?>&kategori=<?= $data['nama_perangkat'] ?>"><i class="fa fa-pencil"></i>Input QC Data</a>
 													<form method="POST">
-														<button class="btn dropdown-item" name="good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</button>
-														<button class="btn dropdown-item" name="not-good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Not Good</button>
-														<button onclick="return confirm('Are you sure you want to delete this item?');" class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
+														<!-- <button class="btn dropdown-item" name="good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</button>
+														 <button class="btn dropdown-item" name="not-good" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Not Good</button> -->
+														<button onclick="return confirm('Are you sure you want to delete this item?');" <?php echo $acc1; ?> class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
 													</form>
 												</div>
 											</div>

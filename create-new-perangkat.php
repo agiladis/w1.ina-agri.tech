@@ -29,6 +29,24 @@ if (isset($_POST['register'])) {
         } else {
             $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
             if ($simpan) {
+
+                //print
+                $filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
+
+                $myfile = fopen($filename, "w") or die("Unable to open file!");
+                // fwrite($myfile, "No-Kardus,\n");
+
+                fwrite($myfile, "No.Batch: " . $batch . " No.Kardus: " .  $kardus . "\n");
+
+                // CLOSE FILE TXT
+                fclose($myfile);
+
+                // Force download the file
+                echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
+
+
+
+
                 $message = "Berhasil Menyimpan!";
                 $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan kode " . $batch . "-" . $kardus . "-100";
                 mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
@@ -36,9 +54,8 @@ if (isset($_POST['register'])) {
                 $message = "Proses Gagal!";
             }
         }
-        $message = $_GET['create'];
     }
-    echo `<script type='text/javascript'>alert('$message')</script>`;
+    echo "<script type='text/javascript'>alert('$message')</script>";
 }
 
 ?>
@@ -70,7 +87,7 @@ if (isset($_POST['register'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>New Incoming Entry</h4>
+                                <h4>New Incoming Entry (Manual @Kardus)</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -103,7 +120,15 @@ if (isset($_POST['register'])) {
                                     <option value="PCB-BBWS ">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
-                                    <option value="Rocker-Switch">Rocker Switch</option>
+                                    <option value="Rocker-Switch(O -)">Rocker Switch(O -)</option>
+                                    <option value="Rocker-Switch(O I)">Rocker Switch(O I)</option>
+                                    <option value="Tiang-Stadio-1">Tiang Stadio 1</option>
+                                    <option value="Tiang-Stadio-2">Tiang Stadio 2</option>
+                                    <option value="Tiang-Stadio-3">Tiang Stadio 3</option>
+                                    <option value="Tiang-Stadio-4">Tiang Stadio 4</option>
+                                    <option value="Base-Infanto-1">Base Infanto 1</option>
+                                    <option value="Base-Infanto-2">Base Infanto 2</option>
+                                    <option value="Pita-Lila">Pita LILA</option>
                                 </select>
                             </div>
                         </div>
@@ -118,14 +143,14 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Bacth</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 12" name="batch">
+                                <input class="form-control" type="text" placeholder="cth : 04-04" name="batch">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">No Kardus</label>
+                            <label class="col-sm-12 col-md-2 col-form-label"><b>No Kardus</b></label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 13" name="kardus">
+                                <input class="form-control" type="text" placeholder="cth : 001" name="kardus">
                             </div>
                         </div>
 

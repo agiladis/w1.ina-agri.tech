@@ -143,7 +143,55 @@
 										do {
 										?>
 											<option value="<?= $data_rocker['id']; ?>"><?= $data_rocker['nama_perangkat'] . ", " . "Batch-" . $data_rocker['no_batch'] . ", Kardus-" . $data_rocker['no_kardus']; ?></option>
-										<?php } while ($data_rocker = mysql_fetch_assoc($query_perangkat_rocker)); ?>
+											<!-- <?php } while ($data_rocker = mysql_fetch_assoc($query_perangkat_rocker)); ?> -->
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio</label>
+								<div class="col-sm-12 col-md-10">
+									<select name="tiang-stadio" class="custom-select col-12">
+										<option selected value="0">Select product category first</option>
+										<?php
+										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
+										$query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio%' AND kondisi = 'Good' AND taken = 0 ");
+										$data_tiang = mysql_fetch_assoc($query_perangkat_tiang);
+										do {
+										?>
+											<option value="<?= $data_tiang['id']; ?>"><?= $data_tiang['nama_perangkat'] . ", " . "Batch-" . $data_tiang['no_batch'] . ", Kardus-" . $data_tiang['no_kardus']; ?></option>
+										<?php } while ($data_tiang = mysql_fetch_assoc($query_perangkat_tiang)); ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Base Infanto</label>
+								<div class="col-sm-12 col-md-10">
+									<select name="base-infanto" class="custom-select col-12">
+										<option selected value="0">Select product category first</option>
+										<?php
+										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
+										$query_perangkat_base = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Base-Infanto%' AND kondisi = 'Good' AND taken = 0 ");
+										$data_base = mysql_fetch_assoc($query_perangkat_base);
+										do {
+										?>
+											<option value="<?= $data_base['id']; ?>"><?= $data_base['nama_perangkat'] . ", " . "Batch-" . $data_base['no_batch'] . ", Kardus-" . $data_base['no_kardus']; ?></option>
+										<?php } while ($data_base = mysql_fetch_assoc($query_perangkat_base)); ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Pita Lila</label>
+								<div class="col-sm-12 col-md-10">
+									<select name="pita-lila" class="custom-select col-12">
+										<option selected value="0">Select product category first</option>
+										<?php
+										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
+										$query_perangkat_pita = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Pita-Lila%' AND kondisi = 'Good' AND taken = 0 ");
+										$data_pita = mysql_fetch_assoc($query_perangkat_pita);
+										do {
+										?>
+											<option value="<?= $data_pita['id']; ?>"><?= $data_pita['nama_perangkat'] . ", " . "Batch-" . $data_pita['no_batch'] . ", Kardus-" . $data_pita['no_kardus']; ?></option>
+										<?php } while ($data_pita = mysql_fetch_assoc($query_perangkat_pita)); ?>
 									</select>
 								</div>
 							</div>

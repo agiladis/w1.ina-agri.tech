@@ -102,7 +102,7 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" href="edit-product-category.php?edit=<?=$row['id']?>&table=<?= $t++ ;?>"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="dropdown-item" href="list-kategori-produk.php?delete=<?=$row['id']?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+												<a <?php echo $acc1; ?> class="dropdown-item" href="list-kategori-produk.php?delete=<?=$row['id']?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
 											</div>
 										</div>
 									</td>
