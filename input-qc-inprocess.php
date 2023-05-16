@@ -74,9 +74,9 @@ if (isset($_POST['update'])) {
 							</div>
 						</div>
                         <div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Mulai Produksi</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Produksi</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" name="tanggal_produksi" placeholder="Select Date" type="text" required>
+								<input class="form-control date-picker" name="tanggal_produksi" placeholder="Select Date" type="text" value="<?= $selected_data['tanggal_produksi'] ?>" required>
 							</div>
 						</div>
                         <div class="form-group row">
@@ -84,8 +84,8 @@ if (isset($_POST['update'])) {
 							<div class="col-sm-12 col-md-10">
 								<select name="group_produksi" class="custom-select col-12" required>
 									<option selected value="">Choose...</option>
-                                    <option value="group 1">Group 1</option>
-                                    <option value="group 2">Group 2</option>
+                                    <option value="group 1" <?php echo $selected_data['group_produksi'] == 'group 1' ? 'selected' : '' ?> >Group 1</option>
+                                    <option value="group 2" <?php echo $selected_data['group_produksi'] == 'group 2' ? 'selected' : '' ?>>Group 2</option>
 								</select>
 							</div>
 						</div>
@@ -94,8 +94,8 @@ if (isset($_POST['update'])) {
 							<div class="col-sm-12 col-md-10">
 								<select name="kondisi_inprocess" class="custom-select col-12" required>
 									<option selected value="">Choose...</option>
-                                    <option value="Good" class="font-weight-bold" style="color:green">Good</option>
-                                    <option value="Not Good" class="font-weight-bold" style="color:red"> Not Good</option>
+                                    <option value="Good" class="font-weight-bold" style="color:green" <?php echo $selected_data['kondisi_inprocess'] == 'Good' ? 'selected' : '' ?>>Good</option>
+                                    <option value="Not Good" class="font-weight-bold" style="color:red" <?php echo $selected_data['kondisi_inprocess'] == 'Not Good' ? 'selected' : '' ?>> Not Good</option>
 								</select>
 							</div>
 						</div>
