@@ -2,6 +2,8 @@
 <html>
 
 <head>
+
+
     <link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/responsive.dataTables.css">
@@ -27,22 +29,8 @@
         mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
     }
 
-    // HANDLE QC
-    if (isset($_POST['good'])) {
-        $penanggung_jawab_final = $_SESSION['nama'];
-        // require_once("koneksi.php");
-        $id_good = $_POST['good'];
-
-        mysql_query("UPDATE serial_number SET kondisi_final = 'Good', penanggung_jawab_final = '$penanggung_jawab_final', cacat_final = NULL WHERE id ='$id_good'");
-
-        $query_good = mysql_query("SELECT * FROM serial_number WHERE id=$id_good");
-        $row_good = mysql_fetch_assoc($query_good);
-        $infoo = $penanggung_jawab_final . " mengubah QC pada serial number " . $row_good['serial_number'] . " dengan kondisi final Good";
-        mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-    }
-
     // READ DATA
-    $query = mysql_query("SELECT * FROM serial_number WHERE kondisi_inprocess = 'Good' ORDER BY kondisi_final = 'NULL' ASC, id ASC");
+    $query = mysql_query("SELECT * FROM serial_number ORDER BY kondisi_inprocess = 'NULL' ASC, id ASC");
     $row_serial_number = mysql_fetch_assoc($query);
     ?>
     <?php include('include/sidebar.php'); ?>
@@ -53,13 +41,13 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>List Final QC</h4>
+                                <h4>List Final In-process QC</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Quality Control</li>
-                                    <li class="breadcrumb-item active" aria-current="page">List Final QC</li>
+                                    <li class="breadcrumb-item active" aria-current="page">List Final In-process QC</li>
                                 </ol>
                             </nav>
                         </div>
@@ -87,7 +75,7 @@
                                     <th class="table-plus">No.</th>
                                     <th>Code</th>
                                     <th>Detail</th>
-                                    <th>QC Final</th>
+                                    <th>QC Inprocess</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -100,9 +88,9 @@
                                     <?php else : $i = 1;
                                     do {
                                         $status = '';
-                                        if ($row_serial_number['kondisi_final'] == 'Not Good') {
+                                        if ($row_serial_number['kondisi_inprocess'] == 'Not Good') {
                                             $status = '<i class="fa fa-times" style="color:red"></i>'; // tanda silang merah
-                                        } else if ($row_serial_number['kondisi_final'] == 'Good') {
+                                        } else if ($row_serial_number['kondisi_inprocess'] == 'Good') {
                                             $status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
                                         }
 
@@ -184,7 +172,7 @@
                                                 ?></td>
                                             <td class="text-center">
                                                 <?php if ($status != null) :
-                                                    echo $status . "(" . $row_serial_number['penanggung_jawab_final'] . ")";
+                                                    echo $status . "(" . $row_serial_number['penanggung_jawab_inprocess'] . ")";
                                                 ?>
                                                 <?php else :
                                                     echo "undefined";
@@ -199,9 +187,7 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <form method="POST">
-                                                            <button class="btn dropdown-item" name="good" value="<?php echo $row_serial_number['id']; ?>" type="submit"><i class="fa fa-check" style="color:green"></i> Good</button>
-                                                            <a class="dropdown-item" href="defect-qc-final.php?id=<?= $row_serial_number['id'] ?>"><i class="fa fa-times" style="color:red"></i> Not Good</a>
-                                                            <!-- <button class="btn dropdown-item" name="not-good" value="<?php echo $row_serial_number['id']; ?>" type="submit"><i class="fa fa-times" style="color:red"></i> Not Good</button> -->
+                                                            <a class="dropdown-item" href="input-qc-inprocess.php?id=<?= $row_serial_number['id'] ?>"><i class="fa fa-pencil"></i> Input QC Data</a>
                                                             <a class="dropdown-item" href="print-qr.php?print=<?= $row_serial_number['id'] ?>" target="_blank"><i class="fa fa-print"></i> Print QR</a>
                                                             <a <?php echo $acc1; ?> class="dropdown-item" href="serial-number.php?delete=<?= $row_serial_number['id'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
                                                         </form>
