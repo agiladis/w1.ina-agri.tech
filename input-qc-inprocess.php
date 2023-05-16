@@ -1,0 +1,118 @@
+<?php
+include('koneksi.php');
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Default Date now
+date_default_timezone_set("Asia/Jakarta");
+$date = date('d F Y ', time());
+
+// Get serial number
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $query_data = mysql_query("SELECT * FROM serial_number WHERE id = $id");
+    $selected_data = mysql_fetch_assoc($query_data);
+}
+
+if (isset($_POST['update'])) {
+    // require_once("koneksi.php");
+    $kondisi_inprocess = $_POST['kondisi_inprocess'];
+    $penanggung_jawab_inprocess = $_SESSION['nama'];
+    $tanggal_produksi = $_POST['tanggal_produksi'];
+    $group_produksi = $_POST['group_produksi'];
+    $query = mysql_query("UPDATE serial_number SET kondisi_inprocess = '$kondisi_inprocess', penanggung_jawab_inprocess = '$penanggung_jawab_inprocess', tanggal_produksi = '$tanggal_produksi', group_produksi = '$group_produksi' WHERE id = $id");
+    // $query = mysql_query("UPDATE serial_number SET kondisi_inprocess = '$kondisi_inprocess', penanggung_jawab_inprocess = '$penanggung_jawab_inprocess', group_produksi = '$group_produksi' WHERE id = $id");
+    if ($query) {
+        header('Location: final-inprocess-qc.php');
+
+        // LOG HERE
+    }
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <?php include('include/head.php'); ?>
+</head>
+
+<body>
+    <?php include('include/header.php'); ?>
+
+    <?php include('include/sidebar.php'); ?>
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4> Input / Edit QC Inprocess </h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                    <li class="breadcrumb-item">Quality Control</li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="final-inprocess-qc.php">Final In-process QC</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Update Data</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Default Basic Forms Start -->
+                <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+                    <form method="POST" autocomplete="off">
+                        <div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Serial Number</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" value="<?php echo $selected_data['serial_number'];?>" name="serial_number" disabled required>
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Mulai Produksi</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control date-picker" name="tanggal_produksi" placeholder="Select Date" type="text" required>
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Group Produksi</label>
+							<div class="col-sm-12 col-md-10">
+								<select name="group_produksi" class="custom-select col-12" required>
+									<option selected value="">Choose...</option>
+                                    <option value="group 1">Group 1</option>
+                                    <option value="group 2">Group 2</option>
+								</select>
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Kondisi</label>
+							<div class="col-sm-12 col-md-10">
+								<select name="kondisi_inprocess" class="custom-select col-12" required>
+									<option selected value="">Choose...</option>
+                                    <option value="Good" class="font-weight-bold" style="color:green">Good</option>
+                                    <option value="Not Good" class="font-weight-bold" style="color:red"> Not Good</option>
+								</select>
+							</div>
+						</div>
+                        
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                <button name="update" type="submit" class="btn btn-primary btn-sm scroll-click" data-toggle="collapse" role="button"> Update </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Default Basic Forms End -->
+            </div>
+            <?php include('include/footer.php'); ?>
+        </div>
+    </div>
+    <?php include('include/script.php'); ?>
+</body>
+
+</html>
