@@ -9,7 +9,29 @@ if ($id_kategori) {
     $row_category = mysql_fetch_assoc($query_category);
     $category_code = $row_category['kode'];
 }
+
+if($id_kategori==2){
+    $jml_unit=100;
+}
+elseif($id_kategori==3){
+    $jml_unit=50;
+}
+elseif($id_kategori==4){
+    $jml_unit=10;
+}
+elseif($id_kategori==5){
+    $jml_unit=500;
+}
+elseif($id_kategori==7){
+    $jml_unit=100;
+}
 ?>
+<div class="form-group row">
+    <label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
+    <div id="jumlah-container" class="col-sm-12 col-md-10">
+        <input name="jumlah" class="form-control" type="text" value="<?php echo $jml_unit;?>" readonly>
+    </div>
+</div>
 <div class="form-group row">
     <label class="col-sm-12 col-md-2 col-form-label">LCD</label>
     <div class="col-sm-12 col-md-10">
