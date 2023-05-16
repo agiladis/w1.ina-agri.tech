@@ -5,7 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
-$date = date('d F Y ', time());
+$date = date("d-m-Y H:i:s");
+$usernow = $_SESSION['nama'];
 
 // Get serial number
 if (isset($_GET['id'])) {
@@ -32,6 +33,8 @@ if (isset($_POST['update'])) {
         header('Location: final-inprocess-qc.php');
 
         // LOG HERE
+        $infoo = "User " . $usernow . " input QC in-proses pada serial-number " . $selected_data['serial_number'] . " dengan kondisi " . $kondisi_inprocess;
+        mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
     }
 }
 

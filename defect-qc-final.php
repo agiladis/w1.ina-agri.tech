@@ -5,7 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
-$date = date('d F Y ', time());
+$date = date("d-m-Y H:i:s");
+$usernow = $_SESSION['nama'];
 
 // Get id
 if (isset($_GET['id'])) {
@@ -29,6 +30,8 @@ if (isset($_POST['update'])) {
     $pita_lila = $_POST['kondisi-pita-lila'];
     // check is it cacat final any not good condition?
     $cacat_final = $LCD.$PCB.$LOADCELL.$rocker_switch.$tiang_stadio.$base_infanto.$pita_lila;
+    $kondisi_cacat = $LCD . ' ' . $PCB . ' ' . $LOADCELL . ' ' . $rocker_switch . ' ' . $tiang_stadio . ' ' . $base_infanto . ' ' . $pita_lila;
+
     if ($cacat_final == "") {
         $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Good', penanggung_jawab_final = '$penanggung_jawab_final' WHERE id = $id");
     } else {
@@ -38,6 +41,13 @@ if (isset($_POST['update'])) {
         header('Location: final-qc.php');
 
         // LOG HERE
+        if ($cacat_final==''){
+            $infoo = $usernow . " input final QC pada SN " . $selected_data['serial_number'] . " dengan kondisi final Good";
+            mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
+        }else{
+        $infoo = "User " . $usernow . " input final QC pada SN " . $selected_data['serial_number']. ' kondisi Not Good dengan cacat '. $kondisi_cacat;
+        mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
+        }
     }
 }
 

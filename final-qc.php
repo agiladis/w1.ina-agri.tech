@@ -37,7 +37,7 @@
 
         $query_good = mysql_query("SELECT * FROM serial_number WHERE id=$id_good");
         $row_good = mysql_fetch_assoc($query_good);
-        $infoo = $penanggung_jawab_final . " mengubah QC pada serial number " . $row_good['serial_number'] . " dengan kondisi final Good";
+        $infoo = $penanggung_jawab_final . " input final QC pada SN " . $row_good['serial_number'] . " dengan kondisi final Good";
         mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
     }
 
