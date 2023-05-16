@@ -21,7 +21,12 @@ if (isset($_POST['update'])) {
     $penanggung_jawab_inprocess = $_SESSION['nama'];
     $tanggal_produksi = $_POST['tanggal_produksi'];
     $group_produksi = $_POST['group_produksi'];
-    $query = mysql_query("UPDATE serial_number SET kondisi_inprocess = '$kondisi_inprocess', penanggung_jawab_inprocess = '$penanggung_jawab_inprocess', tanggal_produksi = '$tanggal_produksi', group_produksi = '$group_produksi' WHERE id = $id");
+    // if kondisi_inprocess change to Not Good set kondisi_final & penanggung_jawab_final NULL
+    if ($kondisi_inprocess == 'Not Good') {
+        $query = mysql_query("UPDATE serial_number SET kondisi_inprocess = '$kondisi_inprocess', penanggung_jawab_inprocess = '$penanggung_jawab_inprocess', kondisi_final = NULL, penanggung_jawab_final = NULL, tanggal_produksi = '$tanggal_produksi', group_produksi = '$group_produksi' WHERE id = $id");
+    } else {
+        $query = mysql_query("UPDATE serial_number SET kondisi_inprocess = '$kondisi_inprocess', penanggung_jawab_inprocess = '$penanggung_jawab_inprocess', tanggal_produksi = '$tanggal_produksi', group_produksi = '$group_produksi' WHERE id = $id");
+    }
     // $query = mysql_query("UPDATE serial_number SET kondisi_inprocess = '$kondisi_inprocess', penanggung_jawab_inprocess = '$penanggung_jawab_inprocess', group_produksi = '$group_produksi' WHERE id = $id");
     if ($query) {
         header('Location: final-inprocess-qc.php');
