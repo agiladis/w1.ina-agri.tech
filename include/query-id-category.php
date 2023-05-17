@@ -10,19 +10,19 @@ if ($id_kategori) {
     $category_code = $row_category['kode'];
 }
 
-if($id_kategori==2){
+if($id_kategori==1){
     $jml_unit=100;
 }
-elseif($id_kategori==3){
+elseif($id_kategori==2){
     $jml_unit=50;
 }
-elseif($id_kategori==4){
+elseif($id_kategori==3){
     $jml_unit=10;
 }
-elseif($id_kategori==5){
+elseif($id_kategori==4){
     $jml_unit=500;
 }
-elseif($id_kategori==7){
+elseif($id_kategori==5){
     $jml_unit=100;
 }
 ?>

@@ -67,7 +67,7 @@ if ($query_create) {
     }
 }
 
-$infoo = $usernow . " menambahkan batch produksi baru " . $kode_batch;
+$infoo = $usernow . " menambahkan batch produksi baru dengan kode batch " . $kode_batch;
 mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 
 if (!$query_insert) {
