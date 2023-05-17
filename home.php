@@ -16,7 +16,7 @@
 	$result_serial_number = mysql_query($query_serial_number);
 	$row_serial_number = mysql_fetch_assoc($result_serial_number);
 
-	$query_serial_number_pass = "SELECT COUNT(id) AS 'count_serial_number_pass' FROM serial_number WHERE kondisi='Good'";
+	$query_serial_number_pass = "SELECT COUNT(id) AS 'count_serial_number_pass' FROM serial_number WHERE kondisi_final='Good'";
 	$result_serial_number_pass = mysql_query($query_serial_number_pass);
 	$row_serial_number_pass = mysql_fetch_assoc($result_serial_number_pass);
 	$queries = [

@@ -71,6 +71,9 @@ if (isset($_POST['sdelete'])) {
 								<?php
 								include "koneksi.php";
 								$query_mysql = mysql_query("SELECT * FROM perangkat ORDER BY id DESC") or die(mysql_error());
+								if (mysql_num_rows($query_mysql) == 0) :
+									echo '<tr><td colspan="12" class="text-center font-weight-bold font-italic">Its empty in here.</td></tr>';
+								else :
 								$numb = 1;
 								while ($data = mysql_fetch_array($query_mysql)) {
 									$status = '';
@@ -117,7 +120,7 @@ if (isset($_POST['sdelete'])) {
 
 								<?php
 									$numb++;
-								}
+								}endif;
 								?>
 
 							</tbody>

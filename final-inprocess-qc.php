@@ -83,7 +83,7 @@
 
                                 <?php if (mysql_num_rows($query) == 0) : ?>
                                     <tr>
-                                        <td colspan="4" class="text-center font-weight-bold font-italic">It's empty in here.</td>
+                                        <td colspan="12" class="text-center font-weight-bold font-italic">It's empty in here.</td>
                                     </tr>
                                     <?php else : $i = 1;
                                     do {
