@@ -34,9 +34,9 @@ if (isset($_POST['register'])) {
                 $filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
 
                 $myfile = fopen($filename, "w") or die("Unable to open file!");
-                // fwrite($myfile, "No-Kardus,\n");
+                fwrite($myfile, "No-Kardus,\n");
 
-                fwrite($myfile, "No.Batch: " . $batch . " No.Kardus: " .  $kardus . "\n");
+                fwrite($myfile, $batch . "." . str_pad($kardus, 3, "0", STR_PAD_LEFT) . ".100"  . ",\n");
 
                 // CLOSE FILE TXT
                 fclose($myfile);
