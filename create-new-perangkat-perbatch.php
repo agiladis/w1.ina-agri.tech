@@ -21,7 +21,7 @@ if (isset($_GET['id_batch'])) {
 
     do {
         // WRITE TO TXT
-        fwrite($myfile, $row_kardus['no_batch'] . "." .str_pad($row_kardus['no_kardus'], 3, "0", STR_PAD_LEFT) . ".100"  . ",\n" );
+        fwrite($myfile, $row_kardus['no_batch'] . "." .str_pad($row_kardus['no_kardus'], 3, "0", STR_PAD_LEFT) . ".". $row_kardus['unit_barang']  . ",\n" );
     } while ($row_kardus = mysql_fetch_assoc($query_kardus));
 
     // CLOSE FILE TXT
