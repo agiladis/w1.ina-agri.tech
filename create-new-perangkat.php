@@ -36,7 +36,7 @@ if (isset($_POST['register'])) {
                 $myfile = fopen($filename, "w") or die("Unable to open file!");
                 fwrite($myfile, "No-Kardus,\n");
 
-                fwrite($myfile, $batch . "." . str_pad($kardus, 3, "0", STR_PAD_LEFT) . ".100"  . ",\n");
+                fwrite($myfile, $batch . "." . str_pad($kardus, 3, "0", STR_PAD_LEFT) . ".".$qty  . ",\n");
 
                 // CLOSE FILE TXT
                 fclose($myfile);
