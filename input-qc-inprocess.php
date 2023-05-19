@@ -5,7 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 // Default Date now
 date_default_timezone_set("Asia/Jakarta");
-$date = date("d-m-Y H:i:s");
+// $date = date("d-m-Y H:i:s");
+$date = date('d F Y ', time());
 $usernow = $_SESSION['nama'];
 
 // Get serial number
@@ -84,7 +85,7 @@ if (isset($_POST['update'])) {
                         <div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Produksi</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" name="tanggal_produksi" placeholder="Select Date" type="text" value="<?= $selected_data['tanggal_produksi'] ?>" required>
+								<input class="form-control date-picker" name="tanggal_produksi" placeholder="Select Date" type="text" value="<?= $date; ?>" required>
 							</div>
 						</div>
                         <div class="form-group row">
