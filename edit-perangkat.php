@@ -24,6 +24,7 @@ if (isset($_POST['register'])) {
     $batch = $_POST['batch'];
     $kardus = $_POST['kardus'];
     $jenis = $_POST['jenis'];
+    $buffer = $_POST['buffer'];
     $qty = $_POST['qty'];
     $datee = date("d-m-Y H:i:s");
     $usernow = $_SESSION['nama'];
@@ -32,7 +33,7 @@ if (isset($_POST['register'])) {
     if (!$tgl || !$qty || !$batch || !$kardus || !$jenis) {
         $message = "Masih ada data yang kosong!";
     } else {
-        $simpan = mysql_query("UPDATE perangkat SET unit_barang='$qty', tgl_datang='$tgl', no_batch='$batch', no_kardus='$kardus', nama_perangkat='$jenis', no_surat_jalan='$no_surat_jalan' WHERE id=$id ");
+        $simpan = mysql_query("UPDATE perangkat SET unit_barang='$qty', tgl_datang='$tgl', no_batch='$batch', no_kardus='$kardus', nama_perangkat='$jenis', buffer='$buffer', no_surat_jalan='$no_surat_jalan' WHERE id=$id ");
         if ($simpan) {
             $message = "Berhasil Menyimpan!";
             $infoo = "User " . $usernow . " memperbarui item incoming hardware " .$batch ;
@@ -136,11 +137,22 @@ if (isset($_POST['register'])) {
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Buffer</label>
+                            <div class="col-sm-12 col-md-10">
+                                <select class="custom-select col-12" name="buffer">
+                                    <option value="0" >Bukan Buffer</option>
+                                    <option value="1" >Buffer</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="clearfix">
                             <div class="pull-right">
                                 <button name="register" type="submit" class="btn btn-primary btn-sm scroll-click" data-toggle="collapse" role="button"> Entry </button>
                             </div>
                         </div>
+                        
                     </form>
                 </div>
                 <!-- Default Basic Forms End -->
