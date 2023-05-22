@@ -32,15 +32,19 @@ $LCD = $_POST['LCD'];
 $PCB = $_POST['PCB'];
 $LOADCELL = $_POST['LOADCELL'];
 $rocker_switch = $_POST['rocker-switch'];
-$tiang_stadio = $_POST['tiang-stadio'];
-$base_infanto = $_POST['base-infanto'];
+$tiang_stadio_1 = $_POST['tiang-stadio-1'];
+$tiang_stadio_2 = $_POST['tiang-stadio-2'];
+$tiang_stadio_3 = $_POST['tiang-stadio-3'];
+$tiang_stadio_4 = $_POST['tiang-stadio-4'];
+$base_infanto_1 = $_POST['base-infanto-1'];
+$base_infanto_2 = $_POST['base-infanto-2'];
 $pita_lila = $_POST['pita-lila'];
 
 
 for ($i = 1; $i <= $jumlah; $i++) {
     $kode_nomor = str_pad($i, 3, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
     $serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
-    $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL, rocker_switch,tiang_stadio,base_infanto,pita_lila) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$rocker_switch','$tiang_stadio','$base_infanto','$pita_lila')");
+    $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL, rocker_switch,tiang_stadio_1,tiang_stadio_2,tiang_stadio_3,tiang_stadio_4,base_infanto_1,base_infanto_2,pita_lila) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$rocker_switch','$tiang_stadio_1','$tiang_stadio_2','$tiang_stadio_3','$tiang_stadio_4','$base_infanto_1','$base_infanto_2','$pita_lila')");
 }
 
 // PATCH DATA TAKEN PERANGKAT TABEL : LCD, PCB, LOADCELL IF CREATE BATCH SUCCESS
@@ -57,11 +61,23 @@ if ($query_create) {
     if ($rocker_switch != 0) {
         $query_patch_rocker = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $rocker_switch"); // For rocker-switch data
     }
-    if ($tiang_stadio != 0) {
-        $query_patch_tiang = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio"); // For rocker-switch data
+    if ($tiang_stadio_1 != 0) {
+        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_1"); // For rocker-switch data
     }
-    if ($base_infanto != 0) {
-        $query_patch_base = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $base_infanto"); // For rocker-switch data
+    if ($tiang_stadio_2 != 0) {
+        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_2"); // For rocker-switch data
+    }
+    if ($tiang_stadio_3 != 0) {
+        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_3"); // For rocker-switch data
+    }
+    if ($tiang_stadio_4 != 0) {
+        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_4"); // For rocker-switch data
+    }
+    if ($base_infanto_1 != 0) {
+        $query_patch_base = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $base_infanto_1"); // For rocker-switch data
+    }
+    if ($base_infanto_2 != 0) {
+        $query_patch_base = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $base_infanto_2"); // For rocker-switch data
     }
     if ($pita_lila != 0) {
         $query_patch_pita = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $pita_lila"); // For rocker-switch data

@@ -114,14 +114,31 @@
 										$row_rocker = mysql_fetch_assoc($query_rocker);
 
 										//Mengambil data tiang-stadio
-										$id_tiang = $row_serial_number['tiang_stadio'];
-										$query_tiang = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang");
-										$row_tiang = mysql_fetch_assoc($query_tiang);
+										$id_tiang_1 = $row_serial_number['tiang_stadio_1'];
+										$query_tiang_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_1");
+										$row_tiang_1 = mysql_fetch_assoc($query_tiang_1);
+										//Mengambil data tiang-stadio
+										$id_tiang_2 = $row_serial_number['tiang_stadio_2'];
+										$query_tiang_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_2");
+										$row_tiang_2 = mysql_fetch_assoc($query_tiang_2);
+										//Mengambil data tiang-stadio
+										$id_tiang_3 = $row_serial_number['tiang_stadio_3'];
+										$query_tiang_3 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_3");
+										$row_tiang_3 = mysql_fetch_assoc($query_tiang_3);
+										//Mengambil data tiang-stadio
+										$id_tiang_4 = $row_serial_number['tiang_stadio_4'];
+										$query_tiang_4 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_4");
+										$row_tiang_4 = mysql_fetch_assoc($query_tiang_4);
 
 										//Mengambil data base-infanto
-										$id_base = $row_serial_number['base_infanto'];
-										$query_base = mysql_query("SELECT * FROM perangkat WHERE id = $id_base");
-										$row_base = mysql_fetch_assoc($query_base);
+										$id_base_1 = $row_serial_number['base_infanto_1'];
+										$query_base_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_1");
+										$row_base_1 = mysql_fetch_assoc($query_base_1);
+										//Mengambil data base-infanto
+										$id_base_2 = $row_serial_number['base_infanto_2'];
+										$query_base_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_2");
+										$row_base_2 = mysql_fetch_assoc($query_base_2);
+										
 
 										//Mengambil data pita-lila
 										$id_pita = $row_serial_number['pita_lila'];
@@ -154,15 +171,35 @@
 												} else {
 													echo $row_rocker['nama_perangkat'] . " : Batch-" .  $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
 												}
-												if ($id_tiang == 0) {
+												if ($id_tiang_1 == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_tiang['nama_perangkat'] . " : Batch-" .  $row_tiang['no_batch'] . "  Kardus-" . $row_tiang['no_kardus'] . "  tgl (" . $row_tiang['tgl_datang'] . ")</br>";
+													echo $row_tiang_1['nama_perangkat'] . " : Batch-" .  $row_tiang_1['no_batch'] . "  Kardus-" . $row_tiang_1['no_kardus'] . "  tgl (" . $row_tiang_1['tgl_datang'] . ")</br>";
 												}
-												if ($id_base == 0) {
+												if ($id_tiang_2 == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_base['nama_perangkat'] . " : Batch-" .  $row_base['no_batch'] . "  Kardus-" . $row_base['no_kardus'] . "  tgl (" . $row_base['tgl_datang'] . ")</br>";
+													echo $row_tiang_2['nama_perangkat'] . " : Batch-" .  $row_tiang_2['no_batch'] . "  Kardus-" . $row_tiang_2['no_kardus'] . "  tgl (" . $row_tiang_2['tgl_datang'] . ")</br>";
+												}
+												if ($id_tiang_3 == 0) {
+													// echo "Rocker-Switch : -</br>";
+												} else {
+													echo $row_tiang_3['nama_perangkat'] . " : Batch-" .  $row_tiang_3['no_batch'] . "  Kardus-" . $row_tiang_3['no_kardus'] . "  tgl (" . $row_tiang_3['tgl_datang'] . ")</br>";
+												}
+												if ($id_tiang_4 == 0) {
+													// echo "Rocker-Switch : -</br>";
+												} else {
+													echo $row_tiang_4['nama_perangkat'] . " : Batch-" .  $row_tiang_4['no_batch'] . "  Kardus-" . $row_tiang_4['no_kardus'] . "  tgl (" . $row_tiang_4['tgl_datang'] . ")</br>";
+												}
+												if ($id_base_1 == 0) {
+													// echo "Rocker-Switch : -</br>";
+												} else {
+													echo $row_base_1['nama_perangkat'] . " : Batch-" .  $row_base_1['no_batch'] . "  Kardus-" . $row_base_1['no_kardus'] . "  tgl (" . $row_base_1['tgl_datang'] . ")</br>";
+												}
+												if ($id_base_2 == 0) {
+													// echo "Rocker-Switch : -</br>";
+												} else {
+													echo $row_base_2['nama_perangkat'] . " : Batch-" .  $row_base_2['no_batch'] . "  Kardus-" . $row_base_2['no_kardus'] . "  tgl (" . $row_base_2['tgl_datang'] . ")</br>";
 												}
 												if ($id_pita == 0) {
 													// echo "Rocker-Switch : -</br>";
