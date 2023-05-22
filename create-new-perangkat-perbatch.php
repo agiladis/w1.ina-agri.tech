@@ -7,45 +7,23 @@ $date = date('d F Y ', time());
 
 $usernow = $_SESSION['nama'];
 
-if (isset($_GET['id_batch'])) {
-    $id_batch = $_GET['id_batch'];
-    //print
-    $query_kardus = mysql_query("SELECT * FROM perangkat WHERE no_batch = '$id_batch'");
-    $row_kardus = mysql_fetch_assoc($query_kardus);
-
-    $filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
-
-    $myfile = fopen($filename, "w") or die("Unable to open file!");
-
-    fwrite($myfile, "No-Kardus,\n");
-
-    do {
-        // WRITE TO TXT
-        fwrite($myfile, $row_kardus['no_batch'] . "." .str_pad($row_kardus['no_kardus'], 3, "0", STR_PAD_LEFT) . ".". $row_kardus['unit_barang'] . "." .$row_kardus['kode_perangkat'] . ",\n" );
-    } while ($row_kardus = mysql_fetch_assoc($query_kardus));
-
-    // CLOSE FILE TXT
-    fclose($myfile);
-}
-
-
 if (isset($_POST['register'])) {
     // initiate kode_perangkat
     $kode_perangkat = array(
-        "LCD"=>"LCD",
-        "PCB-TDWS"=>"PCB-T",
-        "PCB-BBWS"=>"PCB-B",
-        "Loadcell-TDWS"=>"LC-T",
-        "Loadcell-BBWS"=>"LC-B",
-        "Rocker-Switch(O -)"=>"RS-O-",
-        "Rocker-Switch(O I)"=>"RS-O1",
-        "Tiang-Stadio-1"=>"TS1",
-        "Tiang-Stadio-2"=>"TS2",
-        "Tiang-Stadio-3"=>"TS3",
-        "Tiang-Stadio-4"=>"TS4",
-        "Base-Infanto-1"=>"BI1",
-        "Base-Infanto-2"=>"BI2",
-        "Pita-Lila"=>"P-LILA",
+        "LCD" => "LCD",
+        "PCB-TDWS" => "PCB-T",
+        "PCB-BBWS" => "PCB-B",
+        "Loadcell-TDWS" => "LC-T",
+        "Loadcell-BBWS" => "LC-B",
+        "Rocker-Switch(O -)" => "RS-O-",
+        "Rocker-Switch(O I)" => "RS-O1",
+        "Tiang-Stadio-1" => "TS1",
+        "Tiang-Stadio-2" => "TS2",
+        "Tiang-Stadio-3" => "TS3",
+        "Tiang-Stadio-4" => "TS4",
+        "Base-Infanto-1" => "BI1",
+        "Base-Infanto-2" => "BI2",
+        "Pita-Lila" => "P-LILA",
     );
 
     $no_surat_jalan = $_POST['no_surat_jalan'];
@@ -67,12 +45,25 @@ if (isset($_POST['register'])) {
         for ($i = 1; $i <= $jml_kardus; $i++) {
             $simpan = mysql_query("INSERT INTO perangkat(unit_barang, tgl_datang, no_batch, no_kardus, nama_perangkat, kode_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$i','$jenis','$kode_perangkat[$jenis]','$no_surat_jalan')");
         }
-
         if ($simpan) {
+            // write txt.
+            $filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
+            $myfile = fopen($filename, "w") or die("Unable to open file!");
+            fwrite($myfile, "No-Kardus,\n");
+            for ($no = 1; $no <= $jml_kardus; $no++) {   
+                // WRITE TO TXT
+                fwrite($myfile, $batch . "." . str_pad($no, 3, "0", STR_PAD_LEFT) . "." . $qty . "." . $kode_perangkat[$jenis] . ",\n");
+            }
+            // CLOSE FILE TXT
+            fclose($myfile);
+            // Force download the file
+            echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
+
             //log
             $infoo = $usernow . " menambahkan item incoming hardware " . $jenis . " dengan jumlah " . $jml_kardus . " kardus";
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
-            header('Location: create-new-perangkat-perbatch.php?create=success&id_batch=' . $batch);
+            // header('Location: create-new-perangkat-perbatch.php?create=success&id_batch=' . $batch);
+            // header('Location: create-new-perangkat-perbatch.php?create=success');
         } else {
             header('Location: create-new-perangkat-perbatch.php?create=failed');
         }

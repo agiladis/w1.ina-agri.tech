@@ -8,7 +8,25 @@ date_default_timezone_set("Asia/Jakarta");
 $date = date('d F Y ', time());
 
 if (isset($_POST['register'])) {
-    require_once("koneksi.php");
+    // initiate kode_perangkat
+    $kode_perangkat = array(
+        "LCD" => "LCD",
+        "PCB-TDWS" => "PCB-T",
+        "PCB-BBWS" => "PCB-B",
+        "Loadcell-TDWS" => "LC-T",
+        "Loadcell-BBWS" => "LC-B",
+        "Rocker-Switch(O -)" => "RS-O-",
+        "Rocker-Switch(O I)" => "RS-O1",
+        "Tiang-Stadio-1" => "TS1",
+        "Tiang-Stadio-2" => "TS2",
+        "Tiang-Stadio-3" => "TS3",
+        "Tiang-Stadio-4" => "TS4",
+        "Base-Infanto-1" => "BI1",
+        "Base-Infanto-2" => "BI2",
+        "Pita-Lila" => "P-LILA",
+    );
+
+    // require_once("koneksi.php");
     $no_surat_jalan = $_POST['no_surat_jalan'];
     $tgl = $_POST['tgl'];
     $batch = $_POST['batch'];
@@ -27,7 +45,7 @@ if (isset($_POST['register'])) {
         if ($row_filter) {
             $message = "No kardus sudah ada";
         } else {
-            $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis', '$no_surat_jalan')");
+            $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, kode_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$kardus','$jenis','$kode_perangkat[$jenis]', '$no_surat_jalan')");
             if ($simpan) {
 
                 //print
@@ -36,10 +54,14 @@ if (isset($_POST['register'])) {
                 $myfile = fopen($filename, "w") or die("Unable to open file!");
                 fwrite($myfile, "No-Kardus,\n");
 
-                fwrite($myfile, $batch . "." . str_pad($kardus, 3, "0", STR_PAD_LEFT) . ".".$qty  . ",\n");
+                fwrite($myfile, $batch . "." . str_pad($kardus, 3, "0", STR_PAD_LEFT) . "." . $qty . "." . $kode_perangkat[$jenis] . ",\n");
 
                 // CLOSE FILE TXT
                 fclose($myfile);
+
+                // Force download the file
+                echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
+
 
                 $message = "Berhasil Menyimpan!";
                 $infoo = $usernow . " menambahkan item incoming hardware " . $jenis . " dengan kode " . $batch . "-" . $kardus . "-100";
