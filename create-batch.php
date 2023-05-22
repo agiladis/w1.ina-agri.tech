@@ -29,17 +29,17 @@ $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch,
 
 // $kode_nomor = $_POST['kode_nomor'];
 $jumlah = $_POST['jumlah'];
-$LCD = $_POST['LCD'];
-$PCB = $_POST['PCB'];
-$LOADCELL = $_POST['LOADCELL'];
-$rocker_switch = $_POST['rocker-switch'];
-$tiang_stadio_1 = $_POST['tiang-stadio-1'];
-$tiang_stadio_2 = $_POST['tiang-stadio-2'];
-$tiang_stadio_3 = $_POST['tiang-stadio-3'];
-$tiang_stadio_4 = $_POST['tiang-stadio-4'];
-$base_infanto_1 = $_POST['base-infanto-1'];
-$base_infanto_2 = $_POST['base-infanto-2'];
-$pita_lila = $_POST['pita-lila'];
+$LCD = isset($_POST['LCD']) ? $_POST['LCD'] : 0;
+$PCB = isset($_POST['PCB']) ? $_POST['PCB'] : 0;
+$LOADCELL = isset($_POST['LOADCELL']) ? $_POST['LOADCELL'] : 0;
+$rocker_switch = isset($_POST['rocker-switch']) ? $_POST['rocker-switch'] : 0;
+$tiang_stadio_1 = isset($_POST['tiang-stadio-1']) ? $_POST['tiang-stadio-1'] : 0;
+$tiang_stadio_2 = isset($_POST['tiang-stadio-2']) ? $_POST['tiang-stadio-2'] : 0;
+$tiang_stadio_3 = isset($_POST['tiang-stadio-3']) ? $_POST['tiang-stadio-3'] : 0;
+$tiang_stadio_4 = isset($_POST['tiang-stadio-4']) ? $_POST['tiang-stadio-4'] : 0;
+$base_infanto_1 = isset($_POST['base-infanto-1']) ? $_POST['base-infanto-1'] : 0;
+$base_infanto_2 = isset($_POST['base-infanto-2']) ? $_POST['base-infanto-2'] : 0;
+$pita_lila = isset($_POST['pita-lila']) ? $_POST['pita-lila'] : 0;
 
 
 for ($i = 1; $i <= $jumlah; $i++) {
