@@ -35,7 +35,7 @@ $rocker_switch = $_POST['rocker-switch'];
 $tiang_stadio = $_POST['tiang-stadio'];
 $base_infanto = $_POST['base-infanto'];
 $pita_lila = $_POST['pita-lila'];
-$datee = date("d-m-Y H:i:s");
+
 
 for ($i = 1; $i <= $jumlah; $i++) {
     $kode_nomor = str_pad($i, 3, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor

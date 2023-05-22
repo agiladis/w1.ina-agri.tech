@@ -84,9 +84,7 @@ if (isset($_POST['sdelete'])) {
 								<tr>
 									<th class="table-plus">No.</th>
 									<th class="text-center">Jenis Perangkat</th>
-									<!-- <th class="text-center">Qty</th> -->
 									<th class="text-center">No. Batch</th>
-									<!-- <th class="text-center">No. Kardus</th> -->
 									<th class="text-center">Tangal Incoming</th>
 									<th class="text-center">Quality Control</th>
 									<th class="text-center">Data QC (Critical/Major/Minor)</th>
@@ -123,7 +121,7 @@ if (isset($_POST['sdelete'])) {
 										<td class="table-plus"> <?php echo $numb; ?> </td>
 										<td> <?php echo $data['nama_perangkat']; ?> </td>
 										<!-- <td> <?php echo $data['unit_barang']; ?> Unit</td> -->
-										<td><?php echo $data['no_batch'] . "." . str_pad($data['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data['unit_barang'].$buffer; ?></td>
+										<td><?php echo $data['no_batch'] . "." . str_pad($data['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data['unit_barang'] .".".$data['kode_perangkat'] .$buffer; ?></td>
 										<!-- <td><?php echo $data['no_kardus']; ?></td> -->
 										<td> <?php echo $data['tgl_datang']; ?></td>
 										<td class="text-center">
