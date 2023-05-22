@@ -2,6 +2,7 @@
 session_start();
 include('koneksi.php');
 $usernow = $_SESSION['nama'];
+$datee = date("d-m-Y H:i:s");
 //GENERATE BATCH PRODUKSI
 $id_pemesan = $_POST['id_pemesan'];
 $kode_batch = $_POST['kode_batch'];
