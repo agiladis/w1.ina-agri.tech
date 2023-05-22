@@ -2,16 +2,37 @@
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
+require_once("koneksi.php");
 $usernow = $_SESSION['nama'];
 $datee = date("d-m-Y H:i:s");
 if (isset($_POST['sdelete'])) {
-	require_once("koneksi.php");
 	$sdelete = $_POST['sdelete'];
 	$query_delete = mysql_query("SELECT * FROM perangkat WHERE id=$sdelete");
 	$row_delete = mysql_fetch_assoc($query_delete);
 	$infoo = $usernow . " melakukan delete pada perangkat " . $row_delete['nama_perangkat'] . " dengan no batch-" . $row_delete["no_batch"];
 	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 	mysql_query("DELETE FROM perangkat WHERE id=$sdelete");
+}elseif(isset($_POST['print'])){
+	$print = $_POST['print'];
+	$query_print = mysql_query("SELECT * FROM perangkat WHERE id=$print");
+	$row_print = mysql_fetch_assoc($query_print);
+
+	$filename = dirname(__FILE__) . '/file_print/no_kardus.txt';
+
+	$myfile = fopen($filename, "w") or die("Unable to open file!");
+	fwrite($myfile, "No-Kardus,\n");
+
+	fwrite($myfile, $row_print['no_batch'] . "." . str_pad($row_print['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$row_print['unit_barang']  . ",\n");
+
+	// CLOSE FILE TXT
+	fclose($myfile);
+
+	// Force download the file
+	echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
+
+	$message = "Berhasil Menyimpan!";
+	$infoo = $usernow . " menambahkan item incoming hardware " . $row_print['nama_perangkat'] . " dengan kode " . $row_print['no_batch'] . "-" . $row_print['no_kardus'] . "-100";
+	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 }
 ?>
 <!DOCTYPE html>
@@ -118,8 +139,9 @@ if (isset($_POST['sdelete'])) {
 												<div class="dropdown-menu dropdown-menu-right">
 													<a class="dropdown-item" href="edit-perangkat.php?edit=<?= $data['id'] ?>"><i class="fa fa-pencil"></i> Edit</a>
 													<form method="POST">
+														<button class="btn dropdown-item" name="print" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-print"></i>Print</button>
 														<button onclick="return confirm('Are you sure you want to delete this item?');" <?php echo $acc1; ?> class="btn dropdown-item" name="sdelete" value="<?php echo $data['id']; ?>" type="submit"><i class="fa fa-trash"></i> Delete</button>
-													</form>
+														</form>
 												</div>
 											</div>
 										</td>

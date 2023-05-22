@@ -56,7 +56,7 @@ if (isset($_POST['register'])) {
 
         if ($simpan) {
             //log
-            $infoo = "User " . $usernow . " menambahkan item incoming hardware " . $jenis . " dengan jumlah " . $jml_kardus . " kardus";
+            $infoo = $usernow . " menambahkan item incoming hardware " . $jenis . " dengan jumlah " . $jml_kardus . " kardus";
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
             header('Location: create-new-perangkat-perbatch.php?create=success&id_batch=' . $batch);
         } else {
