@@ -41,10 +41,6 @@ if (isset($_POST['register'])) {
                 // CLOSE FILE TXT
                 fclose($myfile);
 
-
-
-
-
                 $message = "Berhasil Menyimpan!";
                 $infoo = $usernow . " menambahkan item incoming hardware " . $jenis . " dengan kode " . $batch . "-" . $kardus . "-100";
                 mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
