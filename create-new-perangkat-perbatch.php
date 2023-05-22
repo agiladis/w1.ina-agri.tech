@@ -21,7 +21,7 @@ if (isset($_GET['id_batch'])) {
 
     do {
         // WRITE TO TXT
-        fwrite($myfile, $row_kardus['no_batch'] . "." .str_pad($row_kardus['no_kardus'], 3, "0", STR_PAD_LEFT) . ".". $row_kardus['unit_barang']  . ",\n" );
+        fwrite($myfile, $row_kardus['no_batch'] . "." .str_pad($row_kardus['no_kardus'], 3, "0", STR_PAD_LEFT) . ".". $row_kardus['unit_barang'] . "." .$row_kardus['kode_perangkat'] . ",\n" );
     } while ($row_kardus = mysql_fetch_assoc($query_kardus));
 
     // CLOSE FILE TXT
@@ -33,6 +33,24 @@ if (isset($_GET['id_batch'])) {
 
 
 if (isset($_POST['register'])) {
+    // initiate kode_perangkat
+    $kode_perangkat = array(
+        "LCD"=>"LCD",
+        "PCB-TDWS"=>"PCB-T",
+        "PCB-BBWS"=>"PCB-B",
+        "Loadcell-TDWS"=>"LC-T",
+        "Loadcell-BBWS"=>"LC-B",
+        "Rocker-Switch(O -)"=>"RS-O-",
+        "Rocker-Switch(O I)"=>"RS-O1",
+        "Tiang-Stadio-1"=>"TS1",
+        "Tiang-Stadio-2"=>"TS2",
+        "Tiang-Stadio-3"=>"TS3",
+        "Tiang-Stadio-4"=>"TS4",
+        "Base-Infanto-1"=>"BI1",
+        "Base-Infanto-2"=>"BI2",
+        "Pita-Lila"=>"P-LILA",
+    );
+
     $no_surat_jalan = $_POST['no_surat_jalan'];
     $tgl = $_POST['tgl'];
     $batch = $_POST['batch'];
@@ -42,8 +60,7 @@ if (isset($_POST['register'])) {
     $datee = date("d-m-Y H:i:s");
 
     // Check for duplicate no batch
-    $query_check_batch = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = '$jenis' AND  no_batch = '$batch' ");
-
+    $query_check_batch = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = '$jenis' AND no_batch = '$batch' ");
 
     if (!$tgl || !$qty || !$batch || !$jml_kardus || !$jenis) {
         echo "<script type='text/javascript'>alert('Masih ada data yang kosong!');</script>";
@@ -51,7 +68,7 @@ if (isset($_POST['register'])) {
         echo "<script type='text/javascript'>alert('Kode batch yang anda masukan sudah ada!');</script>";
     } else {
         for ($i = 1; $i <= $jml_kardus; $i++) {
-            $simpan = mysql_query("INSERT INTO perangkat(unit_barang,tgl_datang,no_batch,no_kardus,nama_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$i','$jenis', '$no_surat_jalan')");
+            $simpan = mysql_query("INSERT INTO perangkat(unit_barang, tgl_datang, no_batch, no_kardus, nama_perangkat, kode_perangkat, no_surat_jalan) VALUES('$qty','$tgl','$batch','$i','$jenis','$kode_perangkat[$jenis]','$no_surat_jalan')");
         }
 
         if ($simpan) {
