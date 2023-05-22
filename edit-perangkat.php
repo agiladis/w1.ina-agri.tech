@@ -36,7 +36,7 @@ if (isset($_POST['register'])) {
         $simpan = mysql_query("UPDATE perangkat SET unit_barang='$qty', tgl_datang='$tgl', no_batch='$batch', no_kardus='$kardus', nama_perangkat='$jenis', buffer='$buffer', no_surat_jalan='$no_surat_jalan' WHERE id=$id ");
         if ($simpan) {
             $message = "Berhasil Menyimpan!";
-            $infoo = "User " . $usernow . " memperbarui item incoming hardware " .$batch ;
+            $infoo = $usernow . " memperbarui item incoming hardware " .$batch ;
             mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
         } else {
             $message = "Proses Gagal!";

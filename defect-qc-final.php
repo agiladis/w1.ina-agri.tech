@@ -45,7 +45,7 @@ if (isset($_POST['update'])) {
             $infoo = $usernow . " input final QC pada SN " . $selected_data['serial_number'] . " dengan kondisi final Good";
             mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
         }else{
-        $infoo = "User " . $usernow . " input final QC pada SN " . $selected_data['serial_number']. ' kondisi Not Good dengan cacat '. $kondisi_cacat;
+        $infoo = $usernow . " input final QC pada SN " . $selected_data['serial_number']. ' kondisi Not Good dengan cacat '. $kondisi_cacat;
         mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
         }
     }
