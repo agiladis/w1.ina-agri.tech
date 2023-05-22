@@ -113,7 +113,7 @@ elseif($id_kategori==2){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 1</label>
         <div class="col-sm-12 col-md-10">
-            <select name="base-infanto" class="custom-select col-12">
+            <select name="base-infanto-1" class="custom-select col-12">
                 <option selected value="0">Choose...</option>
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
@@ -133,7 +133,7 @@ elseif($id_kategori==2){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 2</label>
         <div class="col-sm-12 col-md-10">
-            <select name="base-infanto" class="custom-select col-12">
+            <select name="base-infanto-2" class="custom-select col-12">
                 <option selected value="0">Choose...</option>
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
@@ -164,7 +164,7 @@ elseif($id_kategori==3){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 1</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio" class="custom-select col-12">
+            <select name="tiang-stadio-1" class="custom-select col-12">
                 <option selected value="0">Choose...</option>
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
@@ -184,7 +184,7 @@ elseif($id_kategori==3){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 2</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio" class="custom-select col-12">
+            <select name="tiang-stadio-2" class="custom-select col-12">
                 <option selected value="0">Choose...</option>
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
@@ -204,7 +204,7 @@ elseif($id_kategori==3){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 3</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio" class="custom-select col-12">
+            <select name="tiang-stadio-3" class="custom-select col-12">
                 <option selected value="0">Choose...</option>
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
@@ -224,7 +224,7 @@ elseif($id_kategori==3){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 4</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio" class="custom-select col-12">
+            <select name="tiang-stadio-4" class="custom-select col-12">
                 <option selected value="0">Choose...</option>
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
