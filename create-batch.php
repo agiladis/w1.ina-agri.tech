@@ -27,16 +27,17 @@ $kode_kategori = $row_kategori['kode'];
 $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai, kategori) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai', '$kode_kategori')");
 
 // $kode_nomor = $_POST['kode_nomor'];
-$LCD = $_POST['LCD'] || 0;
-$PCB = $_POST['PCB'] || 0;
-$LOADCELL = $_POST['LOADCELL'] || 0;
-$rocker_switch = $_POST['rocker-switch'] || 0;
-$tiang_stadio = $_POST['tiang-stadio'] || 0;
-$base_infanto = $_POST['base-infanto'] || 0;
-$pita_lila = $_POST['pita-lila'] || 0;
-$datee = date("d-m-Y H:i:s");
+$jumlah = $_POST['jumlah'];
+$LCD = $_POST['LCD'];
+$PCB = $_POST['PCB'];
+$LOADCELL = $_POST['LOADCELL'];
+$rocker_switch = $_POST['rocker-switch'];
+$tiang_stadio = $_POST['tiang-stadio'];
+$base_infanto = $_POST['base-infanto'];
+$pita_lila = $_POST['pita-lila'];
 
-for ($i = 1; $i <= 100; $i++) {
+
+for ($i = 1; $i <= $jumlah; $i++) {
     $kode_nomor = str_pad($i, 3, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
     $serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
     $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL, rocker_switch,tiang_stadio,base_infanto,pita_lila) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$rocker_switch','$tiang_stadio','$base_infanto','$pita_lila')");
