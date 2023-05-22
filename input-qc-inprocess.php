@@ -34,7 +34,7 @@ if (isset($_POST['update'])) {
         header('Location: final-inprocess-qc.php');
 
         // LOG HERE
-        $infoo = "User " . $usernow . " input QC in-proses pada serial-number " . $selected_data['serial_number'] . " dengan kondisi " . $kondisi_inprocess;
+        $infoo = $usernow . " input QC in-proses pada serial-number " . $selected_data['serial_number'] . " dengan kondisi " . $kondisi_inprocess;
         mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
     }
 }
