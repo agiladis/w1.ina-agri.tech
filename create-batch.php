@@ -27,13 +27,13 @@ $kode_kategori = $row_kategori['kode'];
 $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai, kategori) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai', '$kode_kategori')");
 
 // $kode_nomor = $_POST['kode_nomor'];
-$LCD = $_POST['LCD'];
-$PCB = $_POST['PCB'];
-$LOADCELL = $_POST['LOADCELL'];
-$rocker_switch = $_POST['rocker-switch'];
-$tiang_stadio = $_POST['tiang-stadio'];
-$base_infanto = $_POST['base-infanto'];
-$pita_lila = $_POST['pita-lila'];
+$LCD = $_POST['LCD'] || 0;
+$PCB = $_POST['PCB'] || 0;
+$LOADCELL = $_POST['LOADCELL'] || 0;
+$rocker_switch = $_POST['rocker-switch'] || 0;
+$tiang_stadio = $_POST['tiang-stadio'] || 0;
+$base_infanto = $_POST['base-infanto'] || 0;
+$pita_lila = $_POST['pita-lila'] || 0;
 $datee = date("d-m-Y H:i:s");
 
 for ($i = 1; $i <= 100; $i++) {
