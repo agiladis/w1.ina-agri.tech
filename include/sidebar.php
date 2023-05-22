@@ -89,7 +89,15 @@
 							<li><a href="http://w1.ina-agri.tech/file_print/Software%20&%20Driver/Driver_BP%20TR110.zip" target="_blank">Driver Printer</a></li>
 							<li><a href="http://w1.ina-agri.tech/file_print/Software%20&%20Driver/Dlabel_PC.exe" target="_blank">Software Dlabel</a></li>
 							<li><a href="http://w1.ina-agri.tech/file_print/Manual-Book-QR-Print.pdf " target="_blank">Petunjuk Install</a></li>
-							<li><a href="http://w1.ina-agri.tech/file_print/template_fix(extract%20dulu).zip" target="_blank">Template Dlabel</a></li>
+							<li class="dropdown">
+								<a href="javascript:;" class="dropdown-toggle">
+									<span style="font-size:14px;">Template Dlabel</span>
+								</a>
+								<ul class="submenu">
+									<li style="left:30px;"><a href="http://w1.ina-agri.tech/file_print/template_fix(extract%20dulu).zip" target="_blank">Template Dlabel 1</a></li>
+									<li style="left:30px;"><a href="http://w1.ina-agri.tech/file_print/template_fix(extract%20dulu).zip" target="_blank">Template Dlabel 2</a></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -109,3 +117,4 @@
 			</div>
 		</div>
 	</div>
+	

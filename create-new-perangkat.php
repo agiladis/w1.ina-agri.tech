@@ -41,8 +41,6 @@ if (isset($_POST['register'])) {
                 // CLOSE FILE TXT
                 fclose($myfile);
 
-                // Force download the file
-                echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
 
 
 

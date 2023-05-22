@@ -26,13 +26,6 @@ if (isset($_POST['sdelete'])) {
 
 	// CLOSE FILE TXT
 	fclose($myfile);
-
-	// Force download the file
-	echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
-
-	$message = "Berhasil Menyimpan!";
-	$infoo = $usernow . " menambahkan item incoming hardware " . $row_print['nama_perangkat'] . " dengan kode " . $row_print['no_batch'] . "-" . $row_print['no_kardus'] . "-100";
-	mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
 }
 ?>
 <!DOCTYPE html>
