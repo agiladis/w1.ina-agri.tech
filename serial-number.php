@@ -117,10 +117,12 @@
 										$id_tiang = $row_serial_number['tiang_stadio'];
 										$query_tiang = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang");
 										$row_tiang = mysql_fetch_assoc($query_tiang);
+
 										//Mengambil data base-infanto
 										$id_base = $row_serial_number['base_infanto'];
 										$query_base = mysql_query("SELECT * FROM perangkat WHERE id = $id_base");
 										$row_base = mysql_fetch_assoc($query_base);
+
 										//Mengambil data pita-lila
 										$id_pita = $row_serial_number['pita_lila'];
 										$query_pita = mysql_query("SELECT * FROM perangkat WHERE id = $id_pita");

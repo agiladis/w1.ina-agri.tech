@@ -22,10 +22,13 @@ if (isset($_POST['sdelete'])) {
 	$myfile = fopen($filename, "w") or die("Unable to open file!");
 	fwrite($myfile, "No-Kardus,\n");
 
-	fwrite($myfile, $row_print['no_batch'] . "." . str_pad($row_print['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$row_print['unit_barang']  . ",\n");
+	fwrite($myfile, $row_print['no_batch'] . "." . str_pad($row_print['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$row_print['unit_barang'] . "." .$row_print['kode_perangkat']. ",\n");
 
 	// CLOSE FILE TXT
 	fclose($myfile);
+
+	// Force download the file
+	echo '<script type="text/javascript">window.open("download-nokardus.php", "_blank"); </script>';
 }
 ?>
 <!DOCTYPE html>
