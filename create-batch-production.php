@@ -96,6 +96,19 @@
 
 							</div>
 						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Jumlah lot</label>
+							<div class="col-sm-12 col-md-10">
+								<select id="lot" name="lot"  class="custom-select col-12" onchange="selectlot();">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
+							</div>
+						</div>
+						<div id="lot-form">
+						</div>
 						<div id="conditional-form">
 						</div>
 						<div class="clearfix">
@@ -114,7 +127,25 @@
 		function logicCategory() {
 			selectPemesan();
 			selectCategory();
+			document.querySelector("#lot").value = "1";
 		}
+
+		function selectlot() {
+			let lot = document.querySelector("#lot").value;
+			let idCategory = document.querySelector("#kategori-produk").value || 0;
+
+			$.ajax({
+				url: "include/query-id-category.php",
+				method: "POST",
+				data: {
+				lot: lot,
+				id_kategori: idCategory,
+				},
+				success: function (data) {
+				$("#conditional-form").html(data);
+				},
+			});
+			}
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="./vendors/scripts/request-by-category.js"></script>
