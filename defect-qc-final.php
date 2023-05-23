@@ -61,7 +61,7 @@ if (isset($_POST['update'])) {
             mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
         }
 
-        // header('Location: final-qc.php');
+        header('Location: final-qc.php');
     }
 }
 
