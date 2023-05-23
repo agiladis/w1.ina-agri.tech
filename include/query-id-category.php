@@ -16,7 +16,14 @@ if ($id_kategori) {
     $category_code = $row_category['kode'];
     $jml_unit = $row_category['unit'];
 }
+if(isset($_POST['lot'])){
+    $lot = $_POST['lot'];
+    $jml_unit *= $lot;
+}
 
+?>
+
+<?php
 if($category_code=='TDWS'){
     ?>
     <div class="form-group row">
@@ -366,5 +373,6 @@ elseif($category_code=='BBWS'){
             selectAll: true
         });
     });
+
 </script>
 
