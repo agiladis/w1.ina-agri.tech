@@ -1,3 +1,9 @@
+<!-- multiselect asset -->
+<link href="./vendors/styles/jquery.multiselect.css" rel="stylesheet" />
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="./vendors/scripts/jquery-1.12.4.js"></script>
+<script src="./vendors/scripts/jquery.multiselect.js"></script>
+
 <?php
 include('../koneksi.php');
 
@@ -22,8 +28,7 @@ if($category_code=='TDWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">LCD</label>
         <div class="col-sm-12 col-md-10">
-            <select name="LCD" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="LCD[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
                 $query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%' AND kondisi = 'Good' AND taken = 0 ");
@@ -42,8 +47,7 @@ if($category_code=='TDWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">PCB</label>
         <div class="col-sm-12 col-md-10">
-            <select name="PCB" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="PCB[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "PCB"
                 $query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%PCB-$category_code%' AND kondisi = 'Good' AND taken = 0 ");
@@ -62,8 +66,7 @@ if($category_code=='TDWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Load Cell</label>
         <div class="col-sm-12 col-md-10">
-            <select name="LOADCELL" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="LOADCELL[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LOADCELL"
                 $query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%LOADCELL-$category_code%' AND kondisi = 'Good' AND taken = 0 ");
@@ -82,8 +85,7 @@ if($category_code=='TDWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Rocker Switch</label>
         <div class="col-sm-12 col-md-10">
-            <select name="rocker-switch" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="rocker-switch[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_rocker = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Rocker-Switch%' AND kondisi = 'Good' AND taken = 0 ");
@@ -112,8 +114,7 @@ elseif($category_code=='INFT'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 1</label>
         <div class="col-sm-12 col-md-10">
-            <select name="base-infanto-1" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="base-infanto-1[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_base = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Base-Infanto-1%' AND kondisi = 'Good' AND taken = 0 ");
@@ -132,8 +133,7 @@ elseif($category_code=='INFT'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 2</label>
         <div class="col-sm-12 col-md-10">
-            <select name="base-infanto-2" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="base-infanto-2[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_base = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Base-Infanto-2%' AND kondisi = 'Good' AND taken = 0 ");
@@ -162,8 +162,7 @@ elseif($category_code=='STDO'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 1</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-1" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="tiang-stadio-1[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-1%' AND kondisi = 'Good' AND taken = 0 ");
@@ -182,8 +181,7 @@ elseif($category_code=='STDO'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 2</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-2" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="tiang-stadio-2[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-2%' AND kondisi = 'Good' AND taken = 0 ");
@@ -202,8 +200,7 @@ elseif($category_code=='STDO'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 3</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-3" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="tiang-stadio-3[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-3%' AND kondisi = 'Good' AND taken = 0 ");
@@ -222,8 +219,7 @@ elseif($category_code=='STDO'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 4</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-4" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="tiang-stadio-4[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-4%' AND kondisi = 'Good' AND taken = 0 ");
@@ -253,10 +249,9 @@ elseif($category_code=='LILA'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Pita Lila</label>
         <div class="col-sm-12 col-md-10">
-            <select name="pita-lila" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
-                <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
+            <select name="pita-lila[]" multiple="multiple" class="3col active custom-select col-12">
+            <?php
+                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Pita-Lila"
                 $query_perangkat_pita = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Pita-Lila%' AND kondisi = 'Good' AND taken = 0 ");
                 $data_pita = mysql_fetch_assoc($query_perangkat_pita);
                 if (mysql_num_rows($query_perangkat_pita) > 0) :
@@ -283,8 +278,7 @@ elseif($category_code=='BBWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">LCD</label>
         <div class="col-sm-12 col-md-10">
-            <select name="LCD" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="LCD[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
                 $query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%' AND kondisi = 'Good' AND taken = 0 ");
@@ -303,8 +297,7 @@ elseif($category_code=='BBWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">PCB</label>
         <div class="col-sm-12 col-md-10">
-            <select name="PCB" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="PCB[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "PCB"
                 $query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%PCB-$category_code%' AND kondisi = 'Good' AND taken = 0 ");
@@ -323,8 +316,7 @@ elseif($category_code=='BBWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Load Cell</label>
         <div class="col-sm-12 col-md-10">
-            <select name="LOADCELL" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="LOADCELL[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LOADCELL"
                 $query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%LOADCELL-$category_code%' AND kondisi = 'Good' AND taken = 0 ");
@@ -343,8 +335,7 @@ elseif($category_code=='BBWS'){
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Rocker Switch</label>
         <div class="col-sm-12 col-md-10">
-            <select name="rocker-switch" class="custom-select col-12">
-                <option selected value="0">Choose...</option>
+            <select name="rocker-switch[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
                 $query_perangkat_rocker = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Rocker-Switch%' AND kondisi = 'Good' AND taken = 0 ");
@@ -363,5 +354,17 @@ elseif($category_code=='BBWS'){
 <?php
 }
 ?>
-
+<script>
+    $(function () {
+        $('select[multiple].active.3col').multiselect({
+            columns: 2,
+            placeholder: 'Select Hardware',
+            search: true,
+            searchOptions: {
+                'default': 'Search Hardware'
+            },
+            selectAll: true
+        });
+    });
+</script>
 

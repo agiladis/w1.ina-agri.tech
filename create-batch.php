@@ -29,18 +29,17 @@ $query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch,
 
 // $kode_nomor = $_POST['kode_nomor'];
 $jumlah = $_POST['jumlah'];
-$LCD = isset($_POST['LCD']) ? $_POST['LCD'] : 0;
-$PCB = isset($_POST['PCB']) ? $_POST['PCB'] : 0;
-$LOADCELL = isset($_POST['LOADCELL']) ? $_POST['LOADCELL'] : 0;
-$rocker_switch = isset($_POST['rocker-switch']) ? $_POST['rocker-switch'] : 0;
-$tiang_stadio_1 = isset($_POST['tiang-stadio-1']) ? $_POST['tiang-stadio-1'] : 0;
-$tiang_stadio_2 = isset($_POST['tiang-stadio-2']) ? $_POST['tiang-stadio-2'] : 0;
-$tiang_stadio_3 = isset($_POST['tiang-stadio-3']) ? $_POST['tiang-stadio-3'] : 0;
-$tiang_stadio_4 = isset($_POST['tiang-stadio-4']) ? $_POST['tiang-stadio-4'] : 0;
-$base_infanto_1 = isset($_POST['base-infanto-1']) ? $_POST['base-infanto-1'] : 0;
-$base_infanto_2 = isset($_POST['base-infanto-2']) ? $_POST['base-infanto-2'] : 0;
-$pita_lila = isset($_POST['pita-lila']) ? $_POST['pita-lila'] : 0;
-
+$LCD = isset($_POST['LCD']) ? covertIntoStr($_POST['LCD']) : 0;
+$PCB = isset($_POST['PCB']) ? covertIntoStr($_POST['PCB']) : 0;
+$LOADCELL = isset($_POST['LOADCELL']) ? covertIntoStr($_POST['LOADCELL']) : 0;
+$rocker_switch = isset($_POST['rocker-switch']) ? covertIntoStr($_POST['rocker-switch']) : 0;
+$tiang_stadio_1 = isset($_POST['tiang-stadio-1']) ? covertIntoStr($_POST['tiang-stadio-1']) : 0;
+$tiang_stadio_2 = isset($_POST['tiang-stadio-2']) ? covertIntoStr($_POST['tiang-stadio-2']) : 0;
+$tiang_stadio_3 = isset($_POST['tiang-stadio-3']) ? covertIntoStr($_POST['tiang-stadio-3']) : 0;
+$tiang_stadio_4 = isset($_POST['tiang-stadio-4']) ? covertIntoStr($_POST['tiang-stadio-4']) : 0;
+$base_infanto_1 = isset($_POST['base-infanto-1']) ? covertIntoStr($_POST['base-infanto-1']) : 0;
+$base_infanto_2 = isset($_POST['base-infanto-2']) ? covertIntoStr($_POST['base-infanto-2']) : 0;
+$pita_lila = isset($_POST['pita-lila']) ? covertIntoStr($_POST['pita-lila']) : 0;
 
 for ($i = 1; $i <= $jumlah; $i++) {
     $kode_nomor = str_pad($i, 3, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
@@ -51,37 +50,55 @@ for ($i = 1; $i <= $jumlah; $i++) {
 // PATCH DATA TAKEN PERANGKAT TABEL : LCD, PCB, LOADCELL IF CREATE BATCH SUCCESS
 if ($query_create) {
     if ($LCD != 0) {
-        $query_patch_lcd = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $LCD"); // For LCD data
+        takenHardware($_POST['LCD']);
     }
     if ($PCB != 0) {
-        $query_patch_pcb = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $PCB"); // For PCB data
+        takenHardware($_POST['PCB']);
     }
     if ($LOADCELL != 0) {
-        $query_patch_loadcell = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $LOADCELL"); // For LOADCELL data
+        takenHardware($_POST['LOADCELL']);
     }
     if ($rocker_switch != 0) {
-        $query_patch_rocker = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $rocker_switch"); // For rocker-switch data
+        takenHardware($_POST['rocker-switch']);
     }
     if ($tiang_stadio_1 != 0) {
-        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_1"); // For rocker-switch data
+        takenHardware($_POST['tiang-stadio-1']);
     }
     if ($tiang_stadio_2 != 0) {
-        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_2"); // For rocker-switch data
+        takenHardware($_POST['tiang-stadio-2']);
     }
     if ($tiang_stadio_3 != 0) {
-        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_3"); // For rocker-switch data
+        takenHardware($_POST['tiang-stadio-3']);
     }
     if ($tiang_stadio_4 != 0) {
-        $query_patch_tiang_1 = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $tiang_stadio_4"); // For rocker-switch data
+        takenHardware($_POST['tiang-stadio-4']);
     }
     if ($base_infanto_1 != 0) {
-        $query_patch_base = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $base_infanto_1"); // For rocker-switch data
+        takenHardware($_POST['base-infanto-1']);
     }
     if ($base_infanto_2 != 0) {
-        $query_patch_base = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $base_infanto_2"); // For rocker-switch data
+        takenHardware($_POST['base-infanto-2']);
     }
     if ($pita_lila != 0) {
-        $query_patch_pita = mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $pita_lila"); // For rocker-switch data
+        takenHardware($_POST['pita-lila']);
+    }
+}
+
+// insert multiple value of perangkat into char
+function covertIntoStr(array $arr_perangkat) {
+    $str_buff = "";
+    foreach ($arr_perangkat as $value) {
+        $str_buff .= $value . ",";
+    }
+
+    return rtrim(substr($str_buff, 0, -1));
+}
+
+// set perangkat taken value = 1
+function takenHardware(array $str_perangkat) {
+    foreach ($str_perangkat as $char) {
+        $id = (int)$char;
+        mysql_query("UPDATE perangkat SET taken = 1 WHERE id = $id");
     }
 }
 
