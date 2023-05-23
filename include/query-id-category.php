@@ -5,7 +5,7 @@ $id_kategori = $_POST['id_kategori'];
 
 // GET KODE KATEGORI
 if ($id_kategori) {
-    $query_category = mysql_query("SELECT *git FROM kategori_produk WHERE id = $id_kategori");
+    $query_category = mysql_query("SELECT * FROM kategori_produk WHERE id = $id_kategori");
     $row_category = mysql_fetch_assoc($query_category);
     $category_code = $row_category['kode'];
     $jml_unit = $row_category['unit'];
