@@ -8,6 +8,8 @@
 	// GET LAST BATCH NUMBER
 	$query_batch = mysql_query("SELECT * FROM batch_produksi ORDER BY id DESC LIMIT 1");
 	$row_batch = mysql_fetch_assoc($query_batch);
+	date_default_timezone_set("Asia/Jakarta");
+	$date = date('d F Y ', time());
 
 	if (mysql_num_rows($query_batch)) {
 		$batch_number = $row_batch['kode_batch'] + 1;
@@ -81,7 +83,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Mulai Produksi</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" name="tgl_mulai" placeholder="Select Date" type="text">
+								<input class="form-control date-picker" name="tgl_mulai" value="<?= $date?>" type="text">
 							</div>
 						</div>
 						<div class="form-group row">
