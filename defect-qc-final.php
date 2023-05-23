@@ -25,11 +25,15 @@ if (isset($_POST['update'])) {
     $PCB = $_POST['kondisi-pcb'];
     $LOADCELL = $_POST['kondisi-loadcell'];
     $rocker_switch = $_POST['kondisi-rocker-switch'];
-    $tiang_stadio = $_POST['kondisi-tiang-stadio'];
-    $base_infanto = $_POST['kondisi-base-infanto'];
+    $tiang_stadio_1 = $_POST['kondisi-tiang-stadio-1'];
+    $tiang_stadio_2 = $_POST['kondisi-tiang-stadio-2'];
+    $tiang_stadio_3 = $_POST['kondisi-tiang-stadio-3'];
+    $tiang_stadio_4 = $_POST['kondisi-tiang-stadio-4'];
+    $base_infanto_1 = $_POST['kondisi-base-infanto-1'];
+    $base_infanto_2 = $_POST['kondisi-base-infanto-2'];
     $pita_lila = $_POST['kondisi-pita-lila'];
     // check is it cacat final any not good condition?
-    $arr = array($LCD, $PCB, $LOADCELL, $rocker_switch, $tiang_stadio, $base_infanto, $pita_lila);
+    $arr = array($LCD, $PCB, $LOADCELL, $rocker_switch, $tiang_stadio_1, $tiang_stadio_2, $tiang_stadio_3, $tiang_stadio_4, $base_infanto_1, $base_infanto_2, $pita_lila);
     // Initiate var
     $arr_string = "";
     foreach ($arr as $value) {
@@ -38,13 +42,13 @@ if (isset($_POST['update'])) {
         }
     }
     // Delete last comma (,)
-    $arr_string = substr($arr_string, 0, -1);
-    echo "Error : " . rtrim($arr_string);
+    $arr_string = rtrim(substr($arr_string, 0, -1));
+    echo "Error : " . $arr_string;
 
-    $kondisi_cacat = $LCD . ' ' . $PCB . ' ' . $LOADCELL . ' ' . $rocker_switch . ' ' . $tiang_stadio . ' ' . $base_infanto . ' ' . $pita_lila;
+    $kondisi_cacat = $LCD . ' ' . $PCB . ' ' . $LOADCELL . ' ' . $rocker_switch . ' ' . $tiang_stadio_1 . ' ' . $tiang_stadio_2 . ' ' . $tiang_stadio_3 . ' ' . $tiang_stadio_4 . ' ' . $base_infanto_1 . ' ' . $base_infanto_2 . ' ' . $pita_lila;
 
     if ($arr_string == "") {
-        $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Good', penanggung_jawab_final = '$penanggung_jawab_final' WHERE id = $id");
+        $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Good', cacat_final = NULL, penanggung_jawab_final = '$penanggung_jawab_final' WHERE id = $id");
     } else {
         $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Not Good', penanggung_jawab_final = '$penanggung_jawab_final', cacat_final = '$arr_string' WHERE id = $id");
     }
@@ -158,23 +162,63 @@ if (isset($_POST['update'])) {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 1</label>
                             <div class="col-sm-12 col-md-10">
-                                <input type="radio" value="" class="btn-check good" name="kondisi-tiang-stadio" id="good-tiang-stadio" autocomplete="off" checked>
-                                <label class="btn btn-outline-success" for="good-tiang-stadio">Good</label>
+                                <input type="radio" value="" class="btn-check good" name="kondisi-tiang-stadio-1" id="good-tiang-stadio-1" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="good-tiang-stadio-1">Good</label>
 
-                                <input type="radio" value="tiang_stadio" class="btn-check not-good" name="kondisi-tiang-stadio" id="not-good-tiang-stadio" autocomplete="off" <?php echo in_array("tiang_stadio", $arr_cacat_final) ? 'checked' : '' ?>>
-                                <label class="btn btn-outline-danger" for="not-good-tiang-stadio">Not Good</label>
+                                <input type="radio" value="tiang_stadio_1" class="btn-check not-good" name="kondisi-tiang-stadio-1" id="not-good-tiang-stadio-1" autocomplete="off" <?php echo in_array("tiang_stadio_1", $arr_cacat_final) ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-danger" for="not-good-tiang-stadio-1">Not Good</label>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Base Infanto</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 2</label>
                             <div class="col-sm-12 col-md-10">
-                                <input type="radio" value="" class="btn-check good" name="kondisi-base-infanto" id="good-base-infanto" autocomplete="off" checked>
-                                <label class="btn btn-outline-success" for="good-base-infanto">Good</label>
+                                <input type="radio" value="" class="btn-check good" name="kondisi-tiang-stadio-2" id="good-tiang-stadio-2" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="good-tiang-stadio-2">Good</label>
 
-                                <input type="radio" value="base_infanto" class="btn-check not-good" name="kondisi-base-infanto" id="not-good-base-infanto" autocomplete="off" <?php echo in_array("base_infanto", $arr_cacat_final) ? 'checked' : '' ?>>
-                                <label class="btn btn-outline-danger" for="not-good-base-infanto">Not Good</label>
+                                <input type="radio" value="tiang_stadio_2" class="btn-check not-good" name="kondisi-tiang-stadio-2" id="not-good-tiang-stadio-2" autocomplete="off" <?php echo in_array("tiang_stadio_2", $arr_cacat_final) ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-danger" for="not-good-tiang-stadio-2">Not Good</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 3</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input type="radio" value="" class="btn-check good" name="kondisi-tiang-stadio-3" id="good-tiang-stadio-3" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="good-tiang-stadio-3">Good</label>
+
+                                <input type="radio" value="tiang_stadio_3" class="btn-check not-good" name="kondisi-tiang-stadio-3" id="not-good-tiang-stadio-3" autocomplete="off" <?php echo in_array("tiang_stadio_3", $arr_cacat_final) ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-danger" for="not-good-tiang-stadio-3">Not Good</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 4</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input type="radio" value="" class="btn-check good" name="kondisi-tiang-stadio-4" id="good-tiang-stadio-4" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="good-tiang-stadio-4">Good</label>
+
+                                <input type="radio" value="tiang_stadio_4" class="btn-check not-good" name="kondisi-tiang-stadio-4" id="not-good-tiang-stadio-4" autocomplete="off" <?php echo in_array("tiang_stadio_4", $arr_cacat_final) ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-danger" for="not-good-tiang-stadio-4">Not Good</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 1</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input type="radio" value="" class="btn-check good" name="kondisi-base-infanto-1" id="good-base-infanto-1" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="good-base-infanto-1">Good</label>
+
+                                <input type="radio" value="base_infanto_1" class="btn-check not-good" name="kondisi-base-infanto-1" id="not-good-base-infanto-1" autocomplete="off" <?php echo in_array("base_infanto_1", $arr_cacat_final) ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-danger" for="not-good-base-infanto-1">Not Good</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 2</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input type="radio" value="" class="btn-check good" name="kondisi-base-infanto-2" id="good-base-infanto-2" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="good-base-infanto-2">Good</label>
+
+                                <input type="radio" value="base_infanto_2" class="btn-check not-good" name="kondisi-base-infanto-2" id="not-good-base-infanto-2" autocomplete="off" <?php echo in_array("base_infanto_2", $arr_cacat_final) ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-danger" for="not-good-base-infanto-2">Not Good</label>
                             </div>
                         </div>
                         <div class="form-group row">
