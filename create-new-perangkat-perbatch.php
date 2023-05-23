@@ -118,7 +118,7 @@ if (isset($_POST['register'])) {
                                     <option selected="">Pilih...</option>
                                     <option value="LCD">LCD</option>
                                     <option value="PCB-TDWS">PCB-TDWS</option>
-                                    <option value="PCB-BBWS ">PCB-BBWS</option>
+                                    <option value="PCB-BBWS">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
                                     <option value="Rocker-Switch(O -)">Rocker Switch(O -)</option>
