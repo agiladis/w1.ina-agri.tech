@@ -5,13 +5,13 @@ $id_kategori = $_POST['id_kategori'];
 
 // GET KODE KATEGORI
 if ($id_kategori) {
-    $query_category = mysql_query("SELECT kode FROM kategori_produk WHERE id = $id_kategori");
+    $query_category = mysql_query("SELECT *git FROM kategori_produk WHERE id = $id_kategori");
     $row_category = mysql_fetch_assoc($query_category);
     $category_code = $row_category['kode'];
+    $jml_unit = $row_category['unit'];
 }
 
-if($id_kategori==1){
-    $jml_unit=100;
+if($category_code=='TDWS'){
     ?>
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
@@ -101,8 +101,7 @@ if($id_kategori==1){
     </div>
 <?php
 }
-elseif($id_kategori==2){
-    $jml_unit=50;
+elseif($category_code=='INFT'){
     ?>
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
@@ -152,8 +151,7 @@ elseif($id_kategori==2){
     </div>
     <?php
 }
-elseif($id_kategori==3){
-    $jml_unit=10;
+elseif($category_code=='STDO'){
     ?>
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
@@ -244,8 +242,7 @@ elseif($id_kategori==3){
 
     <?php
 }
-elseif($id_kategori==4){
-    $jml_unit=500;
+elseif($category_code=='LILA'){
     ?>
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
@@ -275,8 +272,7 @@ elseif($id_kategori==4){
     </div>
     <?php
 }
-elseif($id_kategori==5){
-    $jml_unit=100;
+elseif($category_code=='BBWS'){
     ?>
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Jumlah</label>
