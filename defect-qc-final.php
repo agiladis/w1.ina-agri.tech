@@ -41,9 +41,8 @@ if (isset($_POST['update'])) {
             $arr_string .= $value . ",";
         }
     }
-    // Delete last comma (,)
+    // Delete last comma (,) and delete whitespace
     $arr_string = rtrim(substr($arr_string, 0, -1));
-    echo "Error : " . $arr_string;
 
     $kondisi_cacat = $LCD . ' ' . $PCB . ' ' . $LOADCELL . ' ' . $rocker_switch . ' ' . $tiang_stadio_1 . ' ' . $tiang_stadio_2 . ' ' . $tiang_stadio_3 . ' ' . $tiang_stadio_4 . ' ' . $base_infanto_1 . ' ' . $base_infanto_2 . ' ' . $pita_lila;
 
