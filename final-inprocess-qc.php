@@ -94,56 +94,58 @@
                                             $status = '<i class="fa fa-check" style="color:green"></i>'; // tanda centang hijau
                                         }
 
-                                        //Menganbil data LCD
-                                        $id_lcd = $row_serial_number['LCD'];
-                                        $query_lcd = mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd");
-                                        $row_lcd = mysql_fetch_assoc($query_lcd);
+                                        // //Menganbil data LCD
+										$id_lcd = $row_serial_number['LCD'];
+										// $query_lcd = mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd");
+										// $row_lcd = mysql_fetch_assoc($query_lcd);
 
-                                        //Mengambil data PCB
-                                        $id_pcb = $row_serial_number['PCB'];
-                                        $query_PCB = mysql_query("SELECT * FROM perangkat WHERE id = $id_pcb");
-                                        $row_pcb = mysql_fetch_assoc($query_PCB);
+										// //Mengambil data PCB
+										$id_pcb = $row_serial_number['PCB'];
+										// $query_PCB = mysql_query("SELECT * FROM perangkat WHERE id = $id_pcb");
+										// $row_pcb = mysql_fetch_assoc($query_PCB);
 
-                                        //Mengambil data LoadCell
-                                        $id_loadcell = $row_serial_number['LOADCELL'];
-                                        $query_loadcell = mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell");
-                                        $row_loadcell = mysql_fetch_assoc($query_loadcell);
+										// //Mengambil data LoadCell
+										$id_loadcell = $row_serial_number['LOADCELL'];
+										// $query_loadcell = mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell");
+										// $row_loadcell = mysql_fetch_assoc($query_loadcell);
 
-                                        //Mengambil data rocker_switch
-                                        $id_rocker = $row_serial_number['rocker_switch'];
-                                        $query_rocker = mysql_query("SELECT * FROM perangkat WHERE id = $id_rocker");
-                                        $row_rocker = mysql_fetch_assoc($query_rocker);
+										// //Mengambil data rocker_switch
+										$id_rocker = $row_serial_number['rocker_switch'];
+										// $query_rocker = mysql_query("SELECT * FROM perangkat WHERE id = $id_rocker");
+										// $row_rocker = mysql_fetch_assoc($query_rocker);
 
-                                        //Mengambil data tiang-stadio
+										// //Mengambil data tiang-stadio
 										$id_tiang_1 = $row_serial_number['tiang_stadio_1'];
-										$query_tiang_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_1");
-										$row_tiang_1 = mysql_fetch_assoc($query_tiang_1);
-										//Mengambil data tiang-stadio
+										// $query_tiang_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_1");
+										// $row_tiang_1 = mysql_fetch_assoc($query_tiang_1);
+										// //Mengambil data tiang-stadio
 										$id_tiang_2 = $row_serial_number['tiang_stadio_2'];
-										$query_tiang_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_2");
-										$row_tiang_2 = mysql_fetch_assoc($query_tiang_2);
-										//Mengambil data tiang-stadio
+										// $query_tiang_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_2");
+										// $row_tiang_2 = mysql_fetch_assoc($query_tiang_2);
+										// //Mengambil data tiang-stadio
 										$id_tiang_3 = $row_serial_number['tiang_stadio_3'];
-										$query_tiang_3 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_3");
-										$row_tiang_3 = mysql_fetch_assoc($query_tiang_3);
-										//Mengambil data tiang-stadio
+										// $query_tiang_3 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_3");
+										// $row_tiang_3 = mysql_fetch_assoc($query_tiang_3);
+										// //Mengambil data tiang-stadio
 										$id_tiang_4 = $row_serial_number['tiang_stadio_4'];
-										$query_tiang_4 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_4");
-										$row_tiang_4 = mysql_fetch_assoc($query_tiang_4);
+										// $query_tiang_4 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_4");
+										// $row_tiang_4 = mysql_fetch_assoc($query_tiang_4);
 
 										//Mengambil data base-infanto
 										$id_base_1 = $row_serial_number['base_infanto_1'];
-										$query_base_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_1");
-										$row_base_1 = mysql_fetch_assoc($query_base_1);
-										//Mengambil data base-infanto
+										// $query_base_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_1");
+										// $row_base_1 = mysql_fetch_assoc($query_base_1);
+										// //Mengambil data base-infanto
 										$id_base_2 = $row_serial_number['base_infanto_2'];
-										$query_base_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_2");
-										$row_base_2 = mysql_fetch_assoc($query_base_2);
+										// $query_base_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_2");
+										// $row_base_2 = mysql_fetch_assoc($query_base_2);
+										
 
-                                        //Mengambil data pita-lila
-                                        $id_pita = $row_serial_number['pita_lila'];
-                                        $query_pita = mysql_query("SELECT * FROM perangkat WHERE id = $id_pita");
-                                        $row_pita = mysql_fetch_assoc($query_pita);
+										// //Mengambil data pita-lila
+										$id_pita = $row_serial_number['pita_lila'];
+										// $query_pita = mysql_query("SELECT * FROM perangkat WHERE id = $id_pita");
+										// $row_pita = mysql_fetch_assoc($query_pita);
+
                                     ?>
                                         <tr>
                                             <td class="table-plus"><?= $i++ ?></td>
@@ -151,60 +153,61 @@
                                             <td><?php
 
                                                 if ($id_lcd == 0) {
-                                                    // echo "LCD : -</br>";
-                                                } else {
-                                                    echo "LCD : Batch-" . $row_lcd['no_batch'] . "  Kardus-" . $row_lcd['no_kardus'] . "  tgl (" . $row_lcd['tgl_datang'] . ")</br>";
-                                                }
-                                                if ($id_pcb == 0) {
-                                                    // echo "PCB : -</br>";
-                                                } else {
-                                                    echo "PCB : Batch-" . $row_pcb['no_batch'] . "  Kardus-" . $row_pcb['no_kardus'] . "  tgl (" . $row_pcb['tgl_datang'] . ")</br>";
-                                                }
-                                                if ($id_loadcell == 0) {
-                                                    // echo "LOADCELL : -</br>";
-                                                } else {
-                                                    echo "LOADCELL : Batch-" . $row_loadcell['no_batch'] . "  Kardus-" . $row_loadcell['no_kardus'] . " tgl (" . $row_loadcell['tgl_datang'] . ")</br>";
-                                                }
-                                                if ($id_rocker == 0) {
-                                                    // echo "Rocker-Switch : -</br>";
-                                                } else {
-                                                    echo $row_rocker['nama_perangkat'] . " : Batch-" .  $row_rocker['no_batch'] . "  Kardus-" . $row_rocker['no_kardus'] . "  tgl (" . $row_rocker['tgl_datang'] . ")</br>";
-                                                }
-                                                if ($id_tiang_1 == 0) {
+													// echo "LCD : -</br>";
+												} else {
+													getdetail($id_lcd);
+												}
+												if ($id_pcb == 0) {
+													// echo "PCB : -</br>";
+												} else {
+													getdetail($id_pcb);
+												}
+												if ($id_loadcell == 0) {
+													// echo "LOADCELL : -</br>";
+												} else {
+													getdetail($id_loadcell);
+												}
+												if ($id_rocker == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_tiang_1['nama_perangkat'] . " : Batch-" .  $row_tiang_1['no_batch'] . "  Kardus-" . $row_tiang_1['no_kardus'] . "  tgl (" . $row_tiang_1['tgl_datang'] . ")</br>";
+													getdetail($id_rocker);
+												}
+												if ($id_tiang_1 == 0) {
+													// echo "Rocker-Switch : -</br>";
+												} else {
+													getdetail($id_tiang_1);
 												}
 												if ($id_tiang_2 == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_tiang_2['nama_perangkat'] . " : Batch-" .  $row_tiang_2['no_batch'] . "  Kardus-" . $row_tiang_2['no_kardus'] . "  tgl (" . $row_tiang_2['tgl_datang'] . ")</br>";
+													getdetail($id_tiang_2);
 												}
 												if ($id_tiang_3 == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_tiang_3['nama_perangkat'] . " : Batch-" .  $row_tiang_3['no_batch'] . "  Kardus-" . $row_tiang_3['no_kardus'] . "  tgl (" . $row_tiang_3['tgl_datang'] . ")</br>";
+													getdetail($id_tiang_3);
 												}
 												if ($id_tiang_4 == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_tiang_4['nama_perangkat'] . " : Batch-" .  $row_tiang_4['no_batch'] . "  Kardus-" . $row_tiang_4['no_kardus'] . "  tgl (" . $row_tiang_4['tgl_datang'] . ")</br>";
+													getdetail($id_tiang_4);
 												}
 												if ($id_base_1 == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_base_1['nama_perangkat'] . " : Batch-" .  $row_base_1['no_batch'] . "  Kardus-" . $row_base_1['no_kardus'] . "  tgl (" . $row_base_1['tgl_datang'] . ")</br>";
+													getdetail($id_base_1);
+													
 												}
 												if ($id_base_2 == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													echo $row_base_2['nama_perangkat'] . " : Batch-" .  $row_base_2['no_batch'] . "  Kardus-" . $row_base_2['no_kardus'] . "  tgl (" . $row_base_2['tgl_datang'] . ")</br>";
+													getdetail($id_base_2);
 												}
-                                                if ($id_pita == 0) {
-                                                    // echo "Rocker-Switch : -</br>";
-                                                } else {
-                                                    echo $row_pita['nama_perangkat'] . " : Batch-" .  $row_pita['no_batch'] . "  Kardus-" . $row_pita['no_kardus'] . "  tgl (" . $row_pita['tgl_datang'] . ")</br>";
-                                                }
+												if ($id_pita == 0) {
+													// echo "Rocker-Switch : -</br>";
+												} else {
+													getdetail($id_pita);
+												}
 
 
                                                 ?></td>
@@ -235,7 +238,30 @@
                                         </tr>
                                 <?php
                                     } while ($row_serial_number = mysql_fetch_assoc($query));
-                                endif ?>
+                                endif;
+
+                                function getdetail($id){
+									$value = explode(",",$id);
+									$no_kardus = "";
+									$no_batch = "";
+									$unique_batches = array(); // Array untuk menyimpan nomor batch yang unik
+
+									foreach ($value as $i) {
+										$i = (int) $i;
+										$query = mysql_query("SELECT * FROM perangkat WHERE id = $i");
+										$row = mysql_fetch_assoc($query);
+										$no_kardus .= $row['no_kardus'] . ', ';
+
+										if (!in_array($row['no_batch'], $unique_batches)) {
+											$unique_batches[] = $row['no_batch']; // Tambahkan nomor batch baru ke array unik
+											$no_batch .= $row['no_batch'] . ', ';
+										}
+									}
+									// return $no_kardus;
+									echo $row['nama_perangkat'] . " : Batch-" .  substr($no_batch,0,-2) . "  Kardus-  " . substr($no_kardus,0,-2) . "  tgl (" . $row['tgl_datang'] . ")</br>";
+								}
+
+                                ?>
                             </tbody>
                         </table>
                     </div>
