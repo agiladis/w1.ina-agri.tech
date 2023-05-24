@@ -238,14 +238,22 @@
 								function getdetail($id){
 									$value = explode(",",$id);
 									$no_kardus = "";
-									foreach($value as $i){
-										$i = (int)$i;
-										$query= mysql_query("SELECT * FROM perangkat WHERE id = $i");
+									$no_batch = "";
+									$unique_batches = array(); // Array untuk menyimpan nomor batch yang unik
+
+									foreach ($value as $i) {
+										$i = (int) $i;
+										$query = mysql_query("SELECT * FROM perangkat WHERE id = $i");
 										$row = mysql_fetch_assoc($query);
-										$no_kardus .= $row['no_kardus'] .' dan ';
+										$no_kardus .= $row['no_kardus'] . ', ';
+
+										if (!in_array($row['no_batch'], $unique_batches)) {
+											$unique_batches[] = $row['no_batch']; // Tambahkan nomor batch baru ke array unik
+											$no_batch .= $row['no_batch'] . ', ';
+										}
 									}
 									// return $no_kardus;
-									echo $row['nama_perangkat'] . " : Batch-" .  $row['no_batch'] . "  Kardus-  " . substr($no_kardus,0,-5) . "  tgl (" . $row['tgl_datang'] . ")</br>";
+									echo $row['nama_perangkat'] . " : Batch-" .  substr($no_batch,0,-2) . "  Kardus-  " . substr($no_kardus,0,-2) . "  tgl (" . $row['tgl_datang'] . ")</br>";
 								}
 								?>
 							</tbody>
