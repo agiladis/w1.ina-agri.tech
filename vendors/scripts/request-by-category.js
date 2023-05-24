@@ -1,11 +1,13 @@
 function selectCategory() {
   let idCategory = document.querySelector("#kategori-produk").value;
+  let lot = document.querySelector("#lot").value;
 
   $.ajax({
     url: "include/query-id-category.php",
     method: "POST",
     data: {
       id_kategori: idCategory,
+      lot: lot,
     },
     success: function (data) {
       $("#conditional-form").html(data);
@@ -16,9 +18,6 @@ function selectCategory() {
 function selectPemesan() {
   let idPemesan = document.querySelector("#id_pemesan").value || 0;
   let idCategory = document.querySelector("#kategori-produk").value || 0;
-
-  console.log('id pemesan :', idPemesan);
-  console.log('id Category :', idCategory);
 
   $.ajax({
     url: "include/query-id-pemesan.php",

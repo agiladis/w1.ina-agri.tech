@@ -8,6 +8,7 @@
 include('../koneksi.php');
 
 $id_kategori = $_POST['id_kategori'];
+$lot = $_POST['id_kategori'];
 
 // GET KODE KATEGORI
 if ($id_kategori) {
@@ -363,14 +364,49 @@ elseif($category_code=='BBWS'){
 ?>
 <script>
     $(function () {
+        var number = <?php echo $lot ?>;
         $('select[multiple].active.3col').multiselect({
             columns: 2,
-            placeholder: 'Select Hardware',
             search: true,
-            searchOptions: {
-                'default': 'Search Hardware'
+            texts    : {
+                placeholder: 'Select Hardware (max ' + number + ')',
+                search     : 'Search Hardware'
             },
-            selectAll: true
+            // selectAll: true,
+            onOptionClick: function( element, option ) {
+                var maxSelect = number;
+
+                // too many selected, deselect this option
+                if( $(element).val().length > maxSelect ) {
+                    if( $(option).is(':checked') ) {
+                        var thisVals = $(element).val();
+
+                        thisVals.splice(
+                            thisVals.indexOf( $(option).val() ), 1
+                        );
+
+                        $(element).val( thisVals );
+
+                        $(option).prop( 'checked', false ).closest('li')
+                            .toggleClass('selected');
+                    }
+                }
+                // max select reached, disable non-checked checkboxes
+                else if( $(element).val().length == maxSelect ) {
+                    $(element).next('.ms-options-wrap')
+                        .find('li:not(.selected)').addClass('disabled')
+                        .find('input[type="checkbox"]')
+                            .attr( 'disabled', 'disabled' );
+                }
+                // max select not reached, make sure any disabled
+                // checkboxes are available
+                else {
+                    $(element).next('.ms-options-wrap')
+                        .find('li.disabled').removeClass('disabled')
+                        .find('input[type="checkbox"]')
+                            .removeAttr( 'disabled' );
+                }
+            }
         });
     });
 
