@@ -100,7 +100,7 @@
 							<label class="col-sm-12 col-md-2 col-form-label">Jumlah lot</label>
 							<div class="col-sm-12 col-md-10">
 								<select id="lot" name="lot"  class="custom-select col-12" onchange="selectlot();">
-									<option value="1">1</option>
+									<option value="1" selected>1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
 									<option value="4">4</option>
@@ -127,7 +127,6 @@
 		function logicCategory() {
 			selectPemesan();
 			selectCategory();
-			document.querySelector("#lot").value = "1";
 		}
 
 		function selectlot() {
@@ -138,11 +137,11 @@
 				url: "include/query-id-category.php",
 				method: "POST",
 				data: {
-				lot: lot,
-				id_kategori: idCategory,
+					lot: lot,
+					id_kategori: idCategory,
 				},
 				success: function (data) {
-				$("#conditional-form").html(data);
+					$("#conditional-form").html(data);
 				},
 			});
 			}
