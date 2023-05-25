@@ -18,9 +18,14 @@
     $id_base_1 = $row['base_infanto_1'];
     $id_base_2 = $row['base_infanto_2'];
     $id_pita = $row['pita_lila'];
-
-    
-	}
+    $grup = str_replace('g','G',$row['group_produksi']);
+    $status = '';
+    if ($row['kondisi_inprocess'] == 'Not Good'){
+      $status = '<i class="fa fa-times" style="color:red"></i>'.$row['kondisi_inprocess']; // tanda silang merah
+    }else if ($row['kondisi_inprocess'] == 'Good'){
+      $status = '<i class="fa fa-check" style="color:green"></i>'.$row['kondisi_inprocess']; // tanda centang hijau
+    }
+	  }
 
     
 ?>
@@ -34,6 +39,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="src\plugins\bootstrap-4.0.0\dist\css\bootstrap.min.css">
     <script type="text/javascript" src="src\plugins\bootstrap-4.0.0\dist\js\bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="vendors\styles\style.css">
 </head>
 <body>
     <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalTour">
@@ -121,6 +127,17 @@
             } else {
               echo '<div class="row my-3">';
               getdetail($id_pita);
+              echo '</div>';
+            }
+
+            if ($status != null){
+              echo '<div class="row my-3">';
+              echo "Status QC : ".$status . "(" . $row['penanggung_jawab_inprocess'] . ")";
+              echo '</div>';
+            }
+            if ($grup != null) {
+              echo '<div class="row my-3">';
+              echo "Group Produksi : ".$grup;
               echo '</div>';
             }
 
