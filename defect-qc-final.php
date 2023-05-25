@@ -11,12 +11,12 @@ $usernow = $_SESSION['nama'];
 // Get id
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    
+
     $query_data = mysql_query("SELECT * FROM serial_number WHERE id = $id");
     $selected_data = mysql_fetch_assoc($query_data);
     // split char cacat_final separate by comma(,)
     $arr_cacat_final = explode(",", $selected_data['cacat_final']);
-    
+
     // GET kategori
     $id_kategori = $selected_data['id_kategori'];
     $query_kategori = mysql_query("SELECT kode FROM kategori_produk WHERE id = $id_kategori ");
@@ -38,32 +38,41 @@ if (isset($_POST['update'])) {
     $base_infanto_1 = $_POST['kondisi-base-infanto-1'];
     $base_infanto_2 = $_POST['kondisi-base-infanto-2'];
     $pita_lila = $_POST['kondisi-pita-lila'];
+    $cacat_final_tambahan = $_POST['kondisi-cacat-lainnya'];
+    echo "cacat final tambahan : " . gettype($cacat_final_tambahan);
     // check is it cacat final any not good condition?
     $arr = array($LCD, $PCB, $LOADCELL, $rocker_switch, $tiang_stadio_1, $tiang_stadio_2, $tiang_stadio_3, $tiang_stadio_4, $base_infanto_1, $base_infanto_2, $pita_lila);
-    // Initiate var
+    // Initiate var to get defect hardware
     $arr_string = "";
     foreach ($arr as $value) {
         if ($value != "") {
             $arr_string .= $value . ",";
         }
     }
+    // Initiate var to get additional defect hardware
+    $additional_arr_string = "";
+    foreach ($cacat_final_tambahan as $value) {
+        $additional_arr_string  .= $value . ";";
+    }
     // Delete last comma (,) and delete whitespace
     $arr_string = rtrim(substr($arr_string, 0, -1));
+    $additional_arr_string = rtrim(substr($additional_arr_string, 0, -1));
+    echo "cacat final tambahan string : " . $additional_arr_string;
 
     $kondisi_cacat = $LCD . ' ' . $PCB . ' ' . $LOADCELL . ' ' . $rocker_switch . ' ' . $tiang_stadio_1 . ' ' . $tiang_stadio_2 . ' ' . $tiang_stadio_3 . ' ' . $tiang_stadio_4 . ' ' . $base_infanto_1 . ' ' . $base_infanto_2 . ' ' . $pita_lila;
 
-    if ($arr_string == "") {
-        $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Good', cacat_final = NULL, penanggung_jawab_final = '$penanggung_jawab_final' WHERE id = $id");
+    if ($arr_string == "" && $additional_arr_string == "") {
+        $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Good', cacat_final = NULL, cacat_final_tambahan = NULL, penanggung_jawab_final = '$penanggung_jawab_final' WHERE id = $id");
     } else {
-        $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Not Good', penanggung_jawab_final = '$penanggung_jawab_final', cacat_final = '$arr_string' WHERE id = $id");
+        $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Not Good', penanggung_jawab_final = '$penanggung_jawab_final', cacat_final = '$arr_string', cacat_final_tambahan = '$additional_arr_string' WHERE id = $id");
     }
     if ($query) {
         // LOG HERE
-        if ($arr_string == "") {
+        if ($arr_string == "" && $additional_arr_string == "") {
             $infoo = $usernow . " input final QC pada SN " . $selected_data['serial_number'] . " dengan kondisi final Good";
             mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
         } else {
-            $infoo = $usernow . " input final QC pada SN " . $selected_data['serial_number'] . ' kondisi Not Good dengan cacat ' . $kondisi_cacat;
+            $infoo = $usernow . " input final QC pada SN " . $selected_data['serial_number'] . ' kondisi Not Good dengan cacat ' . $kondisi_cacat . $additional_arr_string;
             mysql_query("INSERT INTO log(date,note) VALUES('$date','$infoo')");
         }
 
@@ -229,7 +238,7 @@ if (isset($_POST['update'])) {
                                     <label class="btn btn-outline-danger" for="not-good-tiang-stadio-4">Not Good</label>
                                 </div>
                             </div>
-                        <?php elseif ($kode_kategori == "LILA") : ?> 
+                        <?php elseif ($kode_kategori == "LILA") : ?>
                             <div class="form-group row">
                                 <label class="col-sm-12 col-md-2 col-form-label">Pita Lila</label>
                                 <div class="col-sm-12 col-md-10">
@@ -241,6 +250,14 @@ if (isset($_POST['update'])) {
                                 </div>
                             </div>
                         <?php endif ?>
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Cacat Final Lainnya</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="btn btn-outline-dark" type="button" id="add-field" value="+ Add Field">
+                                <div class="input-group mb-3 mt-3" id="defect-dynamic-field"></div>
+                            </div>
+                        </div>
 
                         <div class="clearfix">
                             <div class="pull-right">
@@ -254,6 +271,21 @@ if (isset($_POST['update'])) {
             <?php include('include/footer.php'); ?>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $("#add-field").click(function() {
+            $("#defect-dynamic-field").append(`<div class="input-block input-group mb-3">
+                                        <input type="text" name="kondisi-cacat-lainnya[]" class="form-control" placeholder="masukkan cacat final lainnya" aria-label="cacat final lainnya" aria-describedby="cacat-final-tambahan">
+                                        <div class="input-group-append">
+                                            <button class="remove-field btn btn-outline-secondary" type="button">Remove</button>
+                                        </div>
+                                    </div>`);
+        });
+
+        $(document).on("click", ".remove-field", function() {
+            $(this).closest(".input-block").remove();
+        });
+    </script>
     <?php include('include/script.php'); ?>
 </body>
 
