@@ -144,7 +144,7 @@ if (isset($_POST['register'])) {
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">No Batch</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="cth : 04-12" name="batch">
+                                <input class="form-control" type="text" placeholder="cth : 30-05" name="batch">
                             </div>
                         </div>
 
