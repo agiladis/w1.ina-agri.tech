@@ -94,8 +94,8 @@
 									<span style="font-size:14px;">Template Dlabel</span>
 								</a>
 								<ul class="submenu">
-									<li style="left:30px;"><a href="http://w1.ina-agri.tech/file_print/template_fix(extract%20dulu).zip" target="_blank">Template Dlabel 1</a></li>
-									<li style="left:30px;"><a href="http://w1.ina-agri.tech/file_print/template_fix(extract%20dulu).zip" target="_blank">Template Dlabel 2</a></li>
+									<li style="left:30px;"><a href="http://w1.ina-agri.tech/file_print/template_fix(extract%20dulu).zip" target="_blank">Template QR Code</a></li>
+									<li style="left:30px;"><a href="http://w1.ina-agri.tech/file_print/template_nokardus_new(extract dulu).zip" target="_blank">Template No Kardus</a></li>
 								</ul>
 							</li>
 						</ul>

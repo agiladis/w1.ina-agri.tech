@@ -6,23 +6,20 @@
 		$query = "SELECT * FROM serial_number WHERE serial_number = '$sn'";
 		$result = mysql_query($query);
 		$row = mysql_fetch_assoc($result);
-        $serial = $row['serial_number'];
 
-        //Menganbil data LCD
-        $id_lcd = $row['LCD'];
-        $query_lcd= mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd"); 
-        $row_lcd = mysql_fetch_assoc($query_lcd); 
-        
-        //Mengambil data PCB
-        $id_pcb = $row['PCB'];
-        $query_PCB= mysql_query("SELECT * FROM perangkat WHERE id = $id_pcb"); 
-        $row_pcb = mysql_fetch_assoc($query_PCB);
+    $id_lcd = $row['LCD'];
+    $id_pcb = $row['PCB'];
+    $id_loadcell = $row['LOADCELL'];
+    $id_rocker = $row['rocker_switch'];
+    $id_tiang_1 = $row['tiang_stadio_1'];
+    $id_tiang_2 = $row['tiang_stadio_2'];
+    $id_tiang_3 = $row['tiang_stadio_3'];
+    $id_tiang_4 = $row['tiang_stadio_4'];
+    $id_base_1 = $row['base_infanto_1'];
+    $id_base_2 = $row['base_infanto_2'];
+    $id_pita = $row['pita_lila'];
 
-        //Mengambil data LoadCell
-        $id_loadcell = $row['LOADCELL'];
-        $query_loadcell= mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell"); 
-        $row_loadcell = mysql_fetch_assoc($query_loadcell);
-
+    
 	}
 
     
@@ -47,15 +44,106 @@
         <h2 class="fw-bold mb-0 text-center"><br>Data Produk</h2>
 
         <div class="container text-center mx-0">
-            <div class="row my-3">
-                <?php echo "LCD : Batch-".$row_lcd['no_batch']. "  Kardus-". $row_lcd['no_kardus'] . "  tgl (". $row_lcd['tgl_datang'].")</br>";?>
-            </div>
-            <div class="row my-3">
-                <?php echo "PCB : Batch-".$row_pcb['no_batch']."  Kardus-".$row_pcb['no_kardus'] ."  tgl (". $row_pcb['tgl_datang'] . ")</br>";?>
-            </div>
-            <div class="row my-3">
-            <?php echo "LOADCELL : Batch-".$row_loadcell['no_batch']. "  Kardus-". $row_loadcell['no_kardus']. " tgl (". $row_loadcell['tgl_datang'].")</br>" ;?>.
-            </div>
+        <?php
+            if ($id_lcd == 0) {
+              // echo "LCD : -</br>";
+            } else {
+              echo '<div class="row my-4">';
+              getdetail($id_lcd);
+              echo '</div>';
+            }
+            if ($id_pcb == 0) {
+              // echo "PCB : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_pcb);
+              echo '</div>';
+            }
+            if ($id_loadcell == 0) {
+              // echo "LOADCELL : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_loadcell);
+              echo '</div>';
+            }
+            if ($id_rocker == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_rocker);
+              echo '</div>';
+            }
+            if ($id_tiang_1 == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_tiang_1);
+              echo '</div>';
+            }
+            if ($id_tiang_2 == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_tiang_2);
+              echo '</div>';
+            }
+            if ($id_tiang_3 == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_tiang_3);
+              echo '</div>';
+            }
+            if ($id_tiang_4 == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_tiang_4);
+              echo '</div>';
+            }
+            if ($id_base_1 == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_base_1);
+              echo '</div>';
+              
+            }
+            if ($id_base_2 == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_base_2);
+              echo '</div>';
+            }
+            if ($id_pita == 0) {
+              // echo "Rocker-Switch : -</br>";
+            } else {
+              echo '<div class="row my-3">';
+              getdetail($id_pita);
+              echo '</div>';
+            }
+
+          function getdetail($id){
+            $value = explode(",",$id);
+            $no_kardus = "";
+            $no_batch = "";
+            $unique_batches = array(); // Array untuk menyimpan nomor batch yang unik
+
+            foreach ($value as $i) {
+              $i = (int) $i;
+              $query = mysql_query("SELECT * FROM perangkat WHERE id = $i");
+              $row = mysql_fetch_assoc($query);
+              $no_kardus .= $row['no_kardus'] . ', ';
+
+              if (!in_array($row['no_batch'], $unique_batches)) {
+                $unique_batches[] = $row['no_batch']; // Tambahkan nomor batch baru ke array unik
+                $no_batch .= $row['no_batch'] . ', ';
+              }
+            }
+            echo $row['nama_perangkat'] . " : Batch-" .  substr($no_batch,0,-2) . "  Kardus-  " . substr($no_kardus,0,-2) . "  tgl (" . $row['tgl_datang'] . ")</br>";
+          }
+          ?>
         </div>
       </div>
     </div>
