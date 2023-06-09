@@ -88,6 +88,7 @@
                                     <th>Code</th>
                                     <th>Detail</th>
                                     <th>QC Final</th>
+                                    <th>Data Kalibrasi</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -232,6 +233,27 @@
                                                 ?>
                                                 <?php endif ?>
 
+                                            </td>
+                                            <td>
+                                                <?php
+                                                $id_jenis = $row_serial_number['id_kategori'];
+                                                $query_jenis = mysql_query("SELECT * FROM kategori_produk WHERE id = $id_jenis");
+                                                $row_jenis  = mysql_fetch_assoc($query_jenis);
+                                                $jenis = $row_jenis['kode'];
+
+                                                $linkmap = array(
+                                                    'TDWS' => 'link1',
+                                                    'BBWS' => 'link2',
+                                                    'LILA' => 'link3',
+                                                    'STDO' => 'link3',
+                                                    'INFT' => 'link3',
+                                                    
+                                                );
+                                                
+                                                $link = isset($linkmap[$jenis]) ? $linkmap[$jenis] : '';
+                                                
+                                                echo $link;
+                                                ?>
                                             </td>
                                             <td>
                                                 <div class="dropdown">
