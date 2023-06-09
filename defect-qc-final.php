@@ -30,7 +30,6 @@ if (isset($_POST['update'])) {
     $LCD = $_POST['kondisi-lcd'];
     $PCB = $_POST['kondisi-pcb'];
     $LOADCELL = $_POST['kondisi-loadcell'];
-    $rocker_switch = $_POST['kondisi-rocker-switch'];
     $tiang_stadio_1 = $_POST['kondisi-tiang-stadio-1'];
     $tiang_stadio_2 = $_POST['kondisi-tiang-stadio-2'];
     $tiang_stadio_3 = $_POST['kondisi-tiang-stadio-3'];
@@ -41,7 +40,7 @@ if (isset($_POST['update'])) {
     $cacat_final_tambahan = $_POST['kondisi-cacat-lainnya'];
     echo "cacat final tambahan : " . gettype($cacat_final_tambahan);
     // check is it cacat final any not good condition?
-    $arr = array($LCD, $PCB, $LOADCELL, $rocker_switch, $tiang_stadio_1, $tiang_stadio_2, $tiang_stadio_3, $tiang_stadio_4, $base_infanto_1, $base_infanto_2, $pita_lila);
+    $arr = array($LCD, $PCB, $LOADCELL, $tiang_stadio_1, $tiang_stadio_2, $tiang_stadio_3, $tiang_stadio_4, $base_infanto_1, $base_infanto_2, $pita_lila);
     // Initiate var to get defect hardware
     $arr_string = "";
     foreach ($arr as $value) {
@@ -59,7 +58,7 @@ if (isset($_POST['update'])) {
     $additional_arr_string = rtrim(substr($additional_arr_string, 0, -1));
     echo "cacat final tambahan string : " . $additional_arr_string;
 
-    $kondisi_cacat = $LCD . ' ' . $PCB . ' ' . $LOADCELL . ' ' . $rocker_switch . ' ' . $tiang_stadio_1 . ' ' . $tiang_stadio_2 . ' ' . $tiang_stadio_3 . ' ' . $tiang_stadio_4 . ' ' . $base_infanto_1 . ' ' . $base_infanto_2 . ' ' . $pita_lila;
+    $kondisi_cacat = $LCD . ' ' . $PCB . ' ' . $LOADCELL . ' ' . $tiang_stadio_1 . ' ' . $tiang_stadio_2 . ' ' . $tiang_stadio_3 . ' ' . $tiang_stadio_4 . ' ' . $base_infanto_1 . ' ' . $base_infanto_2 . ' ' . $pita_lila;
 
     if ($arr_string == "" && $additional_arr_string == "") {
         $query = mysql_query("UPDATE serial_number SET kondisi_final = 'Good', cacat_final = NULL, cacat_final_tambahan = NULL, penanggung_jawab_final = '$penanggung_jawab_final' WHERE id = $id");
@@ -164,16 +163,6 @@ if (isset($_POST['update'])) {
 
                                     <input type="radio" value="LOADCELL" class="btn-check not-good" name="kondisi-loadcell" id="not-good-loadcell" autocomplete="off" <?php echo in_array("LOADCELL", $arr_cacat_final) ? 'checked' : '' ?>>
                                     <label class="btn btn-outline-danger" for="not-good-loadcell">Not Good</label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-md-2 col-form-label">Rocker Switch</label>
-                                <div class="col-sm-12 col-md-10">
-                                    <input type="radio" value="" class="btn-check good" name="kondisi-rocker-switch" id="good-rocker-switch" autocomplete="off" checked>
-                                    <label class="btn btn-outline-success" for="good-rocker-switch">Good</label>
-
-                                    <input type="radio" value="rocker_switch" class="btn-check not-good" name="kondisi-rocker-switch" id="not-good-rocker-switch" autocomplete="off" <?php echo in_array("rocker_switch", $arr_cacat_final) ? 'checked' : '' ?>>
-                                    <label class="btn btn-outline-danger" for="not-good-rocker-switch">Not Good</label>
                                 </div>
                             </div>
                         <?php elseif ($kode_kategori == "INFT") : ?>

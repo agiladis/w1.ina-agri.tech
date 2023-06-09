@@ -32,7 +32,6 @@ $jumlah = $_POST['jumlah'];
 $LCD = isset($_POST['LCD']) ? covertIntoStr($_POST['LCD']) : 0;
 $PCB = isset($_POST['PCB']) ? covertIntoStr($_POST['PCB']) : 0;
 $LOADCELL = isset($_POST['LOADCELL']) ? covertIntoStr($_POST['LOADCELL']) : 0;
-$rocker_switch = isset($_POST['rocker-switch']) ? covertIntoStr($_POST['rocker-switch']) : 0;
 $tiang_stadio_1 = isset($_POST['tiang-stadio-1']) ? covertIntoStr($_POST['tiang-stadio-1']) : 0;
 $tiang_stadio_2 = isset($_POST['tiang-stadio-2']) ? covertIntoStr($_POST['tiang-stadio-2']) : 0;
 $tiang_stadio_3 = isset($_POST['tiang-stadio-3']) ? covertIntoStr($_POST['tiang-stadio-3']) : 0;
@@ -44,7 +43,7 @@ $pita_lila = isset($_POST['pita-lila']) ? covertIntoStr($_POST['pita-lila']) : 0
 for ($i = 1; $i <= $jumlah; $i++) {
     $kode_nomor = str_pad($i, 3, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
     $serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
-    $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL, rocker_switch,tiang_stadio_1,tiang_stadio_2,tiang_stadio_3,tiang_stadio_4,base_infanto_1,base_infanto_2,pita_lila) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$rocker_switch','$tiang_stadio_1','$tiang_stadio_2','$tiang_stadio_3','$tiang_stadio_4','$base_infanto_1','$base_infanto_2','$pita_lila')");
+    $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL,tiang_stadio_1,tiang_stadio_2,tiang_stadio_3,tiang_stadio_4,base_infanto_1,base_infanto_2,pita_lila) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$tiang_stadio_1','$tiang_stadio_2','$tiang_stadio_3','$tiang_stadio_4','$base_infanto_1','$base_infanto_2','$pita_lila')");
 }
 
 // PATCH DATA TAKEN PERANGKAT TABEL : LCD, PCB, LOADCELL IF CREATE BATCH SUCCESS
@@ -57,9 +56,6 @@ if ($query_create) {
     }
     if ($LOADCELL != 0) {
         takenHardware($_POST['LOADCELL']);
-    }
-    if ($rocker_switch != 0) {
-        takenHardware($_POST['rocker-switch']);
     }
     if ($tiang_stadio_1 != 0) {
         takenHardware($_POST['tiang-stadio-1']);

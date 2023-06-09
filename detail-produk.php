@@ -10,7 +10,6 @@
     $id_lcd = $row['LCD'];
     $id_pcb = $row['PCB'];
     $id_loadcell = $row['LOADCELL'];
-    $id_rocker = $row['rocker_switch'];
     $id_tiang_1 = $row['tiang_stadio_1'];
     $id_tiang_2 = $row['tiang_stadio_2'];
     $id_tiang_3 = $row['tiang_stadio_3'];
@@ -70,13 +69,6 @@
             } else {
               echo '<div class="row my-3">';
               getdetail($id_loadcell);
-              echo '</div>';
-            }
-            if ($id_rocker == 0) {
-              // echo "Rocker-Switch : -</br>";
-            } else {
-              echo '<div class="row my-3">';
-              getdetail($id_rocker);
               echo '</div>';
             }
             if ($id_tiang_1 == 0) {

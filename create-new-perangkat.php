@@ -15,8 +15,6 @@ if (isset($_POST['register'])) {
         "PCB-BBWS" => "PCB-B",
         "Loadcell-TDWS" => "LC-T",
         "Loadcell-BBWS" => "LC-B",
-        "Rocker-Switch(O -)" => "RS-O -",
-        "Rocker-Switch(O I)" => "RS-O I",
         "Tiang-Stadio-1" => "TS1",
         "Tiang-Stadio-2" => "TS2",
         "Tiang-Stadio-3" => "TS3",
@@ -136,8 +134,6 @@ if (isset($_POST['register'])) {
                                     <option value="PCB-BBWS">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
-                                    <option value="Rocker-Switch(O -)">Rocker Switch(O -)</option>
-                                    <option value="Rocker-Switch(O I)">Rocker Switch(O I)</option>
                                     <option value="Tiang-Stadio-1">Tiang Stadio 1</option>
                                     <option value="Tiang-Stadio-2">Tiang Stadio 2</option>
                                     <option value="Tiang-Stadio-3">Tiang Stadio 3</option>

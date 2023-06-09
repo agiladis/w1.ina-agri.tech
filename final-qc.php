@@ -122,11 +122,6 @@
 										// $query_loadcell = mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell");
 										// $row_loadcell = mysql_fetch_assoc($query_loadcell);
 
-										// //Mengambil data rocker_switch
-										$id_rocker = $row_serial_number['rocker_switch'];
-										// $query_rocker = mysql_query("SELECT * FROM perangkat WHERE id = $id_rocker");
-										// $row_rocker = mysql_fetch_assoc($query_rocker);
-
 										// //Mengambil data tiang-stadio
 										$id_tiang_1 = $row_serial_number['tiang_stadio_1'];
 										// $query_tiang_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_1");
@@ -179,11 +174,6 @@
 													// echo "LOADCELL : -</br>";
 												} else {
 													getdetail($id_loadcell);
-												}
-												if ($id_rocker == 0) {
-													// echo "Rocker-Switch : -</br>";
-												} else {
-													getdetail($id_rocker);
 												}
 												if ($id_tiang_1 == 0) {
 													// echo "Rocker-Switch : -</br>";
