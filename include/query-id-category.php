@@ -90,25 +90,6 @@ if ($category_code == 'TDWS') {
             </select>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Rocker Switch</label>
-        <div class="col-sm-12 col-md-10">
-            <select name="rocker-switch[]" multiple="multiple" class="3col active custom-select col-12">
-                <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_rocker = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Rocker-Switch%' AND kondisi = 'Good' AND taken = 0 ");
-                $data_rocker = mysql_fetch_assoc($query_perangkat_rocker);
-                if (mysql_num_rows($query_perangkat_rocker) > 0) :
-                    do {
-                ?>
-                        <option value="<?= $data_rocker['id']; ?>"><?= $data_rocker['no_batch'] . "." . str_pad($data_rocker['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data_rocker['unit_barang'] .".".$data_rocker['kode_perangkat']; ?></option>
-                    <?php } while ($data_rocker = mysql_fetch_assoc($query_perangkat_rocker));
-                else : ?>
-                    <option selected value="0">NOT FOUND</option>
-                <?php endif ?>
-            </select>
-        </div>
-    </div>
 <?php
 } elseif ($category_code == 'INFT') {
 ?>
@@ -330,25 +311,6 @@ if ($category_code == 'TDWS') {
                 ?>
                         <option value="<?= $data_loadcell['id']; ?>"><?= $data_loadcell['no_batch'] . "." . str_pad($data_loadcell['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data_loadcell['unit_barang'] .".".$data_loadcell['kode_perangkat']; ?></option>
                     <?php } while ($data_loadcell = mysql_fetch_assoc($query_perangkat_loadcell));
-                else : ?>
-                    <option selected value="0">NOT FOUND</option>
-                <?php endif ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Rocker Switch</label>
-        <div class="col-sm-12 col-md-10">
-            <select name="rocker-switch[]" multiple="multiple" class="3col active custom-select col-12">
-                <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_rocker = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Rocker-Switch%' AND kondisi = 'Good' AND taken = 0 ");
-                $data_rocker = mysql_fetch_assoc($query_perangkat_rocker);
-                if (mysql_num_rows($query_perangkat_rocker) > 0) :
-                    do {
-                ?>
-                        <option value="<?= $data_rocker['id']; ?>"><?= $data_rocker['no_batch'] . "." . str_pad($data_rocker['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data_rocker['unit_barang'] .".".$data_rocker['kode_perangkat']; ?></option>
-                    <?php } while ($data_rocker = mysql_fetch_assoc($query_perangkat_rocker));
                 else : ?>
                     <option selected value="0">NOT FOUND</option>
                 <?php endif ?>

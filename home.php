@@ -25,8 +25,6 @@
 		['PCB-BBWS QC Passed', 'PCB-BBWS%'],
 		['Loadcell-TDWS QC Passed', 'Loadcell-TDWS%'],
 		['Loadcell-BBWS QC Passed', 'Loadcell-BBWS%'],
-		['Rocker-Switch(O -) QC Passed', 'Rocker-Switch(O -)%'],
-		['Rocker-Switch(O l) QC Passed', 'Rocker-Switch(O l)%'],
 	];
 
 	$counts = [];
