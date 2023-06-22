@@ -10,12 +10,8 @@
     $id_lcd = $row['LCD'];
     $id_pcb = $row['PCB'];
     $id_loadcell = $row['LOADCELL'];
-    $id_tiang_1 = $row['tiang_stadio_1'];
-    $id_tiang_2 = $row['tiang_stadio_2'];
-    $id_tiang_3 = $row['tiang_stadio_3'];
-    $id_tiang_4 = $row['tiang_stadio_4'];
-    $id_base_1 = $row['base_infanto_1'];
-    $id_base_2 = $row['base_infanto_2'];
+    $id_tiang = $row['tiang_stadio'];
+    $id_base_1 = $row['base_infanto'];
     $id_pita = $row['pita_lila'];
     $grup = str_replace('g','G',$row['group_produksi']);
     $status = '';
@@ -71,48 +67,20 @@
               getdetail($id_loadcell);
               echo '</div>';
             }
-            if ($id_tiang_1 == 0) {
+            if ($id_tiang == 0) {
               // echo "Rocker-Switch : -</br>";
             } else {
               echo '<div class="row my-3">';
-              getdetail($id_tiang_1);
+              getdetail($id_tiang);
               echo '</div>';
             }
-            if ($id_tiang_2 == 0) {
+            if ($id_base== 0) {
               // echo "Rocker-Switch : -</br>";
             } else {
               echo '<div class="row my-3">';
-              getdetail($id_tiang_2);
-              echo '</div>';
-            }
-            if ($id_tiang_3 == 0) {
-              // echo "Rocker-Switch : -</br>";
-            } else {
-              echo '<div class="row my-3">';
-              getdetail($id_tiang_3);
-              echo '</div>';
-            }
-            if ($id_tiang_4 == 0) {
-              // echo "Rocker-Switch : -</br>";
-            } else {
-              echo '<div class="row my-3">';
-              getdetail($id_tiang_4);
-              echo '</div>';
-            }
-            if ($id_base_1 == 0) {
-              // echo "Rocker-Switch : -</br>";
-            } else {
-              echo '<div class="row my-3">';
-              getdetail($id_base_1);
+              getdetail($id_base);
               echo '</div>';
               
-            }
-            if ($id_base_2 == 0) {
-              // echo "Rocker-Switch : -</br>";
-            } else {
-              echo '<div class="row my-3">';
-              getdetail($id_base_2);
-              echo '</div>';
             }
             if ($id_pita == 0) {
               // echo "Rocker-Switch : -</br>";

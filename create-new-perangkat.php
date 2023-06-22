@@ -15,12 +15,8 @@ if (isset($_POST['register'])) {
         "PCB-BBWS" => "PCB-B",
         "Loadcell-TDWS" => "LC-T",
         "Loadcell-BBWS" => "LC-B",
-        "Tiang-Stadio-1" => "TS1",
-        "Tiang-Stadio-2" => "TS2",
-        "Tiang-Stadio-3" => "TS3",
-        "Tiang-Stadio-4" => "TS4",
-        "Base-Infanto-1" => "BI1",
-        "Base-Infanto-2" => "BI2",
+        "Tiang-Stadio" => "TS",
+        "Base-Infanto" => "BI",
         "Pita-Lila" => "P-LILA",
     );
 
@@ -134,12 +130,8 @@ if (isset($_POST['register'])) {
                                     <option value="PCB-BBWS">PCB-BBWS</option>
                                     <option value="Loadcell-TDWS">Loadcell-TDWS</option>
                                     <option value="Loadcell-BBWS">Loadcell-BBWS</option>
-                                    <option value="Tiang-Stadio-1">Tiang Stadio 1</option>
-                                    <option value="Tiang-Stadio-2">Tiang Stadio 2</option>
-                                    <option value="Tiang-Stadio-3">Tiang Stadio 3</option>
-                                    <option value="Tiang-Stadio-4">Tiang Stadio 4</option>
-                                    <option value="Base-Infanto-1">Base Infanto 1</option>
-                                    <option value="Base-Infanto-2">Base Infanto 2</option>
+                                    <option value="Tiang-Stadio">Tiang Stadio</option>
+                                    <option value="Base-Infanto">Base Infanto</option>
                                     <option value="Pita-Lila">Pita LILA</option>
                                 </select>
                             </div>
