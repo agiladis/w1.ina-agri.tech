@@ -100,31 +100,12 @@ if ($category_code == 'TDWS') {
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 1</label>
+        <label class="col-sm-12 col-md-2 col-form-label">Base Infanto</label>
         <div class="col-sm-12 col-md-10">
-            <select name="base-infanto-1[]" multiple="multiple" class="3col active custom-select col-12">
+            <select name="base-infanto[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_base = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Base-Infanto-1%' AND kondisi = 'Good' AND taken = 0 ");
-                $data_base = mysql_fetch_assoc($query_perangkat_base);
-                if (mysql_num_rows($query_perangkat_base) > 0) :
-                    do {
-                ?>
-                        <option value="<?= $data_base['id']; ?>"><?= $data_base['no_batch'] . "." . str_pad($data_base['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data_base['unit_barang'] .".".$data_base['kode_perangkat']; ?></option>
-                    <?php } while ($data_base = mysql_fetch_assoc($query_perangkat_base));
-                else : ?>
-                    <option selected value="0">NOT FOUND</option>
-                <?php endif ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Base Infanto 2</label>
-        <div class="col-sm-12 col-md-10">
-            <select name="base-infanto-2[]" multiple="multiple" class="3col active custom-select col-12">
-                <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_base = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Base-Infanto-2%' AND kondisi = 'Good' AND taken = 0 ");
+                $query_perangkat_base = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Base-Infanto' AND kondisi = 'Good' AND taken = 0 ");
                 $data_base = mysql_fetch_assoc($query_perangkat_base);
                 if (mysql_num_rows($query_perangkat_base) > 0) :
                     do {
@@ -147,69 +128,12 @@ if ($category_code == 'TDWS') {
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 1</label>
+        <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio</label>
         <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-1[]" multiple="multiple" class="3col active custom-select col-12">
+            <select name="tiang-stadio[]" multiple="multiple" class="3col active custom-select col-12">
                 <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-1%' AND kondisi = 'Good' AND taken = 0 ");
-                $data_tiang = mysql_fetch_assoc($query_perangkat_tiang);
-                if (mysql_num_rows($query_perangkat_tiang) > 0) :
-                    do {
-                ?>
-                        <option value="<?= $data_tiang['id']; ?>"><?= $data_tiang['no_batch'] . "." . str_pad($data_tiang['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data_tiang['unit_barang'] .".".$data_tiang['kode_perangkat']; ?></option>
-                    <?php } while ($data_tiang = mysql_fetch_assoc($query_perangkat_tiang));
-                else : ?>
-                    <option selected value="0">NOT FOUND</option>
-                <?php endif ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 2</label>
-        <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-2[]" multiple="multiple" class="3col active custom-select col-12">
-                <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-2%' AND kondisi = 'Good' AND taken = 0 ");
-                $data_tiang = mysql_fetch_assoc($query_perangkat_tiang);
-                if (mysql_num_rows($query_perangkat_tiang) > 0) :
-                    do {
-                ?>
-                        <option value="<?= $data_tiang['id']; ?>"><?= $data_tiang['no_batch'] . "." . str_pad($data_tiang['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data_tiang['unit_barang'] .".".$data_tiang['kode_perangkat']; ?></option>
-                    <?php } while ($data_tiang = mysql_fetch_assoc($query_perangkat_tiang));
-                else : ?>
-                    <option selected value="0">NOT FOUND</option>
-                <?php endif ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 3</label>
-        <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-3[]" multiple="multiple" class="3col active custom-select col-12">
-                <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-3%' AND kondisi = 'Good' AND taken = 0 ");
-                $data_tiang = mysql_fetch_assoc($query_perangkat_tiang);
-                if (mysql_num_rows($query_perangkat_tiang) > 0) :
-                    do {
-                ?>
-                        <option value="<?= $data_tiang['id']; ?>"><?= $data_tiang['no_batch'] . "." . str_pad($data_tiang['no_kardus'], 3, "0", STR_PAD_LEFT) . ".".$data_tiang['unit_barang'] .".".$data_tiang['kode_perangkat']; ?></option>
-                    <?php } while ($data_tiang = mysql_fetch_assoc($query_perangkat_tiang));
-                else : ?>
-                    <option selected value="0">NOT FOUND</option>
-                <?php endif ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-12 col-md-2 col-form-label">Tiang Stadio 4</label>
-        <div class="col-sm-12 col-md-10">
-            <select name="tiang-stadio-4[]" multiple="multiple" class="3col active custom-select col-12">
-                <?php
-                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "Rocker-Switch"
-                $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio-4%' AND kondisi = 'Good' AND taken = 0 ");
+                // GET ID perangkat FROM TBL perangkat WHERE perangkat = "tiang-stadio"
+                $query_perangkat_tiang = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'Tiang-Stadio' AND kondisi = 'Good' AND taken = 0 ");
                 $data_tiang = mysql_fetch_assoc($query_perangkat_tiang);
                 if (mysql_num_rows($query_perangkat_tiang) > 0) :
                     do {

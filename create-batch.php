@@ -32,18 +32,14 @@ $jumlah = $_POST['jumlah'];
 $LCD = isset($_POST['LCD']) ? covertIntoStr($_POST['LCD']) : 0;
 $PCB = isset($_POST['PCB']) ? covertIntoStr($_POST['PCB']) : 0;
 $LOADCELL = isset($_POST['LOADCELL']) ? covertIntoStr($_POST['LOADCELL']) : 0;
-$tiang_stadio_1 = isset($_POST['tiang-stadio-1']) ? covertIntoStr($_POST['tiang-stadio-1']) : 0;
-$tiang_stadio_2 = isset($_POST['tiang-stadio-2']) ? covertIntoStr($_POST['tiang-stadio-2']) : 0;
-$tiang_stadio_3 = isset($_POST['tiang-stadio-3']) ? covertIntoStr($_POST['tiang-stadio-3']) : 0;
-$tiang_stadio_4 = isset($_POST['tiang-stadio-4']) ? covertIntoStr($_POST['tiang-stadio-4']) : 0;
-$base_infanto_1 = isset($_POST['base-infanto-1']) ? covertIntoStr($_POST['base-infanto-1']) : 0;
-$base_infanto_2 = isset($_POST['base-infanto-2']) ? covertIntoStr($_POST['base-infanto-2']) : 0;
+$tiang_stadio = isset($_POST['tiang-stadio']) ? covertIntoStr($_POST['tiang-stadio']) : 0;
+$base_infanto = isset($_POST['base-infanto']) ? covertIntoStr($_POST['base-infanto']) : 0;
 $pita_lila = isset($_POST['pita-lila']) ? covertIntoStr($_POST['pita-lila']) : 0;
 
 for ($i = 1; $i <= $jumlah; $i++) {
     $kode_nomor = str_pad($i, 3, "0", STR_PAD_LEFT); // menambahkan nomor urutan pada variabel kode_nomor
     $serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
-    $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL,tiang_stadio_1,tiang_stadio_2,tiang_stadio_3,tiang_stadio_4,base_infanto_1,base_infanto_2,pita_lila) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$tiang_stadio_1','$tiang_stadio_2','$tiang_stadio_3','$tiang_stadio_4','$base_infanto_1','$base_infanto_2','$pita_lila')");
+    $query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, id_pemesan, serial_number, LCD, PCB, LOADCELL,tiang_stadio,base_infanto,pita_lila) VALUES ('$kode_batch', '$id_kategori_produk', '$id_pemesan', '$serial_number', '$LCD', '$PCB', '$LOADCELL', '$tiang_stadio','$base_infanto','$pita_lila')");
 }
 
 // PATCH DATA TAKEN PERANGKAT TABEL : LCD, PCB, LOADCELL IF CREATE BATCH SUCCESS
@@ -57,23 +53,14 @@ if ($query_create) {
     if ($LOADCELL != 0) {
         takenHardware($_POST['LOADCELL']);
     }
-    if ($tiang_stadio_1 != 0) {
-        takenHardware($_POST['tiang-stadio-1']);
+    if ($tiang_stadio != 0) {
+        takenHardware($_POST['tiang-stadio']);
     }
-    if ($tiang_stadio_2 != 0) {
-        takenHardware($_POST['tiang-stadio-2']);
-    }
-    if ($tiang_stadio_3 != 0) {
-        takenHardware($_POST['tiang-stadio-3']);
-    }
-    if ($tiang_stadio_4 != 0) {
+    if ($tiang_stadio != 0) {
         takenHardware($_POST['tiang-stadio-4']);
     }
-    if ($base_infanto_1 != 0) {
-        takenHardware($_POST['base-infanto-1']);
-    }
-    if ($base_infanto_2 != 0) {
-        takenHardware($_POST['base-infanto-2']);
+    if ($base_infanto != 0) {
+        takenHardware($_POST['base-infanto']);
     }
     if ($pita_lila != 0) {
         takenHardware($_POST['pita-lila']);

@@ -110,30 +110,15 @@
 										// $row_loadcell = mysql_fetch_assoc($query_loadcell);
 
 										// //Mengambil data tiang-stadio
-										$id_tiang_1 = $row_serial_number['tiang_stadio_1'];
-										// $query_tiang_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_1");
+										$id_tiang = $row_serial_number['tiang_stadio'];
+										// $query_tiang_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang");
 										// $row_tiang_1 = mysql_fetch_assoc($query_tiang_1);
-										// //Mengambil data tiang-stadio
-										$id_tiang_2 = $row_serial_number['tiang_stadio_2'];
-										// $query_tiang_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_2");
-										// $row_tiang_2 = mysql_fetch_assoc($query_tiang_2);
-										// //Mengambil data tiang-stadio
-										$id_tiang_3 = $row_serial_number['tiang_stadio_3'];
-										// $query_tiang_3 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_3");
-										// $row_tiang_3 = mysql_fetch_assoc($query_tiang_3);
-										// //Mengambil data tiang-stadio
-										$id_tiang_4 = $row_serial_number['tiang_stadio_4'];
-										// $query_tiang_4 = mysql_query("SELECT * FROM perangkat WHERE id = $id_tiang_4");
-										// $row_tiang_4 = mysql_fetch_assoc($query_tiang_4);
 
 										//Mengambil data base-infanto
-										$id_base_1 = $row_serial_number['base_infanto_1'];
-										// $query_base_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_1");
+										$id_base = $row_serial_number['base_infanto'];
+										// $query_base_1 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base");
 										// $row_base_1 = mysql_fetch_assoc($query_base_1);
-										// //Mengambil data base-infanto
-										$id_base_2 = $row_serial_number['base_infanto_2'];
-										// $query_base_2 = mysql_query("SELECT * FROM perangkat WHERE id = $id_base_2");
-										// $row_base_2 = mysql_fetch_assoc($query_base_2);
+										
 										
 
 										// //Mengambil data pita-lila
@@ -162,36 +147,15 @@
 												} else {
 													getdetail($id_loadcell);
 												}
-												if ($id_tiang_1 == 0) {
+												if ($id_tiang == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													getdetail($id_tiang_1);
+													getdetail($id_tiang);
 												}
-												if ($id_tiang_2 == 0) {
+												if ($id_base == 0) {
 													// echo "Rocker-Switch : -</br>";
 												} else {
-													getdetail($id_tiang_2);
-												}
-												if ($id_tiang_3 == 0) {
-													// echo "Rocker-Switch : -</br>";
-												} else {
-													getdetail($id_tiang_3);
-												}
-												if ($id_tiang_4 == 0) {
-													// echo "Rocker-Switch : -</br>";
-												} else {
-													getdetail($id_tiang_4);
-												}
-												if ($id_base_1 == 0) {
-													// echo "Rocker-Switch : -</br>";
-												} else {
-													getdetail($id_base_1);
-													
-												}
-												if ($id_base_2 == 0) {
-													// echo "Rocker-Switch : -</br>";
-												} else {
-													getdetail($id_base_2);
+													getdetail($id_base);	
 												}
 												if ($id_pita == 0) {
 													// echo "Rocker-Switch : -</br>";
